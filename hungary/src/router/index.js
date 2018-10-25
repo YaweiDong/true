@@ -24,6 +24,11 @@ import Fruit from '../components/elema/food/fruit'
 import Hamburg from '../components/elema/food/hamburg'
 import Pizza from '../components/elema/food/pizza'
 
+import Register from '../components/mine/register/register'
+import Service from '../components/mine/serviceCenter/service'
+import Question from '../components/mine/serviceCenter/question'
+import Information from '../components/mine/information/information'
+
 Vue.use(Router)
 
 export default new Router({
@@ -137,6 +142,10 @@ export default new Router({
     },{
       path:'/elema/shop/business',
       component:Business,
-    }
+    },
+    {path: '/register',component: Register},
+    {path: '/service',component: Service},
+    {path: '/questionDetail',component: Question},
+    {path: '/information',name:'information',component: Information}
   ]
 })
