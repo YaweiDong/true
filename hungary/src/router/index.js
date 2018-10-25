@@ -23,11 +23,11 @@ import Japan from '../components/elema/food/japan'
 import Fruit from '../components/elema/food/fruit'
 import Hamburg from '../components/elema/food/hamburg'
 import Pizza from '../components/elema/food/pizza'
-
 import Register from '../components/mine/register/register'
 import Service from '../components/mine/serviceCenter/service'
 import Question from '../components/mine/serviceCenter/question'
 import Information from '../components/mine/information/information'
+
 
 Vue.use(Router)
 
