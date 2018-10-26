@@ -56,7 +56,10 @@ export default {
 }
 .line{
     border: 0.005rem solid rgb(192, 184, 184);
+    height: 0.43rem;
     margin: 0.1rem 0;
+    display: flex;
+    justify-content: space-between;
 }
 .next img{
     width: 0.3rem;

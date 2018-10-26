@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       timg: require("../imgs/back.png"),
-      next: require("../imgs/next.png")
+      next: require("../imgs/next.png"),
+      username:''
     };
   }
 };
