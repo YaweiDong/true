@@ -35,6 +35,7 @@ import Intergral from '../components/mine/balance/integral'
 import Setname from '../components/mine/information/setname'
 import Address from '../components/mine/information/address'
 import Forget from '../components/mine/information/forget'
+import Cityserch from "../components/elema/city/cityserch";
 
 Vue.use(Router)
 
@@ -160,6 +161,11 @@ export default new Router({
         //修改用户名，地址，密码
         { path: '/information/setname', component: Setname },
         { path: '/information/address', component: Address },
-        { path: '/information/forget', component: Forget }
+        { path: '/information/forget', component: Forget },
+        {
+            path: "/cityserch",
+            name: "cityserch",
+            component: Cityserch
+        }
     ]
 })
