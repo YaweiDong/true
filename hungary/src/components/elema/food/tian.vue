@@ -32,7 +32,12 @@
       <div class="xiangqing">
       <ol >
       <li v-for="(k,index) in arr" :key="index" @click="updaMsg(index)">
+        <span class="span1">
        {{k.name}}
+       </span>
+        <span class="span2">
+            {{k.count}}
+            </span>
       </li>
     </ol>
       </div>
@@ -121,7 +126,7 @@ export default {
     updaMsg(index) {
       this.name2 = this.arr[index].name;
       console.log(this.name2);
-      // console.log("111");
+      this.show = false;
     },
     hidden3: function() {
       this.show = false;
@@ -237,12 +242,14 @@ export default {
 .fenlei li {
   height: 0.42rem;
   /* background-color: rgba(230, 230, 230, 1); */
+  color: rgb(100, 100, 100);
   font-size: 0.015rem;
 }
 .xiangqing li {
   height: 0.41rem;
   border-bottom: 0.01rem solid rgba(230, 230, 230, 1);
   font-size: 0.13rem;
+    color: rgb(100, 100, 100);
 }
 .fenlei span {
   background-color: rgba(200, 200, 200, 1);
@@ -319,6 +326,14 @@ export default {
   left: 0;
   background-color: white;
   z-index: 100;
+}
+.span1{
+  float: left;
+  margin-left: 0.1rem;
+}
+.span2{
+  float:right;
+  margin-right: 0.1rem;
 }
 </style>
 
