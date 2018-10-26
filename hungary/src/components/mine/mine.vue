@@ -4,7 +4,7 @@
         <img src="../../../static/imgs/back.png" alt="">
         <span>我的</span>
     </header>
-       <router-link to='/register' class="register">           <div class="register-div">
+       <router-link :to='choise' class="register">           <div class="register-div">
             <div class="register-photo">
                 <img src="../../../static/imgs/mine.png" alt="">
             </div>
@@ -20,14 +20,14 @@
     </router-link> 
     <ul class='treasure'>
         <li>
-            <router-link to="/balance">
+            <router-link to="/yet">
                <strong class="treasure-s1">0.00</strong>
                <span>元</span>
                <p>我的余额</p>     
             </router-link>
         </li>
         <li>
-            <router-link to="/discounts" >   
+            <router-link to="/discount" >   
                <strong class="treasure-s2">0</strong>
                <span>个</span>
                <p>我的优惠</p>          
@@ -63,6 +63,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
+      choise:'/register',
       username:'登陆/注册',
       phone: require("./imgs/phone.png"),
       next: require("./imgs/next.png"),
@@ -74,10 +75,14 @@ export default {
       ]
     };
   },
-  created() {
-      
+  created() {   
       this.username = this.$store.state.login1.username;
       console.log("ssss"+this.username);
+      if(this.username == '登陆/注册'){
+        this.choise = '/register'
+      }else{
+        this.choise = '/information'
+      }
   }
 };
 </script>
