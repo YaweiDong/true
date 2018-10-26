@@ -64,16 +64,12 @@
       <button class="btn2">确定</button>
     </div>
     <div class="warp">
-            <ol >
-      <li v-for="(k3,index3) in data1" :key="index3">
-       {{k3.name}}
-      </li>
-    </ol>
-
+    <Zujian></Zujian>
     </div>
 </div>
 </template>
 <script>
+import Zujian from "../zujian"
 import { Loading } from "element-ui";
 import img01 from "./img/1.png";
 import img02 from "./img/2.png";
@@ -100,6 +96,9 @@ export default {
     data1: [],
     data2: []
   }),
+  components:{
+    Zujian
+  },
   methods: {
     hidden: function() {
       this.show = !this.show;
@@ -189,6 +188,12 @@ export default {
 .xiangqing {
   height: 3.78rem;
   overflow: scroll;
+   position:absolute;
+     top: 0rem;
+  left: 50%;
+  background-color: white;
+  z-index: 10;
+  
 }
 /* 隐藏滚动条 */
 .xiangqing::-webkit-scrollbar {
@@ -278,6 +283,7 @@ export default {
   width: 100%;
   top: 0.82rem;
   left: 0;
+  z-index: 100;
 }
 .xulie, .shaixuan{
     position:absolute;
@@ -285,6 +291,7 @@ export default {
   top: 0.82rem;
   left: 0;
   background-color: white;
+  z-index: 100;
 
 }
 
