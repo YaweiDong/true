@@ -6,53 +6,61 @@
            </router-link>    
            <span>账户信息</span>
          </header>
-         <ul calss="list">
-             <li>
+         <ul class="list">
+            <div class="li">
                  <span>头像</span>
                  <div>
-                     <img class="one" :src="user" alt="">
+                     <div>
+                          <img class="two" :src="user" alt="">
+                     </div>                 
                      <img class="one"  :src="next" alt="">
                  </div>
-             </li>
-             <li>
-                 <span>用户名</span>
+            </div>
+
+             
+            <router-link class="li" to='/information/setname'>
+                <span>用户名</span>
                  <div>
-                     <span>username</span>
-                     <img :src="next" alt="">
+                     <span>{{name}}</span>
+                     <img class="one" :src="next" alt="">
                  </div>
-             </li>
-             <li>
-                   <span>用户名</span>
-                 <div>
-                     <span>username</span>
-                     <img :src="next" alt="">
-                 </div>
-             </li>
-             <li>
+            </router-link>
+           
+             
+            <router-link class="li" to='/information/address'>
                    <span>收货地址</span>
                  <div>
-                 
-                     <img :src="next" alt="">
+                     <img class="one" :src="next" alt="">
                  </div>
-             </li>
-             <li>
+            </router-link>
+             
+             <div class="li">
                 <span>账号绑定</span>
-             </li>
-             <li>
-                <img :src="phone" alt="">
-                <span>手机</span>           
-             </li>
-             <li>
-                   <span>安全设置</span>
+             </div>
+
+             <div class="li">               
                  <div>
+                     <img class="two" :src="phone" alt="">
+                     <span>手机</span>  
+                 </div>
+                 <img class="one" :src="next" alt="">
+             </div>
+
+             <div class="li">
+                   <span>安全设置</span>
+             </div>
+               
+             <router-link class="li" to='/information/forget'>
                      <span>登陆密码</span>
                      <div>
-                         <span>修改</span>
-                          <img :src="next" alt="">
+                         <span class='last-p'>修改</span>
+                          <img class="one" :src="next" alt="">
                      </div>              
-                 </div>
-             </li>
+             </router-link>
          </ul>
+         <div class="out">
+             <span>退出登陆</span>
+         </div>
     </div>
 </template>
 
@@ -62,9 +70,14 @@ export default {
     return {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
-      phone:require('../imgs/phone.png'),
-      user:require('../imgs/user.png')
+      phone: require("../imgs/phone.png"),
+      user: require("../imgs/user.png"),
+      name: ""
     };
+  },
+  created() {
+    this.name = this.$store.state.login1.username;
+    console.log("ssss" + this.username);
   }
 };
 </script>
@@ -80,7 +93,7 @@ export default {
   position: relative;
   font-size: 0.18rem;
   color: aliceblue;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 .m-top a {
   position: absolute;
@@ -98,13 +111,64 @@ export default {
   top: 50%;
   bottom: 50%;
 }
-.list{
-    color: red;
+.list .li {
+  border-top: 0.001rem solid gray;
+  height: 0.5rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.15rem;
+  padding: 0 0.05rem 0 0.1rem;
+  color: black;
 }
-.list li{
-    width: 100%;
-    height: 0.5rem;
-    border: 0.01rem solid black; 
+.list .li div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
+.list .li:first-child {
+  height: 0.72rem;
+}
+.list .li:first-child div > div {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  background-color: rgb(219, 202, 202);
+}
+.list .li:first-child .two {
+  width: 100%;
+  height: 100%;
+}
+.list .li:nth-child(4),
+.list .li:nth-child(6) {
+  background-color: transparent;
+  height: 0.45rem;
+}
+.list .li:last-child {
+  border-bottom: 0.001rem solid gray;
+}
+.list .li:nth-child(5) img:first-child {
+  margin-right: 0.1rem;
+}
+.one {
+  margin-left: 0.05rem;
+}
+.one,
+.two {
+  width: 0.2rem;
+}
+.out {
+  text-align: center;
+  line-height: 0.35rem;
+  height: 0.35rem;
+  color: aliceblue;
+  margin: 0.3rem 0.1rem;
+  background-color: rgb(197, 26, 26);
+  border-radius: 0.06rem;
+  font-size: 0.15rem;
+}
+.last-p {
+  font-size: 0.17rem;
+}
 </style>

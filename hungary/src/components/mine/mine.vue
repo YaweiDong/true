@@ -20,14 +20,14 @@
     </router-link> 
     <ul class='treasure'>
         <li>
-            <router-link to="/balance">
+            <router-link to="/yet">
                <strong class="treasure-s1">0.00</strong>
                <span>元</span>
                <p>我的余额</p>     
             </router-link>
         </li>
         <li>
-            <router-link to="/discounts" >   
+            <router-link to="/discount" >   
                <strong class="treasure-s2">0</strong>
                <span>个</span>
                <p>我的优惠</p>          

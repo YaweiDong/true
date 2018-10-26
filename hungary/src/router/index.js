@@ -27,7 +27,14 @@ import Register from '../components/mine/register/register'
 import Service from '../components/mine/serviceCenter/service'
 import Question from '../components/mine/serviceCenter/question'
 import Information from '../components/mine/information/information'
-
+ //余额 ，优惠，积分
+ import Yet from '../components/mine/balance/yet'
+ import Discount from '../components/mine/balance/discount'
+ import Intergral from '../components/mine/balance/integral'
+ //修改用户名，地址，密码
+ import Setname from '../components/mine/information/setname'
+ import Address from '../components/mine/information/address'
+ import Forget from '../components/mine/information/forget'
 
 Vue.use(Router)
 
@@ -146,6 +153,15 @@ export default new Router({
     {path: '/register',component: Register},
     {path: '/service',component: Service},
     {path: '/questionDetail',component: Question},
-    {path: '/information',name:'information',component: Information}
+    {path: '/information',name:'information',component: Information
+},
+    //余额，优惠，积分
+    {path:'/yet',component:Yet},
+    {path:'/discount',component:Discount},
+    {path:'/integral',component:Intergral},
+    //修改用户名，地址，密码
+    {path:'/information/setname',component:Setname},
+    {path:'/information/address',component:Address},
+    {path:'/information/forget',component:Forget}
   ]
 })
