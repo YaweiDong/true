@@ -73,5 +73,6 @@ button{
     color: dodgerblue;
     float: right;
     margin-top:0.2rem; 
+    height: 0.24rem;
 }
 </style>

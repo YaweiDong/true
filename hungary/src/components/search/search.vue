@@ -5,15 +5,20 @@
       </div>
         <div>
         <input type="text" placeholder="请输入商家或者美食名称" v-model=txt>
+        <img class="off2" @click="off2()" src="../search/img/off.png" alt=""> 
         <button @click="sub()">提交</button>
-        <div>
-            <h4>搜索历史</h4>
-            <ol>
+        <div v-if="show">
+            <h4 v-if="show1">搜索历史</h4>
+            <ol >
                 <li v-for="(k,index) in arrs" :key="index">
                    <span>{{k}}</span>
                    <img class="off" @click="off(index)" src="../search/img/off.png" alt=""> 
                     </li>
             </ol>
+            <p v-if="show1" @click="del()" class="p1">清空搜索历史</p>
+        </div>
+        <div v-if="show2" class="sorry">
+          很抱歉! 无搜索结果
         </div>
         </div>
     </div>
@@ -25,20 +30,42 @@ export default {
   data() {
     return {
       txt: "",
-      arrs: []
+      arrs: [],
+      show:false,
+      show1: false,
+      show2:false
     };
   },
   methods: {
     sub() {
       this.arrs.push(this.txt);
+      this.show2=true;
+      this.show=false;
+      this.show1 = true;
+      this.txt="";
     },
     off(index) {
       this.arrs.splice(index, 1);
+      if (this.arrs[0] === undefined) {
+        this.show1 = false;
+      }
+    },
+    del() {
+      (this.arrs = []), (this.show = false);
+    },
+    off2(){
+      this.show=true;
+      this.show2=false;
     }
   }
 };
 </script>
 <style scoped ="scoped">
+.off2{
+  position: absolute;
+  top: 0.5rem;
+  left: 2.5rem;
+}
 .top {
   background-color: dodgerblue;
   width: 100%;
@@ -82,5 +109,19 @@ img {
   width: 0.15rem;
   float: right;
   margin: 0.16rem 0.1rem 0;
+}
+.p1 {
+  color: dodgerblue;
+  font-weight: bold;
+  text-align: center;
+  height: 0.46rem;
+  line-height: 0.46rem;
+}
+.sorry{
+  border-top: 0.01rem solid rgb(230, 230, 230);
+  text-align: center;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  background-color: white;
 }
 </style>

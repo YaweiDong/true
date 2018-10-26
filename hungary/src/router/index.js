@@ -32,120 +32,115 @@ import Information from '../components/mine/information/information'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-      redirect:'/elema',
-      children:[
-        {
-          path:'/elema',
-          component:Elema,
-        },{
-          path:'/search', 
-          component:Search
-        },{
-          path:'/order',
-          component:Order
-        },{
-          path:'/mine',
-          component:Mine
+    routes: [{
+            path: '/',
+            name: 'HelloWorld',
+            component: HelloWorld,
+            redirect: '/elema',
+            children: [{
+                path: '/elema',
+                component: Elema,
+            }, {
+                path: '/search',
+                component: Search
+            }, {
+                path: '/order',
+                component: Order
+            }, {
+                path: '/mine',
+                component: Mine
+            }, ]
+        }, {
+            path: '/tian',
+            name: "tian",
+            component: Tian
         },
-      ]
-    },{
-      path: '/tian',
-      name: "tian",
-      component: Tian
-  },
-  {
-      path: '/food',
-      name: "food",
-      component: Food
-  },
-  {
-      path: '/money',
-      name: "money",
-      component: Money
-  },
-  {
-      path: '/new',
-      name: "new",
-      component: New
-  },
-  {
-      path: '/ontime',
-      name: "ontmie",
-      component: Ontime
-  },
-  {
-      path: '/reservation',
-      name: "reservation",
-      component: Reservation
-  },
-  {
-      path: '/simple',
-      name: "simple",
-      component: Simple
-  },
-  {
-      path: '/chuan',
-      name: "chuan",
-      component: Chuan
-  },
-  {
-      path: '/spicy',
-      name: "spicy",
-      component: Spicy
-  },
-  {
-      path: '/baozi',
-      name: "baozi",
-      component: Baozi
-  },
-  {
-      path: '/cake',
-      name: "cake",
-      component: Cake
-  },
-  {
-      path: '/japan',
-      name: "japan",
-      component: Japan
-  },
-  {
-      path: '/fruit',
-      name: "fruit",
-      component: Fruit
-  },
-  {
-      path: '/hamburg',
-      name: "hamburg",
-      component: Hamburg
-  },
-  {
-      path: '/pizza',
-      name: "pizza",
-      component: Pizza
-  },{
-      path:'/elema/city',
-      component:City,
-      children:[
         {
-          path:'/mine',
-          component:Mine
-        }
-      ]
-    },{
-      path:'/elema/shop',
-      component:Shop,
-    },{
-      path:'/elema/shop/business',
-      component:Business,
-    },
-    {path: '/register',component: Register},
-    {path: '/service',component: Service},
-    {path: '/questionDetail',component: Question},
-    {path: '/information',name:'information',component: Information}
-  ]
+            path: '/food',
+            name: "food",
+            component: Food
+        },
+        {
+            path: '/money',
+            name: "money",
+            component: Money
+        },
+        {
+            path: '/new',
+            name: "new",
+            component: New
+        },
+        {
+            path: '/ontime',
+            name: "ontmie",
+            component: Ontime
+        },
+        {
+            path: '/reservation',
+            name: "reservation",
+            component: Reservation
+        },
+        {
+            path: '/simple',
+            name: "simple",
+            component: Simple
+        },
+        {
+            path: '/chuan',
+            name: "chuan",
+            component: Chuan
+        },
+        {
+            path: '/spicy',
+            name: "spicy",
+            component: Spicy
+        },
+        {
+            path: '/baozi',
+            name: "baozi",
+            component: Baozi
+        },
+        {
+            path: '/cake',
+            name: "cake",
+            component: Cake
+        },
+        {
+            path: '/japan',
+            name: "japan",
+            component: Japan
+        },
+        {
+            path: '/fruit',
+            name: "fruit",
+            component: Fruit
+        },
+        {
+            path: '/hamburg',
+            name: "hamburg",
+            component: Hamburg
+        },
+        {
+            path: '/pizza',
+            name: "pizza",
+            component: Pizza
+        }, {
+            path: '/elema/city',
+            component: City,
+            children: [{
+                path: '/mine',
+                component: Mine
+            }]
+        }, {
+            path: '/elema/shop',
+            component: Shop,
+        }, {
+            path: '/elema/shop/business',
+            component: Business,
+        },
+        { path: '/register', component: Register },
+        { path: '/service', component: Service },
+        { path: '/questionDetail', component: Question },
+        { path: '/information', name: 'information', component: Information }
+    ]
 })
