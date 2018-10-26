@@ -35,7 +35,7 @@ import Intergral from '../components/mine/balance/integral'
 import Setname from '../components/mine/information/setname'
 import Address from '../components/mine/information/address'
 import Forget from '../components/mine/information/forget'
-import Cityserch from "../components/elema/city/cityserch";
+import Citysearch from "../components/elema/city/citysearch";
 
 Vue.use(Router)
 
@@ -163,9 +163,9 @@ export default new Router({
         { path: '/information/address', component: Address },
         { path: '/information/forget', component: Forget },
         {
-            path: "/cityserch",
-            name: "cityserch",
-            component: Cityserch
+            path: "/citysearch",
+            name: "citysearch",
+            component: Citysearch
         }
     ]
 })

@@ -66,26 +66,39 @@
     </div>
 </template>
 <script>
-import Ele from './Ele';
-import { Loading } from "element-ui";
+import Ele from "./Ele";
+// import { Loading } from "element-ui";
 export default {
-   data: () => ({
-      data: [],
-     return:{}
-     }),
-     components:{
-       Ele
-     },
+  data: () => ({
+    data: [],
+    // datab:[],
+    return: {}
+  }),
+  // 修改地方
+  // props:["cli"],
+  //   watch:{
+  //   cli(news,olds){
+  //     this.data=this.datab
+  //     console.log(olds)
+  //     console.log(news)
+  //     this.data = this.data.filter(function(val){
+  //      return  val.category == news;
+  //     })
+  //   }
+  // },
+  components: {
+    Ele
+  },
   //发请求
   created() {
-        let loadingInstance1 = Loading.service({
-      fullscreen: true
-    });
+    // let loadingInstance1 = Loading.service({
+    //   fullscreen: true
+    // });
     let api =
-      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
+      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762&limit:100&order_by:5";
     //promise写法
     this.$http.get(api).then(data => {
-      loadingInstance1.close();
+      // loadingInstance1.close();
       //成功后的回调
       console.log(data.data);
       this.data = data.data;

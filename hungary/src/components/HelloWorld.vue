@@ -41,7 +41,7 @@ export default {
 
 </script>
 
-<style secoped='secoped'>
+<style scoped ="scoped">
 
 .warp {
   width: 100%;

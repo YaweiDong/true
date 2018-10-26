@@ -31,7 +31,7 @@
       <!-- 下部右边详情 -->
       <div class="xiangqing">
       <ol >
-      <li v-for="(k,index) in arr" :key="index">
+      <li v-for="(k,index) in arr" :key="index" @click="updaMsg(index)">
        {{k.name}}
       </li>
     </ol>
@@ -64,12 +64,12 @@
       <button class="btn2">确定</button>
     </div>
     <div class="warp">
-    <Zujian></Zujian>
+    <Zujian :cli="cont"></Zujian>
     </div>
 </div>
 </template>
 <script>
-import Zujian from "../zujian"
+import Zujian from "../zujian";
 import { Loading } from "element-ui";
 import img01 from "./img/1.png";
 import img02 from "./img/2.png";
@@ -80,6 +80,8 @@ import img06 from "./img/6.png";
 export default {
   name: "tian",
   data: () => ({
+    // 修改地方
+    cont: "",
     imgs1: [
       { title: "智能排序", src: img01, id: 1 },
       { title: "距离最近", src: img02, id: 2 },
@@ -94,11 +96,16 @@ export default {
     data: [],
     arr: [],
     data1: [],
-    data2: []
+    data2: [],
+    // 修改地方
+    name1: [],
+    name2: []
   }),
-  components:{
+  components: {
     Zujian
   },
+  // 修改地方
+  // props: ["cli"],
   methods: {
     hidden: function() {
       this.show = !this.show;
@@ -107,6 +114,14 @@ export default {
     },
     hidden2: function(index) {
       this.arr = this.data[index].sub_categories;
+      // 修改地方
+      this.name1 = this.data[index].name;
+      console.log(this.name1);
+    },
+    updaMsg(index) {
+      this.name2 = this.arr[index].name;
+      console.log(this.name2);
+      // console.log("111");
     },
     hidden3: function() {
       this.show = false;
@@ -117,6 +132,18 @@ export default {
       this.show = false;
       this.show2 = false;
       this.show3 = !this.show3;
+    },
+    // 修改地方
+    // updaMsg(el) {
+    //   this.cont = el;
+    // }
+  },
+  // 修改地方
+  watch: {
+    name2() {
+      this.cont = this.name1 + "/" + this.name2;
+      // console.log(a)
+      // this.cli(a);
     }
   },
   created() {
@@ -188,12 +215,11 @@ export default {
 .xiangqing {
   height: 3.78rem;
   overflow: scroll;
-   position:absolute;
-     top: 0rem;
+  position: absolute;
+  top: 0rem;
   left: 50%;
   background-color: white;
   z-index: 10;
-  
 }
 /* 隐藏滚动条 */
 .xiangqing::-webkit-scrollbar {
@@ -264,36 +290,35 @@ export default {
 .p1 {
   margin-left: 0.1rem;
 }
-.xulie{
+.xulie {
   font-size: 0.12rem;
 }
-.xulie img{
+.xulie img {
   width: 0.16rem;
   margin: 0 0.15rem;
 }
-.xulie li{
+.xulie li {
   width: 3.75rem;
   height: 0.57rem;
   border-bottom: 0.01rem solid rgb(230, 230, 230);
   line-height: 0.57rem;
 }
-.box2{
+.box2 {
   /* border: 1px solid red; */
-  position:absolute;
+  position: absolute;
   width: 100%;
   top: 0.82rem;
   left: 0;
   z-index: 100;
 }
-.xulie, .shaixuan{
-    position:absolute;
+.xulie,
+.shaixuan {
+  position: absolute;
   width: 100%;
   top: 0.82rem;
   left: 0;
   background-color: white;
   z-index: 100;
-
 }
-
 </style>
 
