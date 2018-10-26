@@ -41,10 +41,8 @@ export default {
 
 </script>
 
-<style scoped ="scoped">
-body{
-  background-color: #F5F5F5;
-}
+<style secoped='secoped'>
+
 .warp {
   width: 100%;
   padding: 0.1rem;

@@ -105,7 +105,6 @@ export default {
     width: 100%;
     height: 0.5rem;
     border: 0.01rem solid black; 
-    background-color: red;
 }
 
 </style>
