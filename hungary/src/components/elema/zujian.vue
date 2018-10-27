@@ -63,10 +63,14 @@ export default {
   data: () => ({
     data: [],
     datab: [],
+    //测试
+    datac: [],
     return: {}
   }),
   // 修改地方
   props: ["cli"],
+  // 测试
+  // props: ["cli1"],
   watch: {
     cli(news, olds) {
       this.data = this.datab;
@@ -76,7 +80,17 @@ export default {
         return val.category == news;
       });
       console.log(this.data);
-    }
+    },
+    // 测试
+    // cli1(new1, old1) {
+    //   this.data = this.datac;
+    //   console.log(old1);
+    //   console.log(new1);
+    //   this.data = this.data.filter(function(val) {
+    //     return val.id == new1;
+    //   });
+    //   console.log(this.data);
+    // }
   },
   //发请求
   created() {
@@ -91,7 +105,9 @@ export default {
       //成功后的回调
       console.log(data.data);
       this.data = data.data;
-      this.datab=data.data;
+      this.datab = data.data;
+      // 测试
+      this.datac = data.data;
     });
   }
 };
