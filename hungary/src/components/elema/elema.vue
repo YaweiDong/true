@@ -2,7 +2,7 @@
     <div>
         <div class="header">
             <router-link to="/elema/city">
-                <h3 class="header_h3">省建家属院(郑州市)</h3>
+                <h3 class="header_h3">{{address}}</h3>
             </router-link> 
         </div> 
         <div>
@@ -74,23 +74,13 @@ export default {
     // datab:[],
     return: {}
   }),
-  // 修改地方
-  // props:["cli"],
-  //   watch:{
-  //   cli(news,olds){
-  //     this.data=this.datab
-  //     console.log(olds)
-  //     console.log(news)
-  //     this.data = this.data.filter(function(val){
-  //      return  val.category == news;
-  //     })
-  //   }
-  // },
+
   components: {
     Ele
   },
   //发请求
   created() {
+     this.address = this.$route.params.address;
     // let loadingInstance1 = Loading.service({
     //   fullscreen: true
     // });

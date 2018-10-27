@@ -44,9 +44,10 @@ export default new Router({
             path: '/',
             name: 'HelloWorld',
             component: HelloWorld,
-            redirect: '/elema',
+            redirect: '/elema/city',
             children: [{
                 path: '/elema',
+                name: "elema",
                 component: Elema,
             }, {
                 path: '/search',
