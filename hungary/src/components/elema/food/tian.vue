@@ -9,9 +9,14 @@
     <div class="box">
       <!-- 顶部饮品 -->
       <div class="title">
-      <span @click="hidden()">{{ytitle}}</span>
-      <span  @click="hidden3()">排序</span>
-      <span @click="hidden4()">筛选</span>
+      <span @click="hidden()">{{ytitle}}  <img v-if="show6" class="bian" src="../../../../static/imgs/down.png" alt=""><img v-if="show" class="biana" src="../../../../static/imgs/up.png" alt=""> </span>
+      <span  @click="hidden3()">
+        排序
+        <img v-if="show7" class="bian1" src="../../../../static/imgs/down.png" alt=""><img v-if="show2"  class="biana1" src="../../../../static/imgs/up.png" alt="">
+        </span>
+      <span @click="hidden4()">筛选
+         <img v-if="show8" class="bian2" src="../../../../static/imgs/down.png" alt=""><img v-if="show9"  class="biana2" src="../../../../static/imgs/up.png" alt="">
+      </span>
       </div>
       <!-- 下部菜品详情 -->
       <div v-if="show" class="box2">
@@ -46,7 +51,8 @@
     <!-- 下部排序详情 -->
     <div v-if="show2" class="xulie" >
        <ol >
-      <li v-for="(k1,index1) in imgs1" :key="index1" @click="paixu(k1.id)">
+      <!-- <li v-for="(k1,index1) in imgs1" :key="index1" @click="paixu(k1.id)"> -->
+         <li v-for="(k1,index1) in imgs1" :key="index1" @click="paixu(index1)">
         <img :src="k1.src" alt="">
        {{k1.title}}
       </li>
@@ -60,13 +66,14 @@
       </div>
       <p>商家属性(可以多选)</p>
       <ul>
-        <li  v-for="(k2,index2) in data2" :key="index2">
-          <span :style="{color: '#'+k2.icon_color,border:'1px solid #'+k2.icon_color,borderRadius: '20%',padding:'3px'}">{{k2.icon_name}}</span>
+        <li @click="change()"  v-for="(k2,index2) in data2" :key="index2">
+          <img v-if="show4" class="yes" src="../../../../static/imgs/yes.png" alt="">
+          <span v-if="show5" :style="{color: '#'+k2.icon_color,border:'1px solid #'+k2.icon_color,borderRadius: '20%',padding:'3px'}">{{k2.icon_name}}</span>
           <span>{{k2.name}}</span>
         </li>
       </ul>
-      <button class="btn1">清空</button>
-      <button class="btn2">确定</button>
+      <button class="btn1" @click="(show4=false,show5=true)">清空</button>
+      <button class="btn2" @click="(show3=false,show8=!show8,show9=!show9)">确定</button>
     </div>
     <div class="warp">
     <!-- <Zujian :cli="cont" :cli1="cont1"></Zujian> -->
@@ -88,6 +95,7 @@ export default {
   data: () => ({
     // 修改地方
     cont: "",
+    cont: "",
     // 测试
     // cont1:"",
     imgs1: [
@@ -101,6 +109,13 @@ export default {
     show: false,
     show2: false,
     show3: false,
+    show4:true,
+    show5:false,
+    show6:true,
+    show7:true,
+    show8:true,
+    show9:false,
+    // show7:false,
     data: [],
     arr: [],
     data1: [],
@@ -108,7 +123,7 @@ export default {
     // 修改地方
     name1: [],
     name2: [],
-    id:[]
+    id: []
   }),
   components: {
     Zujian
@@ -120,6 +135,8 @@ export default {
       this.show = !this.show;
       this.show2 = false;
       this.show3 = false;
+      this.show6 = !this.show6;
+      // this.show7 = !this.show7
     },
     hidden2: function(index) {
       this.arr = this.data[index].sub_categories;
@@ -136,17 +153,28 @@ export default {
       this.show = false;
       this.show2 = !this.show2;
       this.show3 = false;
+      this.show7 = !this.show7;
     },
     hidden4: function() {
       this.show = false;
       this.show2 = false;
       this.show3 = !this.show3;
+      this.show8 = !this.show8;
+      this.show9 = !this.show9;
     },
-    paixu(idd){
-      this.id=idd
-      console.log(this.id)
+    paixu(index1) {
+      // this.cont = idd;
+      this.cont = this.imgs1[index1];
+      // console.log(this.id)
       this.show2 = false;
-    }
+    },
+    change(){
+      this.show4 = !this.show4;
+      this.show5 = !this.show5;
+    },
+    // hh(){
+    //   this.show3 =
+    // }
   },
   // 修改地方
   watch: {
@@ -154,7 +182,7 @@ export default {
       this.cont = this.name1 + "/" + this.name2;
       // console.log(a)
       // this.cli(a);
-    },
+    }
     // id(){
     //   this.cont1 = this.id;
     //   // console.log(this.cont1)
@@ -196,6 +224,47 @@ export default {
 };
 </script>
 <style scoped ="scoped">
+.biana2{
+   width: 0.2rem;
+  position:absolute;
+  top: 0.55rem;
+  left: 3.34rem;
+
+}
+.bian2{
+  width: 0.15rem;
+  position:absolute;
+  top: 0.57rem;
+  left: 3.36rem;
+
+}
+.biana1{
+ width: 0.2rem;
+  position:absolute;
+  top: 0.55rem;
+  left: 2.2rem;
+}
+.bian1{
+width: 0.15rem;
+  position:absolute;
+  top: 0.57rem;
+  left: 2.22rem;
+}
+.biana{
+  width: 0.2rem;
+  position:absolute;
+  top: 0.55rem;
+  left: 1.04rem;
+}
+.bian{
+  width: 0.15rem;
+    position:absolute;
+  top: 0.57rem;
+  left: 1.06rem;
+}
+.yes{
+  width: 0.15rem;
+}
 .top img {
   position: absolute;
   top: 0.13rem;
@@ -258,7 +327,7 @@ export default {
   height: 0.41rem;
   border-bottom: 0.01rem solid rgba(230, 230, 230, 1);
   font-size: 0.13rem;
-    color: rgb(100, 100, 100);
+  color: rgb(100, 100, 100);
 }
 .fenlei span {
   background-color: rgba(200, 200, 200, 1);
@@ -336,12 +405,12 @@ export default {
   background-color: white;
   z-index: 100;
 }
-.span1{
+.span1 {
   float: left;
   margin-left: 0.1rem;
 }
-.span2{
-  float:right;
+.span2 {
+  float: right;
   margin-right: 0.1rem;
 }
 </style>

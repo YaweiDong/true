@@ -1,6 +1,7 @@
 <template>
     <div>
       <div class="top">
+          <img @click="($router.back(-1))" src="../../../static/imgs/back.png" alt="">
       <span>订单</span>
       </div>
         <ol>
@@ -26,6 +27,12 @@
     }
 </script>
 <style scoped ="scoped">
+.top img {
+  position: absolute;
+  top: 0.13rem;
+  left: 0.1rem;
+  width: 0.2rem;
+}
 .top{
   background-color: dodgerblue;
   width: 100%;

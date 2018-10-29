@@ -1,6 +1,7 @@
 <template>
     <div>
       <div class="top">
+        <img @click="($router.back(-1))" src="../../../static/imgs/back.png" alt="">
       <span>搜索</span>
       </div>
         <div>
@@ -61,6 +62,12 @@ export default {
 };
 </script>
 <style scoped ="scoped">
+.top img {
+  position: absolute;
+  top: -0.03rem;
+  left: 0rem;
+  width: 0.2rem;
+}
 .off2{
   position: absolute;
   top: 0.5rem;

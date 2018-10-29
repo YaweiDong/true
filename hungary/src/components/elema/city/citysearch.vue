@@ -16,7 +16,7 @@
       </div>
       <div class="dz">
        <ul>
-            <li class="search_li" v-for="(item,index) in data" :key="index">
+            <li class="search_li" v-for="(item,index) in data" :key="index" @click="add(item.name,item.address)">
               <router-link :style="{color: 'black'}" :to="{name:'elema',params:{address:item.name}}" >
                 <h4>{{item.name}}</h4>
                 <p>{{item.address}}</p>
@@ -25,12 +25,14 @@
         </ul>
         </div>
       <!-- <div class="addhistory">
-        <p class="p1">搜索历史</p>
-        <ol>
-          <li>
-            蓝鸥科技
-          </li>
-        </ol>
+        <p class="p1">搜索历史</p>  
+         <ul>
+            <li  v-for="(item,index) in name1" :key="index" >
+                <h4>{{item}}</h4>
+                <span>111</span>
+                <p v-for="(item1,index1) in address" :key="index1">{{item1}}</p>
+            </li>
+        </ul>
         <p class="p2">清空所有</p>
       </div> -->
       </div>
@@ -41,7 +43,9 @@ export default {
    data: () => ({
      txt: "",
      data:[],
-     history:[]
+     history:[],
+     name1:[],
+     address:[]
   }),
   created() {
     this.citytitle = this.$route.params.citysName;
@@ -64,6 +68,12 @@ export default {
       this.txt="";
     });
     },
+    add(a,b){
+      this.name1.push(a),
+      this.address.push(b)
+      console.log(this.name1)
+      console.log(this.address)
+    }
   }
   
   
