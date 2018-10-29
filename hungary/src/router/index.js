@@ -35,12 +35,11 @@ import Intergral from '../components/mine/balance/integral'
 import Setname from '../components/mine/information/setname'
 import Address from '../components/mine/information/address'
 import Forget from '../components/mine/information/forget'
-import Cityserch from "../components/elema/city/cityserch"
 //新增地址
 import Add from '../components/mine/information/add'
 import Adddetail from '../components/mine/information/addDetail'
 //红包说明，余额说明，积分说明,历史红包,代金券说明
-import HongbaoDetail from '../components/mine/balance/Bdetail/hongbaoDetail' 
+import HongbaoDetail from '../components/mine/balance/Bdetail/hongbaoDetail'
 import YetDetail from '../components/mine/balance/Bdetail/yetDetail'
 import IntergralDetail from '../components/mine/balance/Bdetail/intergralDetail'
 import Overdue from '../components/mine/balance/Bdetail/overdue'
@@ -60,158 +59,229 @@ import Citysearch from "../components/elema/city/citysearch";
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
-            path: '/',
-            name: 'HelloWorld',
-            component: HelloWorld,
-            redirect: '/elema/city',
-            children: [{
-                path: '/elema',
-                name: "elema",
-                component: Elema,
-            }, {
-                path: '/search',
-                component: Search
-            }, {
-                path: '/order',
-                component: Order
-            }, {
-                path: '/mine',
-                component: Mine
-            }, ]
-        }, {
-            path: '/tian',
-            name: "tian",
-            component: Tian
-        },
-        {
-            path: '/food',
-            name: "food",
-            component: Food
-        },
-        {
-            path: '/money',
-            name: "money",
-            component: Money
-        },
-        {
-            path: '/new',
-            name: "new",
-            component: New
-        },
-        {
-            path: '/ontime',
-            name: "ontmie",
-            component: Ontime
-        },
-        {
-            path: '/reservation',
-            name: "reservation",
-            component: Reservation
-        },
-        {
-            path: '/simple',
-            name: "simple",
-            component: Simple
-        },
-        {
-            path: '/chuan',
-            name: "chuan",
-            component: Chuan
-        },
-        {
-            path: '/spicy',
-            name: "spicy",
-            component: Spicy
-        },
-        {
-            path: '/baozi',
-            name: "baozi",
-            component: Baozi
-        },
-        {
-            path: '/cake',
-            name: "cake",
-            component: Cake
-        },
-        {
-            path: '/japan',
-            name: "japan",
-            component: Japan
-        },
-        {
-            path: '/fruit',
-            name: "fruit",
-            component: Fruit
-        },
-        {
-            path: '/hamburg',
-            name: "hamburg",
-            component: Hamburg
-        },
-        {
-            path: '/pizza',
-            name: "pizza",
-            component: Pizza
-        }, {
-            path: '/elema/city',
-            component: City,
-            children: [{
-                path: '/mine',
-                component: Mine
-            }]
-        }, {
-            path: '/elema/shop',
-            component: Shop,
-        }, {
-            path: '/elema/shop/business',
-            component: Business,
-        },
-        { path: '/register', component: Register },
-        { path: '/service', component: Service },
-        { path: '/questionDetail', component: Question },
-        {
-            path: '/information',
-            name: 'information',
-            component: Information
-        },
-        //余额，优惠，积分
-        { path: '/yet', component: Yet },
-        { path: '/discount', component: Discount },
-        { path: '/integral', component: Intergral },
-        //修改用户名，地址，密码
-        { path: '/information/setname', component: Setname },
-        { path: '/information/address', component: Address },
-        { path: '/information/forget', component: Forget },
-         {
-              path: "/cityserch",
-            name: "cityserch",
-            component: Cityserch},
-        {
-            path: "/citysearch",
-            name: "citysearch",
-            component: Citysearch
-        }
-        ,
-        //红包说明，余额说明，积分说明
-        { path: '/yet/Detail',name:'yd',component: YetDetail},
-        { path: '/discount/Detail',name:'hd',component: HongbaoDetail },
-        { path: '/integral/Detail',name:'id',component: IntergralDetail },
+  routes: [{
+      path: '/',
+      name: 'HelloWorld',
+      component: HelloWorld,
+      redirect: '/elema/city',
+      children: [{
+        path: '/elema',
+        name: "elema",
+        component: Elema,
+      }, {
+        path: '/search',
+        component: Search
+      }, {
+        path: '/order',
+        component: Order
+      }, {
+        path: '/mine',
+        component: Mine
+      }, ]
+    }, {
+      path: '/tian',
+      name: "tian",
+      component: Tian
+    },
+    {
+      path: '/food',
+      name: "food",
+      component: Food
+    },
+    {
+      path: '/money',
+      name: "money",
+      component: Money
+    },
+    {
+      path: '/new',
+      name: "new",
+      component: New
+    },
+    {
+      path: '/ontime',
+      name: "ontmie",
+      component: Ontime
+    },
+    {
+      path: '/reservation',
+      name: "reservation",
+      component: Reservation
+    },
+    {
+      path: '/simple',
+      name: "simple",
+      component: Simple
+    },
+    {
+      path: '/chuan',
+      name: "chuan",
+      component: Chuan
+    },
+    {
+      path: '/spicy',
+      name: "spicy",
+      component: Spicy
+    },
+    {
+      path: '/baozi',
+      name: "baozi",
+      component: Baozi
+    },
+    {
+      path: '/cake',
+      name: "cake",
+      component: Cake
+    },
+    {
+      path: '/japan',
+      name: "japan",
+      component: Japan
+    },
+    {
+      path: '/fruit',
+      name: "fruit",
+      component: Fruit
+    },
+    {
+      path: '/hamburg',
+      name: "hamburg",
+      component: Hamburg
+    },
+    {
+      path: '/pizza',
+      name: "pizza",
+      component: Pizza
+    }, {
+      path: '/elema/city',
+      component: City,
+      children: [{
+        path: '/mine',
+        component: Mine
+      }]
+    }, {
+      path: '/elema/shop',
+      component: Shop,
+    }, {
+      path: '/elema/shop/business',
+      component: Business,
+    },
+    {
+      path: '/register',
+      component: Register
+    },
+    {
+      path: '/service',
+      component: Service
+    },
+    {
+      path: '/questionDetail',
+      component: Question
+    },
+    {
+      path: '/information',
+      name: 'information',
+      component: Information
+    },
+    //余额，优惠，积分
+    {
+      path: '/yet',
+      component: Yet
+    },
+    {
+      path: '/discount',
+      component: Discount
+    },
+    {
+      path: '/integral',
+      component: Intergral
+    },
+    //修改用户名，地址，密码
+    {
+      path: '/information/setname',
+      component: Setname
+    },
+    {
+      path: '/information/address',
+      component: Address
+    },
+    {
+      path: '/information/forget',
+      component: Forget
+    },
+    {
+      path: "/citysearch",
+      name: "citysearch",
+      component: Citysearch
+    },
+    //红包说明，余额说明，积分说明
+    {
+      path: '/yet/Detail',
+      name: 'yd',
+      component: YetDetail
+    },
+    {
+      path: '/discount/Detail',
+      name: 'hd',
+      component: HongbaoDetail
+    },
+    {
+      path: '/integral/Detail',
+      name: 'id',
+      component: IntergralDetail
+    },
 
-        { path: '/discount/overdue',component: Overdue},
-        { path: '/discount/coupon',component: Coupon},
-        //兑换红包,推荐有奖
-        { path: '/discount/exchange',component: Exchange},
-        { path: '/discount/commend',component: Commend},
-        {path:'/information/address/add',component:Add},
-        //历史红包,代金券说明
- {path:'/information/address/add/addDetail',name:'addDetail',component:Adddetail},
- {path:'/vipcard',component:Vipcard},
- //会员说明，购买，兑换，开发票
- {path:'/vipcard/pay',component:VipPay},
- {path:'/vipcard/invoiceRecord',name:'invoiceRecord',component:InvoiceRecord},
- {path:'/vipcard/vipDescription',name:'vipDescription',component:VipDescription},
- {path:'/vipcard/useCard',name:'useCard',component:UseCard}
-       
-    ]
+    {
+      path: '/discount/overdue',
+      component: Overdue
+    },
+    {
+      path: '/discount/coupon',
+      component: Coupon
+    },
+    //兑换红包,推荐有奖
+    {
+      path: '/discount/exchange',
+      component: Exchange
+    },
+    {
+      path: '/discount/commend',
+      component: Commend
+    },
+    {
+      path: '/information/address/add',
+      component: Add
+    },
+    //历史红包,代金券说明
+    {
+      path: '/information/address/add/addDetail',
+      name: 'addDetail',
+      component: Adddetail
+    },
+    {
+      path: '/vipcard',
+      component: Vipcard
+    },
+    //会员说明，购买，兑换，开发票
+    {
+      path: '/vipcard/pay',
+      component: VipPay
+    },
+    {
+      path: '/vipcard/invoiceRecord',
+      name: 'invoiceRecord',
+      component: InvoiceRecord
+    },
+    {
+      path: '/vipcard/vipDescription',
+      name: 'vipDescription',
+      component: VipDescription
+    },
+    {
+      path: '/vipcard/useCard',
+      name: 'useCard',
+      component: UseCard
+    }
+
+  ]
 })
