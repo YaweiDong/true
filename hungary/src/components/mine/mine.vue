@@ -68,9 +68,9 @@ export default {
       phone: require("./imgs/phone.png"),
       next: require("./imgs/next.png"),
       lists: [
-        { im: require("./imgs/order3.png"), lis: "我的订单", router: "/01" },
+        { im: require("./imgs/order3.png"), lis: "我的订单", router: "/order" },
         { im: require("./imgs/store.png"), lis: "积分商城", router: "/02" },
-        { im: require("./imgs/crow.png"), lis: "饿了吗会员卡", router: "/03" },
+        { im: require("./imgs/crow.png"), lis: "饿了吗会员卡", router: "/vipcard" },
         { im: require("./imgs/sever.png"), lis: "服务中心", router: "/service"},{im: require("./imgs/download.png"),lis: "下载饿了吗APP", router:"/04"}
       ]
     };

@@ -6,6 +6,34 @@
            </router-link>    
            <span>重置密码</span>
          </header>
+         <ul class='input'>
+            <li>
+<input type="text" placeholder="账号" > 
+            </li>
+            <li>
+<input type="text" placeholder="旧密码">
+            </li>     
+            <li>
+<input type="text" placeholder="请输入新密码" >
+            </li>
+            <li>
+<input type="text" placeholder="请确认密码">
+            </li>
+            <li>
+<input type="text" placeholder="验证码" > 
+                <div class="judge">
+                    <img :src="imgs" alt="">
+                    <div>
+                        <p>看不清</p>
+                        <p @click="change()">换一张</p>
+                    </div>
+                </div> 
+            </li>
+         </ul>
+         <div class="add">
+             <span>确认修改</span>
+         </div>
+
     </div>
 </template>
 
@@ -14,8 +42,30 @@ export default {
   data() {
     return {
       timg: require("../imgs/back.png"),
-      next: require("../imgs/next.png")
+      next: require("../imgs/next.png"),
+      imgs:''
     };
+  },
+  methods:{
+       change(){
+           this.$emit('bian')
+       }
+  },
+  created() {
+    let api = "https://elm.cangdu.org/v1/captchas";
+    var changes = () => {
+      this.$http({
+        method: "post",
+        url: api,
+        withCredentials: true
+      }).then(res => {
+        this.imgs = res.data.code;
+      });
+    };
+    changes();
+    this.$on("bian", () => {
+      changes();
+    });
   }
 };
 </script>
@@ -31,7 +81,6 @@ export default {
   position: relative;
   font-size: 0.18rem;
   color: aliceblue;
-  margin-bottom: 0.1rem;
 }
 .m-top a {
   position: absolute;
@@ -48,5 +97,51 @@ export default {
   float: left;
   top: 50%;
   bottom: 50%;
+}
+
+.input {
+  margin-top: 0.1rem;
+  background-color: white;
+}
+.input li{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 0.5rem;
+    border-bottom: 0.01rem solid rgb(180, 172, 172);
+}
+.input li input{
+    height: 0.3rem;
+    margin-left: 0.2rem;
+    font-size: 0.17rem;
+    border: none;
+    outline: none;
+}
+
+.add {
+  margin: 0.2rem auto;
+  width: 3.4rem;
+  height: 0.45rem;
+  text-align: center;
+  line-height: 0.45rem;
+  border-radius: 0.05rem;
+  background-color: rgb(93, 218, 93);
+  color: rgb(240, 248, 240);
+  font-size: 0.18rem;
+}
+.judge{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.13rem;
+}
+.judge img{
+    width: 0.8rem;
+    height: 0.4rem;
+    margin-right: 0.1rem;
+}
+.judge div p:last-child{
+    color: blue;
+    margin-top:0.1rem; 
 }
 </style>

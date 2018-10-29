@@ -10,7 +10,7 @@
             <div class="li">
                  <span>头像</span>
                  <div>
-                     <div>
+                     <div class="photo">
                           <img class="two" :src="user" alt="">
                      </div>                 
                      <img class="one"  :src="next" alt="">
@@ -38,7 +38,7 @@
                 <span>账号绑定</span>
              </div>
 
-             <div class="li">               
+             <div @click="app()" class="li">               
                  <div>
                      <img class="two" :src="phone" alt="">
                      <span>手机</span>  
@@ -71,9 +71,14 @@ export default {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
       phone: require("../imgs/phone.png"),
-      user: require("../imgs/user.png"),
+      user: require("../imgs/userH.jpg"),
       name: ""
     };
+  },
+  methods:{
+      app(){
+          alert('请在手机APP中设置')
+      }
   },
   created() {
     this.name = this.$store.state.login1.username;
@@ -136,10 +141,7 @@ export default {
   border-radius: 50%;
   background-color: rgb(219, 202, 202);
 }
-.list .li:first-child .two {
-  width: 100%;
-  height: 100%;
-}
+
 .list .li:nth-child(4),
 .list .li:nth-child(6) {
   background-color: transparent;
@@ -170,5 +172,15 @@ export default {
 }
 .last-p {
   font-size: 0.17rem;
+}
+.photo{
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius:50%; 
+    overflow: hidden;
+}
+.photo img{
+    width: 100%;
+    height: 100%;
 }
 </style>

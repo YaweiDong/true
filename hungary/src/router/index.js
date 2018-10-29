@@ -35,7 +35,26 @@ import Intergral from '../components/mine/balance/integral'
 import Setname from '../components/mine/information/setname'
 import Address from '../components/mine/information/address'
 import Forget from '../components/mine/information/forget'
-import Cityserch from "../components/elema/city/cityserch";
+import Cityserch from "../components/elema/city/cityserch"
+//新增地址
+import Add from '../components/mine/information/add'
+import Adddetail from '../components/mine/information/addDetail'
+//红包说明，余额说明，积分说明,历史红包,代金券说明
+import HongbaoDetail from '../components/mine/balance/Bdetail/hongbaoDetail' 
+import YetDetail from '../components/mine/balance/Bdetail/yetDetail'
+import IntergralDetail from '../components/mine/balance/Bdetail/intergralDetail'
+import Overdue from '../components/mine/balance/Bdetail/overdue'
+import Coupon from '../components/mine/balance/Bdetail/coupon'
+//兑换红包,推荐有奖
+import Exchange from '../components/mine/balance/Bdetail/exchange'
+import Commend from '../components/mine/balance/commend'
+//会员中心
+import Vipcard from '../components/mine/vipcard/vipcard'
+//会员说明，购买，兑换，开发票
+import InvoiceRecord from '../components/mine//vipcard/invoiceRecord'
+import UseCard from '../components/mine/vipcard/useCard'
+import VipDescription from '../components/mine//vipcard/vipDescription'
+import VipPay from "../components/mine/vipcard/pay";
 
 Vue.use(Router)
 
@@ -162,10 +181,31 @@ export default new Router({
         { path: '/information/setname', component: Setname },
         { path: '/information/address', component: Address },
         { path: '/information/forget', component: Forget },
-        {
-            path: "/cityserch",
+         {
+              path: "/cityserch",
             name: "cityserch",
             component: Cityserch
         }
+        ,
+        //红包说明，余额说明，积分说明
+        { path: '/yet/Detail',name:'yd',component: YetDetail},
+        { path: '/discount/Detail',name:'hd',component: HongbaoDetail },
+        { path: '/integral/Detail',name:'id',component: IntergralDetail },
+
+        { path: '/discount/overdue',component: Overdue},
+        { path: '/discount/coupon',component: Coupon},
+        //兑换红包,推荐有奖
+        { path: '/discount/exchange',component: Exchange},
+        { path: '/discount/commend',component: Commend},
+        {path:'/information/address/add',component:Add},
+        //历史红包,代金券说明
+ {path:'/information/address/add/addDetail',name:'addDetail',component:Adddetail},
+ {path:'/vipcard',component:Vipcard},
+ //会员说明，购买，兑换，开发票
+ {path:'/vipcard/pay',component:VipPay},
+ {path:'/vipcard/invoiceRecord',name:'invoiceRecord',component:InvoiceRecord},
+ {path:'/vipcard/vipDescription',name:'vipDescription',component:VipDescription},
+ {path:'/vipcard/useCard',name:'useCard',component:UseCard}
+       
     ]
 })

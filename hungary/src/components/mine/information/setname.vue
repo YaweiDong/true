@@ -60,7 +60,7 @@ export default {
      margin: 0 auto;
     height:0.4rem;
     width: 3.56rem;
-    background-color: blanchedalmond;
+    background-color: blanchedalmond; 
 }
 .input input{
     outline: none;

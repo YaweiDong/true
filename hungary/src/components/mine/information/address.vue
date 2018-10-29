@@ -7,10 +7,10 @@
            <span>编辑地址</span>
          </header>
          <div class="line"></div>
-         <div class="next">
+         <router-link class="next" to="/information/address/add">
              <span>新增地址</span>
              <img :src="next" alt="">
-         </div>
+         </router-link>
     </div>
 </template>
 
@@ -36,7 +36,6 @@ export default {
   position: relative;
   font-size: 0.18rem;
   color: aliceblue;
-  
 }
 .m-top a {
   position: absolute;
@@ -54,14 +53,22 @@ export default {
   top: 50%;
   bottom: 50%;
 }
-.line{
-    border: 0.005rem solid rgb(192, 184, 184);
-    height: 0.43rem;
-    margin: 0.1rem 0;
-    display: flex;
-    justify-content: space-between;
+.line {
+  border: 0.005rem solid rgb(192, 184, 184);
+  margin: 0.1rem 0;
+  
 }
-.next img{
-    width: 0.3rem;
+.next {
+  height: 0.43rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:0.16rem; 
+  color: black;
+}
+.next img {
+  width: 0.25rem;
+  height: 0.25rem;
 }
 </style>
