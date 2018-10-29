@@ -35,7 +35,6 @@ import Intergral from '../components/mine/balance/integral'
 import Setname from '../components/mine/information/setname'
 import Address from '../components/mine/information/address'
 import Forget from '../components/mine/information/forget'
-<<<<<<< HEAD
 import Cityserch from "../components/elema/city/cityserch"
 //新增地址
 import Add from '../components/mine/information/add'
@@ -56,9 +55,7 @@ import InvoiceRecord from '../components/mine//vipcard/invoiceRecord'
 import UseCard from '../components/mine/vipcard/useCard'
 import VipDescription from '../components/mine//vipcard/vipDescription'
 import VipPay from "../components/mine/vipcard/pay";
-=======
 import Citysearch from "../components/elema/city/citysearch";
->>>>>>> d226474d09ffceb8ed7b871001b0041edb064b93
 
 Vue.use(Router)
 
