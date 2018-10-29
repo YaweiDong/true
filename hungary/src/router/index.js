@@ -166,46 +166,122 @@ export default new Router({
             path: '/elema/shop/business',
             component: Business,
         },
-        { path: '/register', component: Register },
-        { path: '/service', component: Service },
-        { path: '/questionDetail', component: Question },
+        {
+            path: '/register',
+            component: Register
+        },
+        {
+            path: '/service',
+            component: Service
+        },
+        {
+            path: '/questionDetail',
+            component: Question
+        },
         {
             path: '/information',
             name: 'information',
             component: Information
         },
         //余额，优惠，积分
-        { path: '/yet', component: Yet },
-        { path: '/discount', component: Discount },
-        { path: '/integral', component: Intergral },
+        {
+            path: '/yet',
+            component: Yet
+        },
+        {
+            path: '/discount',
+            component: Discount
+        },
+        {
+            path: '/integral',
+            component: Intergral
+        },
         //修改用户名，地址，密码
-        { path: '/information/setname', component: Setname },
-        { path: '/information/address', component: Address },
-        { path: '/information/forget', component: Forget },
+        {
+            path: '/information/setname',
+            component: Setname
+        },
+        {
+            path: '/information/address',
+            component: Address
+        },
+        {
+            path: '/information/forget',
+            component: Forget
+        },
         {
             path: "/citysearch",
             name: "citysearch",
             component: Citysearch
         },
         //红包说明，余额说明，积分说明
-        { path: '/yet/Detail', name: 'yd', component: YetDetail },
-        { path: '/discount/Detail', name: 'hd', component: HongbaoDetail },
-        { path: '/integral/Detail', name: 'id', component: IntergralDetail },
+        {
+            path: '/yet/Detail',
+            name: 'yd',
+            component: YetDetail
+        },
+        {
+            path: '/discount/Detail',
+            name: 'hd',
+            component: HongbaoDetail
+        },
+        {
+            path: '/integral/Detail',
+            name: 'id',
+            component: IntergralDetail
+        },
 
-        { path: '/discount/overdue', component: Overdue },
-        { path: '/discount/coupon', component: Coupon },
+        {
+            path: '/discount/overdue',
+            component: Overdue
+        },
+        {
+            path: '/discount/coupon',
+            component: Coupon
+        },
         //兑换红包,推荐有奖
-        { path: '/discount/exchange', component: Exchange },
-        { path: '/discount/commend', component: Commend },
-        { path: '/information/address/add', component: Add },
+        {
+            path: '/discount/exchange',
+            component: Exchange
+        },
+        {
+            path: '/discount/commend',
+            component: Commend
+        },
+        {
+            path: '/information/address/add',
+            component: Add
+        },
         //历史红包,代金券说明
-        { path: '/information/address/add/addDetail', name: 'addDetail', component: Adddetail },
-        { path: '/vipcard', component: Vipcard },
+        {
+            path: '/information/address/add/addDetail',
+            name: 'addDetail',
+            component: Adddetail
+        },
+        {
+            path: '/vipcard',
+            component: Vipcard
+        },
         //会员说明，购买，兑换，开发票
-        { path: '/vipcard/pay', component: VipPay },
-        { path: '/vipcard/invoiceRecord', name: 'invoiceRecord', component: InvoiceRecord },
-        { path: '/vipcard/vipDescription', name: 'vipDescription', component: VipDescription },
-        { path: '/vipcard/useCard', name: 'useCard', component: UseCard }
+        {
+            path: '/vipcard/pay',
+            component: VipPay
+        },
+        {
+            path: '/vipcard/invoiceRecord',
+            name: 'invoiceRecord',
+            component: InvoiceRecord
+        },
+        {
+            path: '/vipcard/vipDescription',
+            name: 'vipDescription',
+            component: VipDescription
+        },
+        {
+            path: '/vipcard/useCard',
+            name: 'useCard',
+            component: UseCard
+        }
 
     ]
 })
