@@ -41,7 +41,7 @@ export default {
 
 </script>
 
-<style scoped='scoped'>
+<style scoped ="scoped">
 
 .Dwarp {
   width: 100%;

@@ -9,7 +9,7 @@
     <div class="box">
       <!-- 顶部饮品 -->
       <div class="title">
-      <span @click="hidden()">甜品饮品</span>
+      <span @click="hidden()">{{ytitle}}</span>
       <span  @click="hidden3()">排序</span>
       <span @click="hidden4()">筛选</span>
       </div>
@@ -31,8 +31,13 @@
       <!-- 下部右边详情 -->
       <div class="xiangqing">
       <ol >
-      <li v-for="(k,index) in arr" :key="index">
+      <li v-for="(k,index) in arr" :key="index" @click="updaMsg(index)">
+        <span class="span1">
        {{k.name}}
+       </span>
+        <span class="span2">
+            {{k.count}}
+            </span>
       </li>
     </ol>
       </div>
@@ -41,7 +46,7 @@
     <!-- 下部排序详情 -->
     <div v-if="show2" class="xulie" >
        <ol >
-      <li v-for="(k1,index1) in imgs1" :key="index1">
+      <li v-for="(k1,index1) in imgs1" :key="index1" @click="paixu(k1.id)">
         <img :src="k1.src" alt="">
        {{k1.title}}
       </li>
@@ -64,12 +69,13 @@
       <button class="btn2">确定</button>
     </div>
     <div class="warp">
-    <Zujian></Zujian>
+    <!-- <Zujian :cli="cont" :cli1="cont1"></Zujian> -->
+    <Zujian :cli="cont"></Zujian>
     </div>
 </div>
 </template>
 <script>
-import Zujian from "../zujian"
+import Zujian from "../zujian";
 import { Loading } from "element-ui";
 import img01 from "./img/1.png";
 import img02 from "./img/2.png";
@@ -80,13 +86,17 @@ import img06 from "./img/6.png";
 export default {
   name: "tian",
   data: () => ({
+    // 修改地方
+    cont: "",
+    // 测试
+    // cont1:"",
     imgs1: [
-      { title: "智能排序", src: img01, id: 1 },
-      { title: "距离最近", src: img02, id: 2 },
-      { title: "销量最高", src: img03, id: 3 },
-      { title: "起送价最低", src: img04, id: 4 },
-      { title: "配送速度最快", src: img05, id: 5 },
-      { title: "评分最高", src: img06, id: 6 }
+      { title: "智能排序", src: img01, id: 4 },
+      { title: "距离最近", src: img02, id: 5 },
+      { title: "销量最高", src: img03, id: 6 },
+      { title: "起送价最低", src: img04, id: 1 },
+      { title: "配送速度最快", src: img05, id: 2 },
+      { title: "评分最高", src: img06, id: 3 }
     ],
     show: false,
     show2: false,
@@ -94,11 +104,17 @@ export default {
     data: [],
     arr: [],
     data1: [],
-    data2: []
+    data2: [],
+    // 修改地方
+    name1: [],
+    name2: [],
+    id:[]
   }),
-  components:{
+  components: {
     Zujian
   },
+  // 修改地方
+  // props: ["cli"],
   methods: {
     hidden: function() {
       this.show = !this.show;
@@ -107,6 +123,14 @@ export default {
     },
     hidden2: function(index) {
       this.arr = this.data[index].sub_categories;
+      // 修改地方
+      this.name1 = this.data[index].name;
+      console.log(this.name1);
+    },
+    updaMsg(index) {
+      this.name2 = this.arr[index].name;
+      console.log(this.name2);
+      this.show = false;
     },
     hidden3: function() {
       this.show = false;
@@ -117,7 +141,24 @@ export default {
       this.show = false;
       this.show2 = false;
       this.show3 = !this.show3;
+    },
+    paixu(idd){
+      this.id=idd
+      console.log(this.id)
+      this.show2 = false;
     }
+  },
+  // 修改地方
+  watch: {
+    name2() {
+      this.cont = this.name1 + "/" + this.name2;
+      // console.log(a)
+      // this.cli(a);
+    },
+    // id(){
+    //   this.cont1 = this.id;
+    //   // console.log(this.cont1)
+    // }
   },
   created() {
     this.ytitle = this.$route.params.tit;
@@ -188,12 +229,11 @@ export default {
 .xiangqing {
   height: 3.78rem;
   overflow: scroll;
-   position:absolute;
-     top: 0rem;
+  position: absolute;
+  top: 0rem;
   left: 50%;
   background-color: white;
   z-index: 10;
-  
 }
 /* 隐藏滚动条 */
 .xiangqing::-webkit-scrollbar {
@@ -211,12 +251,14 @@ export default {
 .fenlei li {
   height: 0.42rem;
   /* background-color: rgba(230, 230, 230, 1); */
+  color: rgb(100, 100, 100);
   font-size: 0.015rem;
 }
 .xiangqing li {
   height: 0.41rem;
   border-bottom: 0.01rem solid rgba(230, 230, 230, 1);
   font-size: 0.13rem;
+    color: rgb(100, 100, 100);
 }
 .fenlei span {
   background-color: rgba(200, 200, 200, 1);
@@ -264,36 +306,43 @@ export default {
 .p1 {
   margin-left: 0.1rem;
 }
-.xulie{
+.xulie {
   font-size: 0.12rem;
 }
-.xulie img{
+.xulie img {
   width: 0.16rem;
   margin: 0 0.15rem;
 }
-.xulie li{
+.xulie li {
   width: 3.75rem;
   height: 0.57rem;
   border-bottom: 0.01rem solid rgb(230, 230, 230);
   line-height: 0.57rem;
 }
-.box2{
+.box2 {
   /* border: 1px solid red; */
-  position:absolute;
+  position: absolute;
   width: 100%;
   top: 0.82rem;
   left: 0;
   z-index: 100;
 }
-.xulie, .shaixuan{
-    position:absolute;
+.xulie,
+.shaixuan {
+  position: absolute;
   width: 100%;
   top: 0.82rem;
   left: 0;
   background-color: white;
   z-index: 100;
-
 }
-
+.span1{
+  float: left;
+  margin-left: 0.1rem;
+}
+.span2{
+  float:right;
+  margin-right: 0.1rem;
+}
 </style>
 

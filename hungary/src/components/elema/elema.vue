@@ -2,7 +2,7 @@
     <div>
         <div class="header">
             <router-link to="/elema/city">
-                <h3 class="header_h3">省建家属院(郑州市)</h3>
+                <h3 class="header_h3">{{address}}</h3>
             </router-link> 
         </div> 
         <div>
@@ -66,26 +66,29 @@
     </div>
 </template>
 <script>
-import Ele from './Ele';
-import { Loading } from "element-ui";
+import Ele from "./Ele";
+// import { Loading } from "element-ui";
 export default {
-   data: () => ({
-      data: [],
-     return:{}
-     }),
-     components:{
-       Ele
-     },
+  data: () => ({
+    data: [],
+    // datab:[],
+    return: {}
+  }),
+
+  components: {
+    Ele
+  },
   //发请求
   created() {
-        let loadingInstance1 = Loading.service({
-      fullscreen: true
-    });
+     this.address = this.$route.params.address;
+    // let loadingInstance1 = Loading.service({
+    //   fullscreen: true
+    // });
     let api =
-      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
+      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762&limit:100&order_by:5";
     //promise写法
     this.$http.get(api).then(data => {
-      loadingInstance1.close();
+      // loadingInstance1.close();
       //成功后的回调
       console.log(data.data);
       this.data = data.data;
