@@ -62,17 +62,22 @@
     <div class="shaixuan" v-if="show3">
       <div>
       <p class="p1">配送方式</p>
-      <p class="bird">蜂鸟专送</p>
+     
+      <p @click="a(show10=!show10)" class="bird">
+         <img v-if="show10" src="../img/bird.png" alt="">
+         <img v-else class="yes" src="../../../../static/imgs/yes.png" alt="">
+         蜂鸟专送</p>
       </div>
       <p>商家属性(可以多选)</p>
-      <ul>
-        <li @click="change()"  v-for="(k2,index2) in data2" :key="index2">
-          <img v-if="show4" class="yes" src="../../../../static/imgs/yes.png" alt="">
-          <span v-if="show5" :style="{color: '#'+k2.icon_color,border:'1px solid #'+k2.icon_color,borderRadius: '20%',padding:'3px'}">{{k2.icon_name}}</span>
+      <ul >
+        <li @click="huantu2(index2)"  v-for="(k2,index2) in data2" :key="index2">
+          
+          <span v-if="valuehe[index2].valueb" :style="{color: '#'+k2.icon_color,border:'1px solid #'+k2.icon_color,borderRadius: '20%',padding:'3px'}">{{k2.icon_name}}</span>
+          <img v-else class="yes" src="../../../../static/imgs/yes.png" alt="">
           <span>{{k2.name}}</span>
         </li>
       </ul>
-      <button class="btn1" @click="(show4=false,show5=true)">清空</button>
+      <button class="btn1" @click="btn1()" >清空</button>
       <button class="btn2" @click="(show3=false,show8=!show8,show9=!show9)">确定</button>
     </div>
     <div class="warp">
@@ -115,6 +120,13 @@ export default {
     show7:true,
     show8:true,
     show9:false,
+    show10:true,
+        valuehe:[{valueb:true,count:0},
+   { valueb:true,count:0},
+    {valueb:true,count:0},
+    {valueb:true,count:0},
+    {valueb:true,count:0},
+    {valueb:true,count:0},],
     // show7:false,
     data: [],
     arr: [],
@@ -168,9 +180,33 @@ export default {
       // console.log(this.id)
       this.show2 = false;
     },
-    change(){
-      this.show4 = !this.show4;
-      this.show5 = !this.show5;
+    btn1(){
+       this.valuehe[0].valueb=true;
+     this.valuehe[1].valueb=true;
+     this.valuehe[2].valueb=true;
+     this.valuehe[3].valueb=true;
+     this.valuehe[4].valueb=true;
+     this.valuehe[5].valueb=true;
+
+    },
+    huantu2(aaa){
+    this.valuehe[aaa].valueb=!this.valuehe[aaa].valueb
+    // this.valuehe[aaa].count+=1
+    // if(this.valuehe[aaa].count%2 == 1){
+    //   this.blname.push(this.data2[aaa].name);
+    // }else{
+    //   var a;
+    //   var _this =this
+    //   this.blname.forEach(function(val,ind){
+    //     if(val == _this.data12[aaa].name){
+    //       a = ind 
+    //       console.log("..............."+val)
+    //     }
+       
+    //   })
+    //   this.blname.splice(a,1)
+      
+    // }
     },
     // hh(){
     //   this.show3 =
@@ -371,6 +407,10 @@ width: 0.15rem;
   border: 0.01rem solid rgb(230, 230, 230);
   margin: 0.1rem;
   padding: 0.08rem;
+  /* line-height: 0.17rem; */
+}
+.bird img{
+  width: 0.15rem;
 }
 .p1 {
   margin-left: 0.1rem;
