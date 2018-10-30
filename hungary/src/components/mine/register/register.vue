@@ -1,4 +1,3 @@
-
 <template>
     <div class="body">
        <header class="m-top">
@@ -76,13 +75,16 @@ export default {
           password: this.password,
           username: this.usernmae
         }
-      }).then(res => {   
+      }).then(res => {
+      
+        console.log(res.data);
         if(res.data.status == ""){
-            alert(res.data.message)
+           console.log('00000000000')
+ 
         }else{
-            alert('登陆成功')
+           alert('登陆成功')
             this.$store.commit("logining",res.data);
-            this.$router.push({name:'information'});
+            this.$router.push({name:'information'})
         }
       });
     }
