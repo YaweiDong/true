@@ -88,7 +88,7 @@ export default {
   },
   created(){
     let aa = this.$store.state.login1;
-    if(ui == 0){
+    if(aa == ''){
         this.sp = false;
     }else{
       this.sp = true;
