@@ -9,10 +9,10 @@
     <div class="box">
       <!-- 顶部饮品 -->
       <div class="title">
-      <span @click="hidden()">{{ytitle}}  <img v-if="show6" class="bian" src="../../../../static/imgs/down.png" alt=""><img v-if="show" class="biana" src="../../../../static/imgs/up.png" alt=""> </span>
+      <span @click="hidden()">{{ytitle}}  <img v-if="show6" class="bian" src="../../../../static/imgs/down.png" alt=""><img v-if="show66" class="biana" src="../../../../static/imgs/up.png" alt=""> </span>
       <span  @click="hidden3()">
         排序
-        <img v-if="show7" class="bian1" src="../../../../static/imgs/down.png" alt=""><img v-if="show2"  class="biana1" src="../../../../static/imgs/up.png" alt="">
+        <img v-if="show7" class="bian1" src="../../../../static/imgs/down.png" alt=""><img v-if="show77"  class="biana1" src="../../../../static/imgs/up.png" alt="">
         </span>
       <span @click="hidden4()">筛选
          <img v-if="show8" class="bian2" src="../../../../static/imgs/down.png" alt=""><img v-if="show9"  class="biana2" src="../../../../static/imgs/up.png" alt="">
@@ -63,7 +63,7 @@
       <div>
       <p class="p1">配送方式</p>
      
-      <p @click="a(show10=!show10)" class="bird">
+      <p @click="(show10=!show10)" class="bird">
          <img v-if="show10" src="../img/bird.png" alt="">
          <img v-else class="yes" src="../../../../static/imgs/yes.png" alt="">
          蜂鸟专送</p>
@@ -117,7 +117,9 @@ export default {
     show4:true,
     show5:false,
     show6:true,
+    show66:false,
     show7:true,
+    show77:false,
     show8:true,
     show9:false,
     show10:true,
@@ -148,7 +150,11 @@ export default {
       this.show2 = false;
       this.show3 = false;
       this.show6 = !this.show6;
-      // this.show7 = !this.show7
+      this.show66 = !this.show66;
+      this.show77 = false;
+      this.show7 = true;
+      this.show9 = false;
+      this.show8 = true;
     },
     hidden2: function(index) {
       this.arr = this.data[index].sub_categories;
@@ -166,6 +172,11 @@ export default {
       this.show2 = !this.show2;
       this.show3 = false;
       this.show7 = !this.show7;
+      this.show77=!this.show77;
+      this.show66 = false;
+      this.show6 = true;
+      this.show9 = false;
+      this.show8 = true;
     },
     hidden4: function() {
       this.show = false;
@@ -173,6 +184,10 @@ export default {
       this.show3 = !this.show3;
       this.show8 = !this.show8;
       this.show9 = !this.show9;
+      this.show66 = false;
+      this.show6 = true;
+      this.show77 = false;
+      this.show7 = true;
     },
     paixu(index1) {
       // this.cont = idd;
@@ -201,11 +216,9 @@ export default {
     //     if(val == _this.data12[aaa].name){
     //       a = ind 
     //       console.log("..............."+val)
-    //     }
-       
+    //     }    
     //   })
-    //   this.blname.splice(a,1)
-      
+    //   this.blname.splice(a,1)  
     // }
     },
     // hh(){
@@ -219,10 +232,6 @@ export default {
       // console.log(a)
       // this.cli(a);
     }
-    // id(){
-    //   this.cont1 = this.id;
-    //   // console.log(this.cont1)
-    // }
   },
   created() {
     this.ytitle = this.$route.params.tit;
