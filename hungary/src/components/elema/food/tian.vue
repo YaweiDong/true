@@ -24,12 +24,17 @@
       <div class="fenlei">
         <ol>
           <li  v-for="(k,index) in data" :key="index" @click="hidden2(index)">
-            <img :src="'https://fuss10.elemecdn.com/'+k.image_url+'.png'" alt="">
+            
+            <span class="sp1">
+              <img :src="'https://fuss10.elemecdn.com/'+k.image_url+'.png'" alt="">
             {{k.name}}
-            <span>
+            </span>
+            <span class="sp2">
             {{k.count}}
             </span>
-            >
+            <span class="sp3">
+              >
+            </span>
           </li>
         </ol>
       </div>
@@ -370,14 +375,27 @@ width: 0.15rem;
 }
 .xiangqing li {
   height: 0.41rem;
-  border-bottom: 0.01rem solid rgba(230, 230, 230, 1);
+  border-bottom: 0.01rem solid rgb(230, 230, 230);
   font-size: 0.13rem;
   color: rgb(100, 100, 100);
 }
-.fenlei span {
+.sp1{
+  /* border: 1px solid red; */
+  /* padding: 0.1rem; */
+  float: left;
+  margin-left: 0.1rem;
+}
+.sp2 {
   background-color: rgba(200, 200, 200, 1);
   color: white;
   border-radius: 35%;
+  margin-left:0.5rem; 
+  
+}
+.sp3{
+  float: right;
+  margin-right:0.1rem; 
+  
 }
 .shaixuan li {
   width: 30%;
