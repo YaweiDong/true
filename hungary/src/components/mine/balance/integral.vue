@@ -6,6 +6,7 @@
              
            <span>我的积分</span>
          </header>
+         <div v-show="sp">
 <div class="content">
     <div class="ul">
         <li class="li1">
@@ -16,19 +17,26 @@
             </div>
         </li>
         <li class="li2">
-            <span>0</span>
-            <span>元</span>
+            <span>{{point}}</span>
+            <span>分</span>
         </li>
         <li class="li3">
             <span>积分兑换商品</span>
         </li>
     </div>
 </div>
-<p class="p">最近30天积分记录</p>
+
+
+
+     <p class="p">最近30天积分记录</p>
 <div class="last">
     <img :src="detail" alt="">
     <p>最近30天五积分记录</p>
     <p>快去下单赚取大量积分吧</p>
+</div>
+</div>
+<div class="h3" v-show="!sp">
+   <h3>暂无积分，请登录。</h3>
 </div>
     </div>
 </template>
@@ -40,15 +48,26 @@ export default {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
       wen: require("../imgs/wenhao.png"),
-      detail: require("../imgs/detail.png")
+      detail: require("../imgs/detail.png"),
+      point: "0",
+      sp:''
     };
   },
   methods: {
     back() {
       this.$router.go(-1);
     },
-    jump(){
-      this.$router.push({name:'id'})
+    jump() {
+      this.$router.push({ name: "id" });
+    }
+  },
+  created() {
+    var ui = this.$store.state.login1;
+    if (ui == "") {
+      this.sp = false;
+    } else {
+      this.sp = true;
+      this.point = ui.point;
     }
   }
 };
@@ -138,8 +157,13 @@ export default {
   height: 1.1719rem;
   margin-bottom: 0.2rem;
 }
-.last p:last-child{
-    font-size: 0.14rem;
-    margin-top: 0.15rem;
+.last p:last-child {
+  font-size: 0.14rem;
+  margin-top: 0.15rem;
+}
+.h3{
+  color: gray;
+  text-align: center;
+  padding-top: 1.5rem;
 }
 </style>

@@ -5,108 +5,25 @@
            <span>历史红包</span>
          </header>
         <ul class="benefit">
-          <li>
+          <li :key="index" v-for="(k,index) in datas">
             <div class="benefit-left">
-              <span>￥</span><span>5</span><span>.0</span>
-              <p>满20元可用</p>
+              <span>￥</span>
+              <span>{{k.amount}}</span>
+              <p>{{k.description_map.sum_condition}}</p>
             </div>
          
               <div class="benefit-right">
                  <div>
-                    <span>普通红包</span>
+                    <span>{{k.name}}</span>
                     <span>已过期</span>
                  </div>
                  <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
+                    <p>{{k.description_map.validity_periods}}</p>
+                    <p>{{k.description_map.phone}}</p>
                  </div>
               </div>     
           </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>6</span><span>.0</span>
-              <p>满20元可用</p>
-            </div>
          
-              <div class="benefit-right">
-                 <div>
-                    <span>普通红包</span>
-                    <span>已过期</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
-          </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>5</span><span>.5</span>
-              <p>满20元可用</p>
-            </div>
-         
-              <div class="benefit-right">
-                 <div>
-                    <span>普通红包</span>
-                    <span>已过期</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
-          </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>4</span><span>.5</span>
-              <p>满20元可用</p>
-            </div>
-         
-              <div class="benefit-right">
-                 <div>
-                    <span>普通红包</span>
-                    <span>已过期</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
-          </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>3</span><span>.5</span>
-              <p>满20元可用</p>
-            </div>
-         
-              <div class="benefit-right">
-                 <div>
-                    <span>普通红包</span>
-                    <span>已过期</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
-          </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>3</span><span>.5</span>
-              <p>满20元可用</p>
-            </div>
-         
-              <div class="benefit-right">
-                 <div>
-                    <span>普通红包</span>
-                    <span>已过期</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
-          </li>
         </ul>   
     </div>
 </template>
@@ -117,11 +34,19 @@ import hongbao from '../hongbao.vue'
 export default {
   data() {
     return {
-      timg: require("../../imgs/back.png")
+      timg: require("../../imgs/back.png"),
+      datas:''
     };
   },
   components:{
       hongbao
+  },
+  created(){
+    var ui = this.$store.state.login1;
+    let api = `https://elm.cangdu.org/promotion/v2/users/${ui.id}/expired_hongbaos?limit=20&offset=0`;
+    this.$http.get(api).then((res)=>{
+          this.datas = res.data;
+    })
   }
 };
 </script>

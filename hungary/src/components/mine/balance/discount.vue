@@ -6,13 +6,13 @@
              
            <span>我的优惠</span>
          </header>
+         <div v-show="!sp">  
          <div class="two">
-             <p :class="{color:hh}" @click="change1('hongbao')">红包</p>   
-             <p :class="{color:!hh}" @click="change2('cash')">商家代金券</p>
-         </div>
-       
+             <p :class="{color:hh}" @click="change1('hongbao')">红包</p>  <p :class="{color:!hh}" @click="change2('cash')">商家代金券</p>
+         </div>       
   <component name="fade" :is="cc"></component>
-           
+  </div>
+           <p class="hshow" v-show="sp">暂无优惠，请登录。</p>
     </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
     return {
       timg: require("../imgs/back.png"),
       cc:'hongbao',
-      hh:true
+      hh:true,
+      sp:''
     };
   },
   methods: {
@@ -41,6 +42,14 @@ export default {
   },
   components:{
       cash,hongbao
+  },
+  created(){
+    var ui = this.$store.state.login1;
+    if(ui == ''){
+        this.sp = true;
+    }else{
+        this.sp = false;
+    }
   }
 };
 </script>
@@ -86,5 +95,10 @@ export default {
 }
 .fade{
   color: blue;
+}
+.hshow{
+    color: gray;
+  text-align: center;
+  padding-top: 1.5rem;
 }
 </style>

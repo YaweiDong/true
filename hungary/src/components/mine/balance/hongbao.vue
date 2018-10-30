@@ -13,56 +13,22 @@
             </div>
         </div>
         <ul class="benefit">
-          <li>
+          <li :key="index" v-for="(k,index) in datas">
             <div class="benefit-left">
-              <span>￥</span><span>1</span><span>.0</span>
-              <p>满20元可用</p>
-            </div>
-         
+              <span>￥</span>
+              <span>{{k.amount}}</span>
+              <p>{{k.description_map.sum_condition}}</p>
+            </div>        
               <div class="benefit-right">
                  <div>
-                    <span>分享红包</span>
-                    <span>剩3日</span>
+                    <span>{{k.name}}</span>
+                    <span>{{k.description_map.validity_delta}}</span>
                  </div>
                  <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
+                    <p>{{k.description_map.validity_periods}}</p>
+                    <p>{{k.description_map.phone}}</p>
                  </div>
-              </div>     
-          </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>2</span><span>.0</span>
-              <p>满20元可用</p>
-            </div>
-         
-              <div class="benefit-right">
-                 <div>
-                    <span>分享红包</span>
-                    <span>剩3日</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
-          </li>
-          <li>
-            <div class="benefit-left">
-              <span>￥</span><span>4</span><span>.5</span>
-              <p>满20元可用</p>
-            </div>
-         
-              <div class="benefit-right">
-                 <div>
-                    <span>分享红包</span>
-                    <span>剩3日</span>
-                 </div>
-                 <div>
-                    <p>2018-05-23到期</p>
-                    <p>限收货手机号为13681711524使用</p>
-                 </div>
-              </div>     
+              </div>   
           </li>
         </ul>
         <p class="limit">限品类：快餐便当，特色菜肴，小吃夜宵，甜品饮品，异国料理</p>
@@ -73,14 +39,28 @@
           <router-link to='/discount/exchange'>兑换红包</router-link>
           <router-link to='/discount/commend'>推荐有奖</router-link>
         </div>
+        <h3 v-show="sp">暂无优惠，请登录查询。</h3>
     </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      wen: require("../imgs/wenhao.png")
+      wen: require("../imgs/wenhao.png"),
+      datas: "",
+      sp: true
+    };
+  },
+  created() {
+    var ui = this.$store.state.login1;
+    if (ui !== "") {
+      let api = `https://elm.cangdu.org/promotion/v2/users/${ui.id}/hongbaos?limit=20&offset=0`;
+      this.$http.get(api).then(res => {
+        console.log(res);
+        this.datas = res.data;
+      });
     }
   }
 };
@@ -98,20 +78,19 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
-.question a{
-color: dodgerblue;
+.question a {
+  color: dodgerblue;
 }
 .li1 div img {
   width: 0.17rem;
   height: 0.17rem;
   margin-right: 0.08rem;
 }
-.li1 div:first-child{
+.li1 div:first-child {
   color: black;
 }
-.li1 div:first-child span:nth-child(2){
+.li1 div:first-child span:nth-child(2) {
   color: red;
 }
 
@@ -126,46 +105,44 @@ color: dodgerblue;
   justify-content: center;
   align-items: center;
   color: gray;
-  border-radius:0.08rem; 
+  border-radius: 0.08rem;
 }
-.benefit li:last-child{
+.benefit li:last-child {
   margin-bottom: 0;
 }
-.benefit-left{
+.benefit-left {
   margin-right: 0.2rem;
   padding-right: 0.2rem;
-  border-right:0.01rem dashed rgb(185, 180, 180); 
+  border-right: 0.01rem dashed rgb(185, 180, 180);
   text-align: center;
-
 }
-.benefit-left span{
-  color:red;
+.benefit-left span {
+  color: red;
   font-size: 0.17rem;
 }
-.benefit-left p{
+.benefit-left p {
   margin-top: 0.07rem;
 }
-.benefit-left span:nth-child(2){
+.benefit-left span:nth-child(2) {
   font-size: 0.4rem;
 }
-.benefit-right{
+.benefit-right {
   width: 2.2rem;
 }
-.benefit-right div:first-child{
+.benefit-right div:first-child {
   color: black;
   display: flex;
   justify-content: space-between;
   font-size: 0.2rem;
   margin-bottom: 0.05rem;
-  
 }
-.benefit-right div:first-child span:last-child{
+.benefit-right div:first-child span:last-child {
   color: red;
 }
-.benefit-right div:last-child p:last-child{
+.benefit-right div:last-child p:last-child {
   margin-top: 0.03rem;
 }
-.limit{
+.limit {
   font-size: 0.11rem;
   text-align: center;
   background-color: rgb(250, 243, 243);
@@ -174,21 +151,21 @@ color: dodgerblue;
   height: 0.2rem;
   line-height: 0.2rem;
 }
-.next{
+.next {
   text-align: center;
   margin: 0.2rem;
 }
-.next a{
+.next a {
   color: gray;
   font-size: 0.13rem;
 }
-.last{ 
+.last {
   width: 100%;
   position: fixed;
   bottom: 0;
   display: flex;
 }
-.last a{
+.last a {
   background-color: white;
   width: 100%;
   height: 0.5rem;
@@ -196,7 +173,7 @@ color: dodgerblue;
   text-align: center;
   line-height: 0.5rem;
 }
-.last a:first-child{
+.last a:first-child {
   border-right: 0.01rem solid rgb(201, 199, 199);
 }
 </style>

@@ -21,7 +21,7 @@
             <router-link class="li" to='/information/setname'>
                 <span>用户名</span>
                  <div>
-                     <span>{{name}}</span>
+                     <span>{{mapname.username}}</span>
                      <img class="one" :src="next" alt="">
                  </div>
             </router-link>
@@ -33,7 +33,7 @@
                      <img class="one" :src="next" alt="">
                  </div>
             </router-link>
-             
+
              <div class="li">
                 <span>账号绑定</span>
              </div>
@@ -58,13 +58,26 @@
                      </div>              
              </router-link>
          </ul>
-         <div class="out">
+         <div @click="out()" class="out">
              <span>退出登陆</span>
          </div>
+         <div class="alert" :class="{none:ch}">
+           <div>
+              <p>!</p>
+              <p>是否退出登陆</p>
+              <div class="p-two">
+                 <p @click="wait()">再等等</p>
+                 <p @click="yes()">退出登陆</p>
+              </div>          
+           </div>          
+         </div>
+        
     </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -72,17 +85,36 @@ export default {
       next: require("../imgs/next.png"),
       phone: require("../imgs/phone.png"),
       user: require("../imgs/userH.jpg"),
-      name: ""
+      username: "",
+      status: "",
+      ch: true
     };
   },
-  methods:{
-      app(){
-          alert('请在手机APP中设置')
-      }
+  computed:{
+      ...mapGetters({mapname:'user'})
   },
-  created() {
-    this.name = this.$store.state.login1.username;
-    console.log("ssss" + this.username);
+  methods: {
+    app() {
+      alert("请在手机APP中设置");
+    },
+    out() {
+      this.ch = false;
+    },
+    wait() {
+      this.ch = true;
+    },
+    yes() {
+      let api = "https://elm.cangdu.org/v2/signout";
+      this.$http({
+        method: "get",
+        url: api,
+        withCredentials: true
+      }).then(res => {
+        this.status = res.data.status;
+        this.$store.state.login1 = "";
+        this.$router.push({name:'mine'});
+      })
+    }
   }
 };
 </script>
@@ -173,14 +205,65 @@ export default {
 .last-p {
   font-size: 0.17rem;
 }
-.photo{
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius:50%; 
-    overflow: hidden;
+.photo {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  overflow: hidden;
 }
-.photo img{
-    width: 100%;
-    height: 100%;
+.photo img {
+  width: 100%;
+  height: 100%;
+}
+.none {
+  display: none;
+}
+.alert {
+  background-color: aquamarine;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  background-color: rgba(116, 110, 110, 0.2);
+}
+.alert > div {
+  background-color: white;
+  margin: 1.5rem 0.1rem;
+  padding: 0.3rem;
+  text-align: center;
+  border-radius: 0.1rem;
+}
+.alert > div > p:first-child {
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 0.03rem solid orangered;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  color: orangered;
+  margin: 0 auto;
+}
+.alert > div > p:nth-child(2) {
+  font-size: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+.p-two {
+  font-size: 0.14rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.p-two p:first-child {
+  background-color: gray;
+  padding: 0.08rem 0.15rem;
+  border-radius: 0.05rem;
+  margin-right: 0.2rem;
+}
+.p-two p:last-child {
+  background-color: #dd6b55;
+  padding: 0.08rem 0.15rem;
+  border-radius: 0.05rem;
 }
 </style>

@@ -6,6 +6,7 @@
              
            <span>新增地址</span>
          </header>
+         <div v-show="!sp">
 <div class="content">
     <div class="ul">
         <li class="li1">
@@ -16,7 +17,7 @@
             </div>
         </li>
         <li class="li2">
-            <span>0.00</span>
+            <span>{{yu}}</span>
             <span>元</span>
         </li>
         <li class="li3">
@@ -24,11 +25,18 @@
         </li>
     </div>
 </div>
-<p class="p">交易明细</p>
-<div class="last">
-    <img :src="detail" alt="">
-    <p>暂无明细记录</p>
+
+
+     <p class="p">交易明细</p>
+     <div class="last">
+     <img :src="detail" alt="">
+     <p>暂无明细记录</p>
 </div>
+</div>
+  <div class='h3' v-show="sp">
+    <h3>暂无余额，请登录。</h3>
+   </div>
+
     </div>
 </template>
 
@@ -39,16 +47,27 @@ export default {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
       wen: require("../imgs/wenhao.png"),
-      detail: require("../imgs/detail.png")
+      detail: require("../imgs/detail.png"),
+      yu: "0.00",
+      sp:''
     };
+  },
+  created() {
+    var ui = this.$store.state.login1;
+    if (ui == "") {
+       this.sp = true;
+    } else {
+      this.sp = false;
+      this.yu = ui.balance;
+    }
   },
   methods: {
     back() {
       this.$router.go(-1);
     },
-  jump(){
-    this.$router.push({name:'yd'})
-  }
+    jump() {
+      this.$router.push({ name: "yd" });
+    }
   }
 };
 </script>
@@ -136,5 +155,10 @@ export default {
   width: 1.875rem;
   height: 1.1719rem;
   margin-bottom: 0.2rem;
+}
+.h3{
+  color: gray;
+  text-align: center;
+  padding-top: 1.5rem;
 }
 </style>

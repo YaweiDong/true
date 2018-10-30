@@ -9,7 +9,7 @@
                 <img src="../../../static/imgs/mine.png" alt="">
             </div>
             <div class="register-p">
-                <p>{{username}}</p>
+                <p>{{name}}</p>
                 <div>
                    <img :src="phone" alt="">  
                    <p>暂无绑定手机号</p>
@@ -21,21 +21,21 @@
     <ul class='treasure'>
         <li>
             <router-link to="/yet">
-               <strong class="treasure-s1">0.00</strong>
+               <strong class="treasure-s1">{{yu}}</strong>
                <span>元</span>
                <p>我的余额</p>     
             </router-link>
         </li>
         <li>
             <router-link to="/discount" >   
-               <strong class="treasure-s2">0</strong>
+               <strong class="treasure-s2">{{gift}}</strong>
                <span>个</span>
                <p>我的优惠</p>          
             </router-link>  
         </li>
         <li>
            <router-link to="/integral" >    
-            <strong class="treasure-s3">0</strong>
+            <strong class="treasure-s3">{{point}}</strong>
             <span>分</span>
             <p>我的积分</p>   
            </router-link>    
@@ -52,37 +52,58 @@
             </div>               
         </router-link>
     </div>
-        {{login}}
+       
     </div>
 </template>
 
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      choise:'/register',
-      username:'登陆/注册',
+      choise: "/register",
       phone: require("./imgs/phone.png"),
       next: require("./imgs/next.png"),
+      name:'登陆/注册',
+      yu:'0.00',
+      gift:'0.00',
+      point:'0.00',
       lists: [
         { im: require("./imgs/order3.png"), lis: "我的订单", router: "/order" },
         { im: require("./imgs/store.png"), lis: "积分商城", router: "/02" },
-        { im: require("./imgs/crow.png"), lis: "饿了吗会员卡", router: "/vipcard" },
-        { im: require("./imgs/sever.png"), lis: "服务中心", router: "/service"},{im: require("./imgs/download.png"),lis: "下载饿了吗APP", router:"/04"}
+        {
+          im: require("./imgs/crow.png"),
+          lis: "饿了吗会员卡",
+          router: "/vipcard"
+        },
+        {
+          im: require("./imgs/sever.png"),
+          lis: "服务中心",
+          router: "/service"
+        },
+        {
+          im: require("./imgs/download.png"),
+          lis: "下载饿了吗APP",
+          router: "/download"
+        }
       ]
     };
   },
-  created() {   
-      this.username = this.$store.state.login1.username;
-      console.log("ssss"+this.username);
-      if(this.username == '登陆/注册'){
-        this.choise = '/register'
-      }else{
-        this.choise = '/information'
-      }
+  created(){ 
+    var aa = this.$store.state.login1; 
+    console.log(aa) 
+      if (aa == '') {
+          this.choise = "/register";      
+      } else {
+         this.name = aa.username;
+         this.point = aa.point;
+         this.gift = aa.gift_amount;
+         this.choise = "/information";
+         this.yu = aa.balance;
+         this.$router.push({name:'mine'})
+      }   
   }
 };
 </script>

@@ -6,9 +6,12 @@
              
            <span>会员中心</span>
          </header>
+         <div v-show="sp">
+
+         
          <div class="for">
             <span>为账户</span>
-            <span>974598795</span>
+            <span>{{name}}</span>
             <span>购买会员</span>
          </div>
          <ul class="vip1">
@@ -66,6 +69,8 @@
                  </router-link>
              </li>
          </ul>
+         </div>
+         <p class="tip" v-show="!sp">请登录查看详情</p>
     </div>
 </template>
 
@@ -76,8 +81,19 @@ export default {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
       jian: require("../imgs/jian.png"),
-      sheng: require("../imgs/sheng.png")
+      sheng: require("../imgs/sheng.png"),
+      name:'',
+      sp:''
     };
+  },
+  created(){
+    let aa = this.$store.state.login1;
+    if(ui == 0){
+        this.sp = false;
+    }else{
+      this.sp = true;
+       this.name = aa.username;
+    }
   }
 };
 </script>
@@ -200,5 +216,11 @@ export default {
 }
 .li3 {
   margin-top: 0.15rem;
+}
+.tip{
+  font-size: 0.2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  color: gray;
 }
 </style>
