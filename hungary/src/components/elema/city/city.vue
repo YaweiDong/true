@@ -19,7 +19,11 @@
               <div  class="citys_float1">
                   <router-link to="">
                       <div class="citys_float_left1">
-                          <span>郑州</span>
+                          <span >
+                             <router-link :style="{color: '#3190e8'}"  :to="{name:'citysearch',params:{citysName:guess.name,idd:guess.id}}">
+                            {{guess.name}}
+                            </router-link>
+                            </span>
                    </div>
                  <div class="citys_float_right1">
                  </div>
@@ -66,13 +70,16 @@ export default {
     return {
       citys: [],
       az: [],
-      hotCitys: []
+      hotCitys: [],
+      guess:[],
+      gu:[]
     };
   },
   created() {
     let loadingInstance1 = Loading.service({
       fullscreen: true
     });
+
     let api = "https://elm.cangdu.org/v1/cities?type=group";
     this.$http.get(api).then(response => {
       loadingInstance1.close();
@@ -85,7 +92,14 @@ export default {
       this.hotCitys = data1.data;
       console.log(data1.data);
     });
+    let api2 = "https://elm.cangdu.org/v1/cities?type=guess";
+    this.$http.get(api2).then(data2 => {
+      this.guess = data2.data;
+      console.log(data2.data),
+      console.log(this.guess)
+    });
   }
+  
 };
 </script>
 <style scoped ="scoped">
