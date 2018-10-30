@@ -1,7 +1,7 @@
 <template>
     <div>
     <header class="m-top">
-        <img src="../../../static/imgs/back.png" alt="">
+        <img  @click="($router.back(-1))" src="../../../static/imgs/back.png" alt="">
         <span>我的</span>
     </header>
        <router-link :to='choise' class="register">           <div class="register-div">
@@ -122,11 +122,10 @@ export default {
   border-bottom: 0.0002rem solid white;
 }
 .m-top img {
-  width: 0.2109rem;
-  height: 0.2109rem;
-  position: absolute;
-  margin: auto;
-  left: 0.05rem;
+ position: absolute;
+  top: 0.13rem;
+  left: 0.1rem;
+  width: 0.2rem;
 }
 .m-top span {
   font-weight: bold;

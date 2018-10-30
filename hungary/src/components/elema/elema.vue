@@ -1,10 +1,20 @@
 <template>
     <div>
+       
         <div class="header">
-            <router-link to="/elema/city">
-                <h3 class="header_h3">{{address}}</h3>
+          <router-link to="search">
+            <img class="search3" src="../../../static/imgs/search3.png" alt="">
+          </router-link>
+            <router-link to="/elema/city">          
+                <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
+            <router-link to="/register">
+            <span class="upp">登录|注册</span>
+            </router-link>
+            
+
         </div> 
+        
         <div>
           <Ele></Ele>
         </div>
@@ -271,5 +281,19 @@ p {
 }
 .order_time {
   color: #3190e8;
+}
+.search3{
+  width: 0.2rem;
+  position: absolute;
+  top: 0.15rem;
+  left:0.18rem;
+
+}
+.upp{
+  color: white;
+  font-size: 0.15rem;
+  position: absolute;
+  top: 0.16rem;
+  left: 2.97rem;
 }
 </style>
