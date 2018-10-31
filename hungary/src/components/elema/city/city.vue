@@ -33,7 +33,7 @@
               <div class="citys_group">
                   <span>热门城市</span>
               </div>
-              <div>`
+              <div>
                  <ul class="citys_ul" >
                      
                      <li class="hot" v-for="(hc,index1) in  hotCitys" :key="index1">
