@@ -8,19 +8,19 @@
          </header>
          <ul class='input'>
             <li>
-<input type="text" placeholder="账号" > 
+<input type="text" placeholder="账号" v-model="username"> 
             </li>
             <li>
-<input type="text" placeholder="旧密码">
+<input type="text" placeholder="旧密码" v-model="oldp">
             </li>     
             <li>
-<input type="text" placeholder="请输入新密码" >
+<input type="text" placeholder="请输入新密码" v-model="newp">
             </li>
             <li>
-<input type="text" placeholder="请确认密码">
+<input type="text" placeholder="请确认密码" v-model="confirm">
             </li>
             <li>
-<input type="text" placeholder="验证码" > 
+<input type="text" placeholder="验证码" v-model="code"> 
                 <div class="judge">
                     <img :src="imgs" alt="">
                     <div>
@@ -31,7 +31,7 @@
             </li>
          </ul>
          <div class="add">
-             <span>确认修改</span>
+             <span @click="btn()">确认修改</span>
          </div>
 
     </div>
@@ -43,13 +43,13 @@ export default {
     return {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
-      imgs:''
+      imgs: "",
+      username: "",
+      oldp: "",
+      newp: "",
+      confirm: "",
+      code: ""
     };
-  },
-  methods:{
-       change(){
-           this.$emit('bian')
-       }
   },
   created() {
     let api = "https://elm.cangdu.org/v1/captchas";
@@ -66,6 +66,31 @@ export default {
     this.$on("bian", () => {
       changes();
     });
+  },
+  
+  methods: {
+    change() {
+      this.$emit("bian");
+    },
+    btn() {
+      console.log('jhgfdfghj')
+      let api = "https://elm.cangdu.org/v2/changepassword";
+      this.$http({
+        method: "post",
+        url: api,
+        data: {
+          username: this.username, //用户名
+          oldpassWord: this.oldp, //旧密码
+          newpassword: this.newp, //新密码
+          confirmpassword: this.newp, //确认密码
+          captcha_code: this.code, //验证码
+          withCredentials: true
+        }
+      }).then(res => {
+        console.log(res)
+        alert(res.data.message)
+      });
+    }
   }
 };
 </script>
@@ -103,19 +128,19 @@ export default {
   margin-top: 0.1rem;
   background-color: white;
 }
-.input li{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 0.5rem;
-    border-bottom: 0.01rem solid rgb(180, 172, 172);
+.input li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 0.5rem;
+  border-bottom: 0.01rem solid rgb(180, 172, 172);
 }
-.input li input{
-    height: 0.3rem;
-    margin-left: 0.2rem;
-    font-size: 0.17rem;
-    border: none;
-    outline: none;
+.input li input {
+  height: 0.3rem;
+  margin-left: 0.2rem;
+  font-size: 0.17rem;
+  border: none;
+  outline: none;
 }
 
 .add {
@@ -129,19 +154,19 @@ export default {
   color: rgb(240, 248, 240);
   font-size: 0.18rem;
 }
-.judge{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.13rem;
+.judge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.13rem;
 }
-.judge img{
-    width: 0.8rem;
-    height: 0.4rem;
-    margin-right: 0.1rem;
+.judge img {
+  width: 0.8rem;
+  height: 0.4rem;
+  margin-right: 0.1rem;
 }
-.judge div p:last-child{
-    color: blue;
-    margin-top:0.1rem; 
+.judge div p:last-child {
+  color: blue;
+  margin-top: 0.1rem;
 }
 </style>

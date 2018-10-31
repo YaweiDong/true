@@ -53,6 +53,15 @@
         </router-link>
     </div>
        
+    
+    <div class="Dwarp">
+       <router-link :key="index" v-for="(k,index) in img" :to="k.ad">
+           <div class='search'>
+               <img class='img2' :src="k.im" alt="">
+               {{k.na}}
+            </div>
+       </router-link>
+    </div>
     </div>
 </template>
 
@@ -66,13 +75,39 @@ export default {
       choise: "/register",
       phone: require("./imgs/phone.png"),
       next: require("./imgs/next.png"),
-      name:'登陆/注册',
-      yu:'0.00',
-      gift:'0.00',
-      point:'0.00',
+      name: "登陆/注册",
+      yu: "0.00",
+      gift: "0.00",
+      point: "0.00",
+      img: [
+        {
+          na: "外卖",
+          ad: "/elema",
+          im: require("../../himg/ele.png")
+        },
+        {
+          na: "搜索",
+          ad: "/search",
+          im: require("../../himg/search.png")
+        },
+        {
+          na: "订单",
+          ad: "/order",
+          im: require("../../himg/order.png")
+        },
+        {
+          na: "我的",
+          ad: "/mine",
+          im: require("../../himg/mine1.png")
+        }
+      ],
       lists: [
         { im: require("./imgs/order3.png"), lis: "我的订单", router: "/order" },
-        { im: require("./imgs/store.png"), lis: "积分商城", router: "/02" },
+        {
+          im: require("./imgs/store.png"),
+          lis: "积分商城",
+          router: "/integralStore"
+        },
         {
           im: require("./imgs/crow.png"),
           lis: "饿了吗会员卡",
@@ -91,19 +126,18 @@ export default {
       ]
     };
   },
-  created(){ 
-    var aa = this.$store.state.login1; 
-    console.log(aa) 
-      if (aa == '') {
-          this.choise = "/register";      
-      } else {
-         this.name = aa.username;
-         this.point = aa.point;
-         this.gift = aa.gift_amount;
-         this.choise = "/information";
-         this.yu = aa.balance;
-         this.$router.push({name:'mine'})
-      }   
+  created() {
+    var aa = this.$store.state.login1;
+    if (aa == "") {
+      this.choise = "/register";
+    } else {
+      this.name = aa.username;
+      this.point = aa.point;
+      this.gift = aa.gift_amount;
+      this.choise = "/information";
+      this.yu = aa.balance;
+      this.$router.push({ name: "mine" });
+    }
   }
 };
 </script>
@@ -122,7 +156,7 @@ export default {
   border-bottom: 0.0002rem solid white;
 }
 .m-top img {
- position: absolute;
+  position: absolute;
   top: 0.13rem;
   left: 0.1rem;
   width: 0.2rem;
@@ -140,6 +174,27 @@ export default {
   padding: 0 0.2rem;
 }
 
+.Dwarp {
+  width: 100%;
+  padding: 0.05rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  font-size: 0.13rem;
+  z-index: 100;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(26, 25, 25);
+}
+.img2 {
+  width: 0.25rem;
+  margin-bottom: 0.02rem;
+}
 .register-div {
   display: flex;
   justify-content: center;

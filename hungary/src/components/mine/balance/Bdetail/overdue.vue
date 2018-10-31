@@ -11,7 +11,6 @@
               <span>{{k.amount}}</span>
               <p>{{k.description_map.sum_condition}}</p>
             </div>
-         
               <div class="benefit-right">
                  <div>
                     <span>{{k.name}}</span>

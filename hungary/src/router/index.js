@@ -37,6 +37,7 @@ import Address from '../components/mine/information/address'
 import Forget from '../components/mine/information/forget'
 //新增地址
 import Add from '../components/mine/information/add'
+//定位地址
 import Adddetail from '../components/mine/information/addDetail'
 //红包说明，余额说明，积分说明,历史红包,代金券说明
 import HongbaoDetail from '../components/mine/balance/Bdetail/hongbaoDetail'
@@ -57,6 +58,8 @@ import VipPay from "../components/mine/vipcard/pay";
 import Citysearch from "../components/elema/city/citysearch";
 //下载
 import Download from '../components/mine/download/download'
+//积分商城
+import IntegralStore from '../components/mine/integralStore/intergralStore'
 
 Vue.use(Router)
 
@@ -65,22 +68,22 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld,
-      redirect: '/elema/city',
-      children: [{
-        path: '/elema',
-        name: "elema",
-        component: Elema,
-      }, {
-        path: '/search',
-        component: Search
-      }, {
-        path: '/order',
-        component: Order
-      }, {
-        path: '/mine',
-        name:'mine',
-        component: Mine
-      }, ]
+      redirect: '/elema/city'
+    },
+    {
+      path: '/elema',
+      name: "elema",
+      component: Elema,
+    }, {
+      path: '/search',
+      component: Search
+    }, {
+      path: '/order',
+      component: Order
+    }, {
+      path: '/mine',
+      name: 'mine',
+      component: Mine
     }, {
       path: '/tian',
       name: "tian",
@@ -167,6 +170,7 @@ export default new Router({
       component: Shop,
     }, {
       path: '/elema/shop/business',
+
       component: Business,
     },
     {
@@ -206,6 +210,7 @@ export default new Router({
     },
     {
       path: '/information/address',
+      name: 'ad',
       component: Address
     },
     {
@@ -253,6 +258,7 @@ export default new Router({
     },
     {
       path: '/information/address/add',
+      name: 'adre',
       component: Add
     },
     //历史红包,代金券说明
@@ -286,7 +292,15 @@ export default new Router({
       component: UseCard
     },
     //下载
-    {path:'/download',component:Download}
+    {
+      path: '/download',
+      component: Download
+    },
+    //积分商城
+    {
+      path: '/integralStore',
+      component: IntegralStore
+    }
 
-    ]
+  ]
 })

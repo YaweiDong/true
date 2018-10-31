@@ -6,22 +6,22 @@
            </router-link>    
            <span>新增地址</span>
          </header>
+
+         <keep-alive>      
          <div class='input'>
              <div>
-<input type="text" placeholder="请填写你的姓名" v-model="name">
-             <input type="text" placeholder="小区/写字楼/学校等" v-model="home">
-            <input @click="btn()" type="text" placeholder="请填写详细的送餐地址" v-model="address">
-             
-             <input type="text" placeholder="请填写能够联系到您的手机号" v-model="phone">
-             <input type="text" placeholder="备用联系电话（选填）" v-model="phone1">
-             </div>
-             
+                <input @blur="inp1()" type="text" placeholder="请填写你的姓名" v-model="names">
+                <input @click="btn()" type="text" placeholder="小区/写字楼/学校等" v-model="home">
+                <input @blur="inp2()" type="text" placeholder="请填写详细的送餐地址" v-model="address">            
+                <input @blur="inp3()" type="text" placeholder="请填写能够联系到您的手机号" v-model="phone">
+                <input @blur="inp4()" type="text" placeholder="备用联系电话（选填）" v-model="phone1">
+             </div>           
          </div>
-         <div class="add">
+         </keep-alive>
+         
+         <div @click="add()" class="add">
              <span>新增地址</span>
          </div>
-        
-
     </div>
 </template>
 
@@ -31,21 +31,101 @@ export default {
     return {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
-      name: "",
+      names: "",
       home: "",
       address: "",
       phone: "",
       phone1: ""
     };
   },
-  methods:{
-      btn(){
-          this.$router.push({name:'addDetail'})
+  computed:{
+    
+  },
+  created() {
+    this.names = this.$store.state.input1;
+    this.address = this.$store.state.input2;
+    this.phone = this.$store.state.input3;
+    this.phone1 = this.$store.state.input4;
+    var aa = this.$route.params.adr;
+    if (aa !== undefined) {
+      this.home = aa.name; //城市名
+    }
+  },
+  methods: {
+    inp1() {
+      this.$store.commit("inp1", this.names);
+    },
+    inp2() {
+      this.$store.commit("inp2", this.address);
+    },
+    inp3() {
+      this.$store.commit("inp3", this.phone);
+    },
+    inp4() {
+      this.$store.commit("inp4", this.phone1);
+    },
+    btn() {
+      this.$router.push({ name: "addDetail" });
+    },
+    add() {
+      if (
+        this.names == "" ||
+        this.address == "" ||
+        this.phone == "" ||
+        this.home == ""
+      ) {
+        alert("内容不可为空，请填写！");
+        return;
+      } else {
+        //姓名,地址正则判断
+        var strname = /^([\u4e00-\u9fa5|\w]){2,7}$/;
+        var strphone = /^1[3|5|7|8|9][0-9]{9}$/; //手机号判断
+        var s1 = strname.test(this.names); //名字
+        var s2 = strname.test(this.address); //地址
+        var s3 = strphone.test(this.phone); //手机号
+        var s4 = strphone.test(this.phone1); //备用手机号
+        if (s1 == false || s2 == false || s3 == false || s4 == false) {
+          alert("请按要求填写");
+        } else {
+          var aa = this.$route.params.adr;
+          if (aa !== "") {
+            let api = `https://elm.cangdu.org/v1/users/${
+              this.$store.state.login1.user_id
+            }/addresses`;
+            this.$http({
+              method: "post",
+              url: api,
+              data: {
+                address: aa.address, //地址
+                address_detail: this.address, //地址详情
+                geohash: aa.geohash, //经纬度
+                name: this.names, //用户名
+                phone: this.phone, //手机号
+                tag: "1", //标签
+                sex: 1,
+                phone_bk: this.phone1,
+                tag_type: 2
+              }
+            }).then(res => {
+              if (res.data.status == 1) {
+                alert(res.data.success);
+                this.$router.push({ name: "ad" });
+                this.$store.commit("inp1", '');
+                this.$store.commit("inp2", '');
+                this.$store.commit("inp3", '');
+                this.$store.commit("inp4", '');
+              } else {
+                alert(res.data.message);
+              }
+            });
+          }
+        }
       }
+    }
   }
 };
 </script>
-<style scoped='secoped'>
+<style scoped='scoped'>
 .m-top {
   background-color: dodgerblue;
   width: 100%;
@@ -109,7 +189,7 @@ export default {
   color: rgb(240, 248, 240);
   font-size: 0.15rem;
 }
-#jump{
-    color: red;
+#jump {
+  color: red;
 }
 </style>

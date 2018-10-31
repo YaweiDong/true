@@ -22,6 +22,14 @@
           很抱歉! 无搜索结果
         </div>
         </div>
+        <div class="Dwarp">
+       <router-link :key="index" v-for="(k,index) in img" :to="k.ad">
+           <div class='search'>
+               <img class='img2' :src="k.im" alt="">
+               {{k.na}}
+            </div>
+       </router-link>
+    </div>
     </div>
 </template>
 <script>
@@ -34,7 +42,13 @@ export default {
       arrs: [],
       show:false,
       show1: false,
-      show2:false
+      show2:false,
+      img:[
+                {na:'外卖',ad:'/elema',im:require('../../himg/ele.png')},
+                {na:'搜索',ad:'/search',im:require('../../himg/search1.png')},
+                {na:'订单',ad:'/order',im:require('../../himg/order.png')},
+                {na:'我的',ad:'/mine',im:require('../../himg/mine.png')}
+                ]
     };
   },
   methods: {
@@ -89,6 +103,28 @@ input {
   background-color: rgb(245, 245, 245);
   margin: 0.1rem;
   margin-right: 0.01rem;
+}
+
+.Dwarp {
+  width: 100%;
+  padding: 0.05rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  background-color:white;
+  font-size: 0.13rem;
+  z-index: 100;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color:rgb(26, 25, 25);
+}
+.img2 {
+  width: 0.25rem;
+  margin-bottom: 0.02rem;
 }
 button {
   width: 0.77rem;

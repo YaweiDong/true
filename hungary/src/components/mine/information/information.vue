@@ -10,7 +10,7 @@
             <div class="li">
                  <span>头像</span>
                  <div>
-                     <div class="photo">
+                     <div @click="pho" class="photo">
                           <img class="two" :src="user" alt="">
                      </div>                 
                      <img class="one"  :src="next" alt="">
@@ -24,10 +24,8 @@
                      <span>{{mapname.username}}</span>
                      <img class="one" :src="next" alt="">
                  </div>
-            </router-link>
-           
-             
-            <router-link class="li" to='/information/address'>
+            </router-link>     
+            <router-link class="li" :to="{name:'ad'}">
                    <span>收货地址</span>
                  <div>
                      <img class="one" :src="next" alt="">
@@ -71,7 +69,6 @@
               </div>          
            </div>          
          </div>
-        
     </div>
 </template>
 
@@ -114,6 +111,13 @@ export default {
         this.$store.state.login1 = "";
         this.$router.push({name:'mine'});
       })
+    },
+    pho(){ 
+      let api = 'https://elm.cangdu.org/v1/addimg/avatar';
+      this.$http.post(api).then((res)=>{
+           console.log(res)
+      })
+      alert('暂无法上传')
     }
   }
 };

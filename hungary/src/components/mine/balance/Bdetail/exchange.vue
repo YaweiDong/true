@@ -5,9 +5,9 @@
            <span>兑换红包</span>
         </header>
         <div class="input">
-            <input class="input1" type="text" placeholder="请输入兑换码">
+            <input v-model="dui" class="input1" type="text" placeholder="请输入兑换码">
             <div>
-                 <input class="input2" type="text" placeholder="验证码">
+                 <input v-model="codes" class="input2" type="text" placeholder="验证码">
                  <div class="input-div">
                      <img :src="code" alt="">
                      <div>
@@ -17,7 +17,7 @@
                  </div>
             </div>
         </div>
-        <p class="p">兑换</p>
+        <p @click="ex()" class="p">兑换</p>
     </div>
 </template>
 
@@ -26,12 +26,27 @@ export default {
   data() {
     return {
       timg: require("../../imgs/back.png"),
-      code:''
+      dui:'',
+      code:'',
+      codes:''
     };
   },
   methods:{
       change(){
           this.$emit('bian')
+      },
+      ex(){
+          let aa = this.$store.state.login1
+          let api = `https://elm.cangdu.org/v1/users/${aa.id}/hongbao/exchange`;
+          this.$http({
+              method:'post',
+              url:api,
+              exchange_code:this.dui,
+              captcha_code:this.code,
+              withCredentials:true
+          }).then((res)=>{
+                alert(res.data.message)
+          })
       }
   },
   created() {

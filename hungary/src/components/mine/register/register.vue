@@ -82,7 +82,9 @@ export default {
         }else{
             alert('登陆成功')
             this.$store.commit("logining",res.data);
-            this.$router.push({name:'information'});
+            this.$router.push({name:'mine'});  
+        // localStorage.setItem('key',name)
+        // localStorage.getItem('key')
         }
       });
     }
@@ -95,7 +97,6 @@ export default {
         url: api,
         withCredentials: true
       }).then(res => {
-        console.log(res.data);
         this.code = res.data.code;
       });
     };

@@ -5,8 +5,7 @@
             <span>有</span>
             <span> 3 </span>
             <span>个红包即将到期</span>
-          </div>
-            
+          </div> 
             <div class="question">
                 <img :src="wen" alt="">
                 <router-link to='/discount/Detail'>红包说明</router-link>
@@ -38,8 +37,7 @@
         <div class="last">
           <router-link to='/discount/exchange'>兑换红包</router-link>
           <router-link to='/discount/commend'>推荐有奖</router-link>
-        </div>
-        <h3 v-show="sp">暂无优惠，请登录查询。</h3>
+        </div>     
     </div>
 </template>
 
@@ -49,8 +47,7 @@ export default {
   data() {
     return {
       wen: require("../imgs/wenhao.png"),
-      datas: "",
-      sp: true
+      datas: ""
     };
   },
   created() {
@@ -58,7 +55,6 @@ export default {
     if (ui !== "") {
       let api = `https://elm.cangdu.org/promotion/v2/users/${ui.id}/hongbaos?limit=20&offset=0`;
       this.$http.get(api).then(res => {
-        console.log(res);
         this.datas = res.data;
       });
     }
