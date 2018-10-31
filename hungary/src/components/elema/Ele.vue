@@ -205,8 +205,6 @@ import img16 from "./img/16.png";
   align-items: center;
   font-size: 0.14rem;
   color:gray;
-}
-.linkli{
-    width: 0.56rem;
+  /* width: 50%; */
 }
 </style>
