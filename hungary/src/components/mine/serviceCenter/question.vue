@@ -46,7 +46,7 @@ export default {
 };
 </script>
 
-<style>
+<style secoped='secoped'>
 body {
   background-color: rgb(245, 245, 245);
 }
