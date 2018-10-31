@@ -299,8 +299,6 @@ p {
   position: absolute;
   top: 0.16rem;
   left: 2.97rem;
-  border: 1px  solid red;
-   /* color:  red; */
 }
 
 </style>
