@@ -1,10 +1,20 @@
 <template>
     <div>
+       
         <div class="header">
-            <router-link to="/elema/city">
-                <h3 class="header_h3">省建家属院(郑州市)</h3>
+          <router-link to="search">
+            <img class="search3" src="../../../static/imgs/search3.png" alt="">
+          </router-link>
+            <router-link to="/elema/city">          
+                <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
+            <router-link to="/register">
+            <span class="upp">登录|注册</span>
+            </router-link>
+            
+
         </div> 
+        
         <div>
           <Ele></Ele>
         </div>
@@ -13,18 +23,19 @@
             <span class="shop_header_title">附近商家</span>    
           </div> 
           <ul class="center">
+            <router-link to="/elema/shop">
             <li class="shop" v-for="(data,index) in data" :key="data.id">
-              <router-link :to="{name:'shop',params:{id:data.id}}">
-              <div class="shop_li">
-                 <section>
+               <section>
                    <img class="shop-img" :src="'//elm.cangdu.org/img/'+data.image_path">    
                </section>
                <div class="shop_right">
                    <div class="shop_right_top">
                        <h6 class="shop_right_h6">品牌</h6>
                        <h4 class="shop_right_h4">{{data.name}}</h4>    
-                       <ul class="shop_right_ul" v-for="(k,ind) in data.supports" :key="ind">
-                           <li class="shop_right_li">{{k.icon_name}}</li>   
+                       <ul class="shop_right_ul">
+                           <li class="shop_right_li">保</li>   
+                           <li class="shop_right_li">准</li>
+                           <li class="shop_right_li">票</li>
                        </ul>   
                    </div>
                    <div class="shop_right_center">
@@ -38,13 +49,13 @@
                             </el-rate>
                         </div>
                         <div class="order_section">月售{{data.recent_order_num}}单</div>
-                        <div class="order_right" v-for="(k,index) in data.supports" :key="index">
+                        <div class="order_right">
                            <span class="delivery_style delivery_left">蜂鸟专送</span>
-                           <span class="delivery_style delivery_right">{{k.name}}</span>
+                           <span class="delivery_style delivery_right">准时达</span>
                         </div>  
                    </div>
                    <div class="shop_right_bottom">
-                       <p class="fee" v-if="data.piecewise_agent_fee">
+                       <p class="fee">
                            ￥20起送
                            <span>/</span>
                            {{data.piecewise_agent_fee.tips}}
@@ -56,9 +67,8 @@
                        </p>
                    </div>
                </div>
-              </div>
-              </router-link>
             </li>
+            </router-link>
           </ul>  
         </div>
     <!--路由出口-->
@@ -66,21 +76,29 @@
     </div>
 </template>
 <script>
-import Ele from './Ele';
+import Ele from "./Ele";
+// import { Loading } from "element-ui";
 export default {
-   data: () => ({
-      data: [],
-     return:{}
-     }),
-     components:{
-       Ele
-     },
+  data: () => ({
+    data: [],
+    // datab:[],
+    return: {}
+  }),
+
+  components: {
+    Ele
+  },
   //发请求
   created() {
+     this.address = this.$route.params.address;
+    // let loadingInstance1 = Loading.service({
+    //   fullscreen: true
+    // });
     let api =
-      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
+      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762&limit:100&order_by:5";
     //promise写法
     this.$http.get(api).then(data => {
+      // loadingInstance1.close();
       //成功后的回调
       console.log(data.data);
       this.data = data.data;
@@ -143,6 +161,7 @@ export default {
 }
 ul,
 li,
+session,
 h5,
 h4,
 span,
@@ -156,12 +175,9 @@ p {
   box-sizing: border-box;
 }
 .shop {
+  display: flex;
   padding: 0.18rem 0.08rem;
   border-bottom: 0.025rem solid #f1f1f1;
-}
-.shop_li{
-  width: 100%;
-  display:flex;
 }
 .shop-img {
   width: 0.7rem;
@@ -222,10 +238,10 @@ p {
 }
 .order_section {
   transform: scale(0.8);
-  font-size: 0.16rem;
+  font-size: 0.1rem;
   color: #666;
   border: 0;
-  padding-top: 0.01rem;
+  padding-top: 0.03rem;
   line-height: 0.2rem;
   float: left;
 }
@@ -266,15 +282,18 @@ p {
 .order_time {
   color: #3190e8;
 }
-</style>
-<style>
-.el-rate__item{
-    width: 0.094rem;
-  }
-.el-rate__icon{
-    font-size: .1rem;
+.search3{
+  width: 0.2rem;
+  position: absolute;
+  top: 0.15rem;
+  left:0.18rem;
+
 }
-.el-rate__text{ 
-    font-size: 0.1rem;
+.upp{
+  color: white;
+  font-size: 0.15rem;
+  position: absolute;
+  top: 0.16rem;
+  left: 2.97rem;
 }
 </style>

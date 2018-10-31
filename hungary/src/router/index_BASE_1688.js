@@ -55,8 +55,6 @@ import UseCard from '../components/mine/vipcard/useCard'
 import VipDescription from '../components/mine//vipcard/vipDescription'
 import VipPay from "../components/mine/vipcard/pay";
 import Citysearch from "../components/elema/city/citysearch";
-//下载
-import Download from '../components/mine/download/download'
 
 Vue.use(Router)
 
@@ -78,7 +76,6 @@ export default new Router({
         component: Order
       }, {
         path: '/mine',
-        name:'mine',
         component: Mine
       }, ]
     }, {
@@ -284,9 +281,7 @@ export default new Router({
       path: '/vipcard/useCard',
       name: 'useCard',
       component: UseCard
-    },
-    //下载
-    {path:'/download',component:Download}
+    }
 
-    ]
+  ]
 })

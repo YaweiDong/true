@@ -288,5 +288,5 @@ export default new Router({
     //下载
     {path:'/download',component:Download}
 
-    ]
+  ]
 })
