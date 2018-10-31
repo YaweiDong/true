@@ -1,6 +1,6 @@
 a<template>
   <div>
-    <div class="Dwarp">
+    <div class="warp">
 
        <router-link :key="index" v-for="(k,index) in img" :to="k.ad">
            <div @click="btn(index)" class='search'>
@@ -42,26 +42,27 @@ export default {
 </script>
 
 <style scoped ="scoped">
-
-.Dwarp {
+body{
+  background-color: #F5F5F5;
+}
+.warp {
   width: 100%;
-  padding: 0.05rem;
+  padding: 0.1rem;
   position: fixed;
   bottom: 0;
   display: flex;
   justify-content: space-around;
   background-color:white;
-  font-size: 0.13rem;
   z-index: 100;
 }
 .search {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color:rgb(26, 25, 25);
+  color:gray;
 }
 .img2 {
-  width: 0.25rem;
+  width: 0.3rem;
   margin-bottom: 0.02rem;
 }
 </style>

@@ -23,13 +23,11 @@ Vue.use(ElementUI);
 Vue.use(VueAxios, axios)
 
 const store = new Vuex.Store({
-  //设置全局访问对象，定义值
   state: {
     parameter1: 0,
     parameter2: 0,
     login1:''
   },
-  //可以修改state里的值，修改值
   mutations: {
     back1(state, n1) {
       state.parameter1 = n1;
@@ -38,23 +36,11 @@ const store = new Vuex.Store({
       state.parameter2 = n2;
     },
     logining(state,lo){
-        state.login1 = lo;
+        this.state.login1 = lo;
+        console.log(lo)
     }
 
-  },
-  //可以实时坚挺state值的变化（最新状态），获取值
-  getters:{
-      user(state){
-          return state.login1;
-      }
-  },
-  //自定义触发mutations 异步操作（过滤一遍mutations）
-  actions:{
-    //全局调用方法
-    //this.$store.dispatch('方法名'，要变化的参数)
-
   }
-
 })
 
 /* eslint-disable no-new */
