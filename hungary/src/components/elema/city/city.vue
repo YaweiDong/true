@@ -18,8 +18,10 @@
               </div>
               <div  class="citys_float1">
                   <router-link to="">
-                      <div class="citys_float_left1">
-                          <span>郑州</span>
+                      <div class="citys_float_left1">                      
+                        <router-link :style="{color: '#666'}"  :to="{name:'citysearch',params:{citysName:dw.name,idd:dw.id}}">
+                          <span> {{dw.name}}</span>
+                          </router-link>
                    </div>
                  <div class="citys_float_right1">
                  </div>
@@ -66,7 +68,8 @@ export default {
     return {
       citys: [],
       az: [],
-      hotCitys: []
+      hotCitys: [],
+      dw:[]
     };
   },
   created() {
@@ -84,6 +87,10 @@ export default {
     this.$http.get(api1).then(data1 => {
       this.hotCitys = data1.data;
       console.log(data1.data);
+    });
+     let api2 = "https://elm.cangdu.org/v1/cities?type=guess";
+    this.$http.get(api2).then(data2 => {
+      this.dw = data2.data;
     });
   }
 };
@@ -135,6 +142,7 @@ export default {
   padding: 0.16rem;
   overflow: hidden;
   border-bottom: 1px solid rgb(240, 240, 240);
+  padding-top:0.6rem; 
 }
 .citys_float_left {
   float: left;
