@@ -294,11 +294,11 @@ p {
 
 }
 .upp{
-  color: white;
   font-size: 0.15rem;
   position: absolute;
   top: 0.16rem;
   left: 2.97rem;
+  color:  white;
 }
 
 </style>
