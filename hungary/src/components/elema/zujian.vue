@@ -58,93 +58,20 @@
     </div>
 </template>
 <script>
-// import { Loading } from "element-ui";
 export default {
-  data: () => ({
-    data: [],
-    datab: [],
-    //测试
-    datac: [],
-    return: {},
-    id: ""
-  }),
-  // 修改地方
-  props: ["cli"],
-  // 测试
-  // props: ["cli1"],
-  watch: {
-    cli(news, olds) {
-      this.data = this.datab;
-      console.log(olds);
-      console.log(news);
-      this.id = news.id;
-      console.log("新的id是" + this.id);
-      this.data = this.data.filter(function(val) {
-        return val.category == news;
-      });
-      console.log(this.data);
-    },
-    id() {
-      var _this = this;
-      console.log(_this.id);
-      var api6 = "https://elm.cangdu.org/shopping/restaurants";
-
-      this.$http
-        .get(api6, {
-          params: {
-            latitude: 31.22967,
-            longitude: 121.4762,
-            limit: 100,
-            order_by: _this.id
-          }
-        })
-        .then(function(data) {
-          //关闭加载提示
-          // loadingInstance1.close();
-          // 成功后的回调
-          console.log("成功了....");
-          //展示所有商店名
-          console.log(data);
-          _this.data = data.data;
-          console.log(_this.data);
-          _this.datab = data.data;
-        });
-    }
-    // 测试
-    // cli1(new1, old1) {
-    //   this.data = this.datac;
-    //   console.log(old1);
-    //   console.log(new1);
-    //   this.data = this.data.filter(function(val) {
-    //     return val.id == new1;
-    //   });
-    //   console.log(this.data);
-    // }
-  },
+   data: () => ({
+      data: [],
+     return:{}
+     }),
   //发请求
   created() {
-    //   let loadingInstance1 = Loading.service({
-    //   fullscreen: true
-    // });
-    var _this = this;
-    let api ="https://elm.cangdu.org/shopping/restaurants";
-
+    let api =
+      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
     //promise写法
-    this.$http.get(api,{
-        params: {
-         latitude:31.22967,
-         longitude:121.4762,
-         limit:100,
-         order_by:5
-        }
-      }).then(data => {
-      // loadingInstance1.close();
+    this.$http.get(api).then(data => {
       //成功后的回调
       console.log(data.data);
       this.data = data.data;
-      this.datab = data.data;
-      // 测试
-      this.datac = data.data;
     });
   }
 };
