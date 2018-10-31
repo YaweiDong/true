@@ -10,7 +10,7 @@
        <header class="shops-header" >
            <img class="shop_header_img" v-if="data4" :src="'//elm.cangdu.org/img/'+data4.image_path">
            <section class="descript_header">
-               <a href="javascript" class="descript_top">
+               <a class="descript_top">
                   <section class="descript_left">
                       <img v-if="data4" :src="'//elm.cangdu.org/img/'+data4.image_path">
                   </section>
@@ -273,7 +273,7 @@ export default {
     add() {
       // this.count += 1;
       for(var i=0 ; i<data.length;i++ ){
-        for(var j = 0; j<data.foods[0].length;j++){
+        for(var j = 0; j<data.foods[j].length;j++){
             console.log(data.j);
         }
       }

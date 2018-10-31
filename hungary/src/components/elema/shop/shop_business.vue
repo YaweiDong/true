@@ -1,14 +1,14 @@
 <template>
    <div>
        <div class="business_header">
-           <router-link :to="{name:'shop',params:{id}}">
+           <router-link :to="{name:'shop',params:{id:data.id}}">
            <span class="header_span">
-               <
+             <
            </span>
            </router-link>
            <h3 class="header_h3">{{$route.params.usename}}</h3>
        </div>
-       <div class="shop_business">
+       <div class="shop_business">            
            <img :src="'//elm.cangdu.org/img/'+$route.params.Image" alt="">
            <!-- <img class="user_avatar" src="../../../../static/imgs/download.jpg" alt=""> -->
            <p class="name">{{$route.params.dataname}}</p>
@@ -44,7 +44,7 @@ export default {
   }),
   created() {
      let api =
-      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
+      "https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1";
     //promise写法
     this.$http.get(api).then(data => {
       //成功后的回调
@@ -86,7 +86,7 @@ export default {
 }
 .name,
 .title,
-.business_rating,
+.business_rating,   
 .number,
 .des {
   color: 666;

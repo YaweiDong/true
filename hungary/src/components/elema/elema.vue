@@ -82,7 +82,7 @@ export default {
     //promise写法
     this.$http.get(api).then(data => {
       //成功后的回调
-      console.log(data.data);
+      // console.log(data.data);
       this.data = data.data;
     });
   }
@@ -191,9 +191,9 @@ p {
 }
 .shop_right_h4 {
   color: #333;
-  padding-top: 0.01rem;
-  margin-right: 0.8rem;
-  font-size: 0.1rem;
+  padding-top: .01rem;
+  margin-right: .2rem;
+  font-size: .1rem;
   font-weight: bold;
 }
 .shop_right_ul {
