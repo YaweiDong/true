@@ -1,15 +1,15 @@
 <template>
     <div>
     <header class="m-top">
-        <img  @click="($router.back(-1))" src="../../../static/imgs/back.png" alt="">
+        <img src="../../../static/imgs/back.png" alt="">
         <span>我的</span>
     </header>
-       <router-link :to='choise' class="register">           <div class="register-div">
+       <router-link to='/register' class="register">           <div class="register-div">
             <div class="register-photo">
                 <img src="../../../static/imgs/mine.png" alt="">
             </div>
             <div class="register-p">
-                <p>{{name}}</p>
+                <p>{{username}}</p>
                 <div>
                    <img :src="phone" alt="">  
                    <p>暂无绑定手机号</p>
@@ -20,22 +20,22 @@
     </router-link> 
     <ul class='treasure'>
         <li>
-            <router-link to="/yet">
-               <strong class="treasure-s1">{{yu}}</strong>
+            <router-link to="/balance">
+               <strong class="treasure-s1">0.00</strong>
                <span>元</span>
                <p>我的余额</p>     
             </router-link>
         </li>
         <li>
-            <router-link to="/discount" >   
-               <strong class="treasure-s2">{{gift}}</strong>
+            <router-link to="/discounts" >   
+               <strong class="treasure-s2">0</strong>
                <span>个</span>
                <p>我的优惠</p>          
             </router-link>  
         </li>
         <li>
            <router-link to="/integral" >    
-            <strong class="treasure-s3">{{point}}</strong>
+            <strong class="treasure-s3">0</strong>
             <span>分</span>
             <p>我的积分</p>   
            </router-link>    
@@ -52,92 +52,32 @@
             </div>               
         </router-link>
     </div>
-       
-    
-    <div class="Dwarp">
-       <router-link :key="index" v-for="(k,index) in img" :to="k.ad">
-           <div class='search'>
-               <img class='img2' :src="k.im" alt="">
-               {{k.na}}
-            </div>
-       </router-link>
-    </div>
+        {{login}}
     </div>
 </template>
 
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      choise: "/register",
+      username:'登陆/注册',
       phone: require("./imgs/phone.png"),
       next: require("./imgs/next.png"),
-      name: "登陆/注册",
-      yu: "0.00",
-      gift: "0.00",
-      point: "0.00",
-      img: [
-        {
-          na: "外卖",
-          ad: "/elema",
-          im: require("../../himg/ele.png")
-        },
-        {
-          na: "搜索",
-          ad: "/search",
-          im: require("../../himg/search.png")
-        },
-        {
-          na: "订单",
-          ad: "/order",
-          im: require("../../himg/order.png")
-        },
-        {
-          na: "我的",
-          ad: "/mine",
-          im: require("../../himg/mine1.png")
-        }
-      ],
       lists: [
-        { im: require("./imgs/order3.png"), lis: "我的订单", router: "/order" },
-        {
-          im: require("./imgs/store.png"),
-          lis: "积分商城",
-          router: "/integralStore"
-        },
-        {
-          im: require("./imgs/crow.png"),
-          lis: "饿了吗会员卡",
-          router: "/vipcard"
-        },
-        {
-          im: require("./imgs/sever.png"),
-          lis: "服务中心",
-          router: "/service"
-        },
-        {
-          im: require("./imgs/download.png"),
-          lis: "下载饿了吗APP",
-          router: "/download"
-        }
+        { im: require("./imgs/order3.png"), lis: "我的订单", router: "/01" },
+        { im: require("./imgs/store.png"), lis: "积分商城", router: "/02" },
+        { im: require("./imgs/crow.png"), lis: "饿了吗会员卡", router: "/03" },
+        { im: require("./imgs/sever.png"), lis: "服务中心", router: "/service"},{im: require("./imgs/download.png"),lis: "下载饿了吗APP", router:"/04"}
       ]
     };
   },
   created() {
-    var aa = this.$store.state.login1;
-    if (aa == "") {
-      this.choise = "/register";
-    } else {
-      this.name = aa.username;
-      this.point = aa.point;
-      this.gift = aa.gift_amount;
-      this.choise = "/information";
-      this.yu = aa.balance;
-      this.$router.push({ name: "mine" });
-    }
+      
+      this.username = this.$store.state.login1.username;
+      console.log("ssss"+this.username);
   }
 };
 </script>
@@ -156,10 +96,11 @@ export default {
   border-bottom: 0.0002rem solid white;
 }
 .m-top img {
+  width: 0.2109rem;
+  height: 0.2109rem;
   position: absolute;
-  top: 0.13rem;
-  left: 0.1rem;
-  width: 0.2rem;
+  margin: auto;
+  left: 0.05rem;
 }
 .m-top span {
   font-weight: bold;
@@ -174,27 +115,6 @@ export default {
   padding: 0 0.2rem;
 }
 
-.Dwarp {
-  width: 100%;
-  padding: 0.05rem;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  font-size: 0.13rem;
-  z-index: 100;
-}
-.search {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: rgb(26, 25, 25);
-}
-.img2 {
-  width: 0.25rem;
-  margin-bottom: 0.02rem;
-}
 .register-div {
   display: flex;
   justify-content: center;
