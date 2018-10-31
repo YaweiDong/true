@@ -8,6 +8,9 @@ import Mine from '@/components/mine/mine'
 import City from '../components/elema/city/city'
 import Shop from '../components/elema/shop/shop'
 import Business from '../components/elema/business/business'
+import Shop_detail from '../components/elema/shop/shop_detail'
+import Shop_activity from '../components/elema/shop/shop_activity'
+import Shop_business from '../components/elema/shop/shop_business'
 import Tian from '../components/elema/food/tian'
 import Food from '../components/elema/food/food'
 import Money from '../components/elema/food/money'
@@ -162,12 +165,26 @@ export default new Router({
         path: '/mine',
         component: Mine
       }]
-    }, {
-      path: '/elema/shop',
-      component: Shop,
-    }, {
-      path: '/elema/shop/business',
-      component: Business,
+    },{
+      path:'/shop',
+      name:"shop",
+      component:Shop
+    },{
+        path:"/shop_business",
+        name:"shop_business",
+        component:Shop_business
+    },{
+      path:'/business/:id/:usename/:Image/:dataname/:rate/:count/:rating/:month/:price',
+      name:"business",
+      component:Business,
+    },{
+        path:'/shop_detail',
+        name:"shop_detail",
+        component:Shop_detail,
+    },{
+        path:'/shop_activity',
+        name:"shop_activity",
+        component:Shop_activity,
     },
     {
       path: '/register',
