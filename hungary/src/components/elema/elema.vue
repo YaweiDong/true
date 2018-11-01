@@ -20,7 +20,7 @@
             <span class="shop_header_title">附近商家</span>    
           </div> 
           <ul class="center">
-            <li class="shop" v-for="(data,index) in data" :key="data.id">
+            <li class="shop" v-for="(data,index) in data" :key="index">
               <router-link :to="{name:'shop',params:{id:data.id}}">
               <div class="shop_li">      
                  <section>
@@ -70,16 +70,34 @@
         </div>
     <!--路由出口-->
     <router-view></router-view>
+
+    <div class="Dwarp">
+
+       <router-link :key="index" v-for="(k,index) in Dimg" :to="k.ad">
+           <div class='Dsearch'>
+               <img class='Dimg2' :src="k.im" />
+               {{k.na}}
+            </div>
+       </router-link>
+    </div>
     </div>
 </template>
 <script>
 import Ele from './Ele';
 import { Loading } from "element-ui";
 export default {
-   data: () => ({
-      data: [],
-     return:{}
-     }),
+     data(){
+       return{
+             data: [],
+              Dimg: [
+        { na: "外卖", ad: "/elema", im: require("../../himg/ele1.png") },
+        { na: "搜索", ad: "/search", im: require("../../himg/search.png") },
+        { na: "订单", ad: "/order", im: require("../../himg/order.png") },
+        { na: "我的", ad: "/mine", im: require("../../himg/mine.png") }
+      ]
+
+       }
+     },
      components:{
        Ele
      },
@@ -280,6 +298,29 @@ p {
 .order_time {
   color: #3190e8;
 }
+
+.Dwarp {
+  width: 100%;
+  height: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  font-size: 0.13rem;
+  z-index: 100;
+}
+.Dsearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(26, 25, 25);
+}
+.Dimg2 {
+  width: 0.25rem;
+  margin-bottom: 0.02rem;
+}
 </style>
 <style>
 .el-rate__item{
@@ -305,5 +346,6 @@ p {
   left: 2.97rem;
   color:  white;
 }
+
 
 </style>

@@ -41,7 +41,7 @@ export default {
       you: require("../imgs/you.png"),
       color1: true,
       color2: false,
-      timer:''
+      timer: ""
     };
   },
   methods: {
@@ -54,24 +54,23 @@ export default {
       this.color2 = true;
     }
   },
-  beforeMount(){
+  beforeMount() {
     var _this = this;
-        var to = setInterval(getTotelNumber,1000)
-         var newtime = 15*60;
-         function getTotelNumber() {
-            var m= Math.floor(newtime/60);
-			var s = Math.floor(newtime%60);
-			var msg1 = "00:" + m + ":" + s;
-            --newtime;
-            if(newtime>=0){                
-			   _this.timer = msg1;
-            }else{
-                clearInterval(to);
-                alert('支付超时，请重新支付')
-            }
-         }
-         getTotelNumber();
-
+    var to = setInterval(getTotelNumber, 1000);
+    var newtime = 15 * 60;
+    function getTotelNumber() {
+      var m = Math.floor(newtime / 60);
+      var s = Math.floor(newtime % 60);
+      var msg1 = "00:" + m + ":" + s;
+      --newtime;
+      if (newtime >= 0) {
+        _this.timer = msg1;
+      } else {
+        clearInterval(to);
+        alert("支付超时，请重新支付");
+      }
+    }
+    getTotelNumber();
   }
 };
 </script>
@@ -120,9 +119,9 @@ export default {
   font-size: 0.16rem;
   color: gray;
 }
-.pay p:first-child{
-    margin-bottom: 0.1rem;
-    color: gray;
+.pay p:first-child {
+  margin-bottom: 0.1rem;
+  color: gray;
 }
 .pay-way {
   background-color: white;
@@ -165,7 +164,7 @@ export default {
 .color {
   background-color: #4cd964;
 }
-.jishi{
-    font-size: 0.4rem;
+.jishi {
+  font-size: 0.4rem;
 }
 </style>

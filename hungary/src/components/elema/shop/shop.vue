@@ -51,7 +51,7 @@
                   <!-- 商品左边 -->
                   <section class="menu_left">
                       <ul>
-                          <li class="activity_menu" v-for="(data,index) in data" :key="data.id">
+                          <li :key="index" class="activity_menu" v-for="(data,index) in data" >
                               <a href="#header_top"><span>{{data.name}}</span></a>
                               <p class="cart_list_mount">{{count}}</p>
                           </li>
@@ -60,7 +60,7 @@
                   <!-- 商品右边 -->
                   <section class="menu_right">
                       <ul>
-                          <li v-for="(data,index) in data" :key="data.id">
+                          <li v-for="(data,index) in data" :key="index">
                               <!-- 商品头部 热销榜 -->
                               <header class="menu_detail_header">
                                    <section class="menu_detail_header_left">
@@ -194,14 +194,14 @@
                   </header>
                   <div>
                      <ul class="tag_list_ul">
-                        <li class="tagActivity" v-if="data2" v-for="(data2,index) in data2" :key="data2.id">
+                        <li class="tagActivity" v-if="data2" v-for="(data2,index) in data2" :key="index">
                             {{data2.name}}({{data2.count}})
                         </li>
                      </ul>
                   </div>
                   <div>
                       <ul class="rating_list_ul">
-                          <li class="rating_list_li" v-for="(data3,index) in data3" :key="data3.id">
+                          <li class="rating_list_li" v-for="(data3,index) in data3" :key="index">
                               <img class="user_avatar" src="../../../../static/imgs/download.jpg" alt="">
                               <section class="rating_list_detail">
                                   <header>

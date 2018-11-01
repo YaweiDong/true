@@ -2,7 +2,7 @@
 <template>
     <div class="body">
        <header class="m-top">
-           <router-link to='$router.back(-1)'>
+           <router-link to='/mine'>
              <img :src="timg" alt="">
            </router-link>          
            <span>下载</span>
