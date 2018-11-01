@@ -19,10 +19,11 @@
                 <button>再来一单</button>
             </li>
         </ol>
-        <div class="Dwarp">
-       <router-link :key="index" v-for="(k,index) in img" :to="k.ad">
-           <div class='search'>
-               <img class='img2' :src="k.im" alt="">
+       <div class="Dwarp">
+
+       <router-link :key="index" v-for="(k,index) in Dimg" :to="k.ad">
+           <div class='Dsearch'>
+               <img class='Dimg2' :src="k.im" />
                {{k.na}}
             </div>
        </router-link>
@@ -33,11 +34,11 @@
     export default{
         data(){
             return{
-                 img:[
-                      {na:'外卖',ad:'/elema',im:require('../../himg/ele.png')},
-                      {na:'搜索',ad:'/search',im:require('../../himg/search.png')},
-                      {na:'订单',ad:'/order',im:require('../../himg/order1.png')},
-                      {na:'我的',ad:'/mine',im:require('../../himg/mine.png')}
+                 Dimg:[
+                {na:'外卖',ad:'/elema',im:require('../../himg/ele.png')},
+                {na:'搜索',ad:'/search',im:require('../../himg/search.png')},
+                {na:'订单',ad:'/order',im:require('../../himg/order1.png')},
+                {na:'我的',ad:'/mine',im:require('../../himg/mine.png')}
                 ]
             }
         },
@@ -87,22 +88,23 @@
 
 .Dwarp {
   width: 100%;
-  padding: 0.05rem;
+  height: 0.5rem;
   position: fixed;
   bottom: 0;
   display: flex;
   justify-content: space-around;
-  background-color:white;
+  align-items: center;
+  background-color: white;
   font-size: 0.13rem;
   z-index: 100;
 }
-.search {
+.Dsearch {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color:rgb(26, 25, 25);
+  color: rgb(26, 25, 25);
 }
-.img2 {
+.Dimg2 {
   width: 0.25rem;
   margin-bottom: 0.02rem;
 }

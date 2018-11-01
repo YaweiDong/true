@@ -78,14 +78,15 @@ export default {
         return;
       } else {
         //姓名,地址正则判断
-        var strname = /^([\u4e00-\u9fa5|\w]){2,7}$/;
+        var strname = /^([\u4e00-\u9fa5|\w]){3,}$/;//名字和地址
         var strphone = /^1[3|5|7|8|9][0-9]{9}$/; //手机号判断
         var s1 = strname.test(this.names); //名字
         var s2 = strname.test(this.address); //地址
         var s3 = strphone.test(this.phone); //手机号
         var s4 = strphone.test(this.phone1); //备用手机号
+        console.log(s1,s2,s3,s4)
         if (s1 == false || s2 == false || s3 == false || s4 == false) {
-          alert("请按要求填写");
+          alert("请按要求填写,姓名，地址和手机号");
         } else {
           var aa = this.$route.params.adr;
           if (aa !== "") {
@@ -107,6 +108,7 @@ export default {
                 tag_type: 2
               }
             }).then(res => {
+              console.log(res)
               if (res.data.status == 1) {
                 alert(res.data.success);
                 this.$router.push({ name: "ad" });
@@ -116,6 +118,7 @@ export default {
                 this.$store.commit("inp4", '');
               } else {
                 alert(res.data.message);
+                  console.log(res)
               }
             });
           }

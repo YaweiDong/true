@@ -53,11 +53,11 @@
         </router-link>
     </div>
        
-    
     <div class="Dwarp">
-       <router-link :key="index" v-for="(k,index) in img" :to="k.ad">
-           <div class='search'>
-               <img class='img2' :src="k.im" alt="">
+
+       <router-link :key="index" v-for="(k,index) in Dimg" :to="k.ad">
+           <div class='Dsearch'>
+               <img class='Dimg2' :src="k.im" />
                {{k.na}}
             </div>
        </router-link>
@@ -79,28 +79,6 @@ export default {
       yu: "0.00",
       gift: "0.00",
       point: "0.00",
-      img: [
-        {
-          na: "外卖",
-          ad: "/elema",
-          im: require("../../himg/ele.png")
-        },
-        {
-          na: "搜索",
-          ad: "/search",
-          im: require("../../himg/search.png")
-        },
-        {
-          na: "订单",
-          ad: "/order",
-          im: require("../../himg/order.png")
-        },
-        {
-          na: "我的",
-          ad: "/mine",
-          im: require("../../himg/mine1.png")
-        }
-      ],
       lists: [
         { im: require("./imgs/order3.png"), lis: "我的订单", router: "/order" },
         {
@@ -122,6 +100,28 @@ export default {
           im: require("./imgs/download.png"),
           lis: "下载饿了吗APP",
           router: "/download"
+        }
+      ],
+      Dimg: [
+        {
+          na: "外卖",
+          ad: "/elema",
+          im: require("../../himg/ele.png")
+        },
+        {
+          na: "搜索",
+          ad: "/search",
+          im: require("../../himg/search.png")
+        },
+        {
+          na: "订单",
+          ad: "/order",
+          im: require("../../himg/order.png")
+        },
+        {
+          na: "我的",
+          ad: "/mine",
+          im: require("../../himg/mine1.png")
         }
       ]
     };
@@ -172,28 +172,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 0.2rem;
-}
-
-.Dwarp {
-  width: 100%;
-  padding: 0.05rem;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  font-size: 0.13rem;
-  z-index: 100;
-}
-.search {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: rgb(26, 25, 25);
-}
-.img2 {
-  width: 0.25rem;
-  margin-bottom: 0.02rem;
 }
 .register-div {
   display: flex;
@@ -307,5 +285,28 @@ aside img {
 }
 .lists-right img {
   width: 0.17rem;
+}
+
+.Dwarp {
+  width: 100%;
+  height: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  font-size: 0.13rem;
+  z-index: 100;
+}
+.Dsearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(26, 25, 25);
+}
+.Dimg2 {
+  width: 0.25rem;
+  margin-bottom: 0.02rem;
 }
 </style>
