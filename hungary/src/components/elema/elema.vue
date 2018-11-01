@@ -84,6 +84,7 @@
 </template>
 <script>
 import Ele from './Ele';
+import { Loading } from "element-ui";
 export default {
      data(){
        return{
@@ -102,11 +103,15 @@ export default {
      },
   //发请求
   created() {
+     let loadingInstance1 = Loading.service({
+      fullscreen: true
+    });
     this.address = this.$route.params.address;
     let api =
       "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
     //promise写法
     this.$http.get(api).then(data => {
+      loadingInstance1.close();
       //成功后的回调
       // console.log(data.data);
       this.data = data.data;

@@ -58,7 +58,7 @@
     </div>
 </template>
 <script>
-// import { Loading } from "element-ui";
+import { Loading } from "element-ui";
 export default {
   data: () => ({
     data: [],
@@ -111,7 +111,7 @@ export default {
         });
     }
     // 测试
-    // cli1(new1, old1) {
+    // cli1(new1, old1) {`
     //   this.data = this.datac;
     //   console.log(old1);
     //   console.log(new1);
@@ -123,9 +123,9 @@ export default {
   },
   //发请求
   created() {
-    //   let loadingInstance1 = Loading.service({
-    //   fullscreen: true
-    // });
+      let loadingInstance1 = Loading.service({
+      fullscreen: true
+    });
     var _this = this;
     let api ="https://elm.cangdu.org/shopping/restaurants";
 
@@ -138,7 +138,7 @@ export default {
         //  order_by:5
         }
       }).then(data => {
-      // loadingInstance1.close();
+      loadingInstance1.close();
       //成功后的回调
       console.log(data.data);
       this.data = data.data;
