@@ -7,8 +7,8 @@
             <router-link to="/elema/city">          
                 <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
-            <router-link :style="{color: 'white'}" to="/register">
-            <span class="upp">登录|注册</span>
+            <router-link :style="{color: '#3190e8'}" to="/register">
+            <span style="color:white" class="upp">登录|注册</span>
             </router-link>
 
         </div> 
