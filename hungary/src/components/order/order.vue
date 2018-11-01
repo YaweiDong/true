@@ -97,6 +97,7 @@
   background-color: white;
   font-size: 0.13rem;
   z-index: 100;
+  box-shadow: 0.01rem 0.01rem 0.02rem 0.02rem rgb(207, 201, 201);
 }
 .Dsearch {
   display: flex;

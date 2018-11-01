@@ -28,6 +28,8 @@
     </div>
 </template>
 <script>
+//引入加载组件
+import { Loading } from 'element-ui';
 import { mapState } from "vuex";
 export default {
   data() {
@@ -49,7 +51,12 @@ export default {
   },
   created() {
     let api = "https://elm.cangdu.org/v3/profile/explain";
+    //加载提示
+    let loadingInstance1 = Loading.service({ fullscreen: true });
+
     this.$http.get(api).then(res => {
+     //关闭加载提示
+  loadingInstance1.close();   
       this.datas = res.data;
       for (let vi in this.datas) {
         this.arr.push(this.datas[vi]);     
@@ -130,14 +137,12 @@ export default {
   margin-bottom: 0.13rem;
 }
 h4 {
-  width: 100%;
   height: 0.7rem;
   text-align: left;
   line-height: 0.7rem;
   padding-left: 0.1rem;
 }
 .lis li {
-  width: 100%;
   height: 0.47rem;
   line-height: 0.47rem;
   padding-left: 0.1rem;

@@ -10,11 +10,15 @@
          <keep-alive>      
          <div class='input'>
              <div>
-                <input @blur="inp1()" type="text" placeholder="请填写你的姓名" v-model="names">
+                <input :class="{border:p1}" @blur="inp1()" type="text" placeholder="请填写你的姓名" v-model="names">
+                <p class="pp" v-show="p1">2-7位数字，字母或数字</p>
                 <input @click="btn()" type="text" placeholder="小区/写字楼/学校等" v-model="home">
-                <input @blur="inp2()" type="text" placeholder="请填写详细的送餐地址" v-model="address">            
-                <input @blur="inp3()" type="text" placeholder="请填写能够联系到您的手机号" v-model="phone">
-                <input @blur="inp4()" type="text" placeholder="备用联系电话（选填）" v-model="phone1">
+                <input :class="{border:p3}" @blur="inp2()" type="text" placeholder="请填写详细的送餐地址" v-model="address">
+                <p class="pp" v-show="p3">请按要求填写地址</p>
+                <input :class="{border:p4}" @blur="inp3()" type="text" placeholder="请填写能够联系到您的手机号" v-model="phone">
+                <p class="pp" v-show="p4">请填写规范的手机号</p>
+                <input :class="{border:p4}" @blur="inp4()" type="text" placeholder="备用联系电话（选填）" v-model="phone1">
+                <p class="pp" v-show="p4">请填写规范的手机号</p>
              </div>           
          </div>
          </keep-alive>
@@ -35,12 +39,14 @@ export default {
       home: "",
       address: "",
       phone: "",
-      phone1: ""
+      phone1: "",
+      p1: false,
+      p2: false,
+      p3: false,
+      p4: false
     };
   },
-  computed:{
-    
-  },
+  computed: {},
   created() {
     this.names = this.$store.state.input1;
     this.address = this.$store.state.input2;
@@ -78,15 +84,19 @@ export default {
         return;
       } else {
         //姓名,地址正则判断
-        var strname = /^([\u4e00-\u9fa5|\w]){3,}$/;//名字和地址
+        var strname = /^([\u4e00-\u9fa5|\w]){2,7}$/; //名字
+        var strname1 = /^([\u4e00-\u9fa5|\w]){5,}$/; //地址
         var strphone = /^1[3|5|7|8|9][0-9]{9}$/; //手机号判断
         var s1 = strname.test(this.names); //名字
-        var s2 = strname.test(this.address); //地址
+        var s2 = strname1.test(this.address); //地址
         var s3 = strphone.test(this.phone); //手机号
         var s4 = strphone.test(this.phone1); //备用手机号
-        console.log(s1,s2,s3,s4)
         if (s1 == false || s2 == false || s3 == false || s4 == false) {
-          alert("请按要求填写,姓名，地址和手机号");
+          this.p1 = !s1;
+          this.p3 = !s2;
+          this.p4 = !s3;
+          this.p5 = !s4;
+          //alert("请按要求填写,姓名，地址和手机号");
         } else {
           var aa = this.$route.params.adr;
           if (aa !== "") {
@@ -108,17 +118,17 @@ export default {
                 tag_type: 2
               }
             }).then(res => {
-              console.log(res)
+              console.log(res);
               if (res.data.status == 1) {
                 alert(res.data.success);
                 this.$router.push({ name: "ad" });
-                this.$store.commit("inp1", '');
-                this.$store.commit("inp2", '');
-                this.$store.commit("inp3", '');
-                this.$store.commit("inp4", '');
+                this.$store.commit("inp1", "");
+                this.$store.commit("inp2", "");
+                this.$store.commit("inp3", "");
+                this.$store.commit("inp4", "");
               } else {
                 alert(res.data.message);
-                  console.log(res)
+                console.log(res);
               }
             });
           }
@@ -164,6 +174,7 @@ export default {
 .input div {
   margin: 0 auto;
   width: 3.5rem;
+  padding-bottom: 0.1rem;
 }
 .input div input {
   outline: none;
@@ -178,9 +189,6 @@ export default {
   font-size: 0.15rem;
   border: 0.01rem solid rgb(209, 202, 202);
 }
-.input div input:last-child {
-  margin-bottom: 0.15rem;
-}
 .add {
   margin: 0.2rem auto;
   width: 3.4rem;
@@ -194,5 +202,13 @@ export default {
 }
 #jump {
   color: red;
+}
+.border {
+  border-color: red;
+}
+.pp {
+  color: red;
+  font-size: 0.15rem;
+  padding: 0.02rem 0;
 }
 </style>
