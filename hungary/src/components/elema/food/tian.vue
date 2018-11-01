@@ -83,7 +83,7 @@
         </li>
       </ul>
       <button class="btn1" @click="btn1()" >清空</button>
-      <button class="btn2" @click="(show3=false,show8=!show8,show9=!show9)">确定</button>
+      <button class="btn2" @click="btn2()">确定</button>
     </div>
     <div class="warp">
     <!-- <Zujian :cli="cont" :cli1="cont1"></Zujian> -->
@@ -209,8 +209,15 @@ export default {
      this.valuehe[5].valueb=true;
 
     },
+    btn2(){
+      this.show3=false;
+      this.show8=!this.show8;
+      this.show9=!this.show9;
+      this.cont = 1
+    },
     huantu2(aaa){
-    this.valuehe[aaa].valueb=!this.valuehe[aaa].valueb
+    this.valuehe[aaa].valueb=!this.valuehe[aaa].valueb;
+    
     // this.valuehe[aaa].count+=1
     // if(this.valuehe[aaa].count%2 == 1){
     //   this.blname.push(this.data2[aaa].name);
