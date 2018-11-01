@@ -8,7 +8,7 @@
                 <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
             <router-link :style="{color: '#3190e8'}" to="/register">
-            <span style="color:white" class="upp">登录|注册</span>
+            <span style="color:white" class="upp">{{username}}</span>
             </router-link>
 
         </div> 
@@ -83,29 +83,35 @@
     </div>
 </template>
 <script>
-import Ele from './Ele';
+import Ele from "./Ele";
 import { Loading } from "element-ui";
 export default {
-     data(){
-       return{
-             data: [],
-              Dimg: [
+  data() {
+    return {
+      username: "登陆|注册",
+      address:'',
+      data: [],
+      Dimg: [
         { na: "外卖", ad: "/elema", im: require("../../himg/ele1.png") },
         { na: "搜索", ad: "/search", im: require("../../himg/search.png") },
         { na: "订单", ad: "/order", im: require("../../himg/order.png") },
         { na: "我的", ad: "/mine", im: require("../../himg/mine.png") }
       ]
-
-       }
-     },
-     components:{
-       Ele
-     },
+    };
+  },
+  components: {
+    Ele
+  },
   //发请求
   created() {
-     let loadingInstance1 = Loading.service({
-      fullscreen: true
-    });
+    
+    var aa = JSON.parse(localStorage.getItem("ui"));
+    console.log(aa.username);
+    if (aa !== null) {
+       this.username = aa.username;
+    };
+
+    let loadingInstance1 = Loading.service({fullscreen: true});
     this.address = this.$route.params.address;
     let api =
       "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
@@ -116,6 +122,8 @@ export default {
       // console.log(data.data);
       this.data = data.data;
     });
+
+    
   }
 };
 </script>
@@ -126,7 +134,7 @@ export default {
   height: 0.457rem;
   background-color: #3190e8;
   z-index: 5;
-  color:#f1f1f1;
+  color: #f1f1f1;
 }
 .header_h3 {
   color: #f1f1f1;
@@ -191,9 +199,9 @@ p {
   padding: 0.18rem 0.08rem;
   border-bottom: 0.025rem solid #f1f1f1;
 }
-.shop_li{
+.shop_li {
   width: 100%;
-  display:flex;
+  display: flex;
 }
 .shop-img {
   width: 0.7rem;
@@ -223,9 +231,9 @@ p {
 }
 .shop_right_h4 {
   color: #333;
-  padding-top: .01rem;
-  margin-right: .2rem;
-  font-size: .1rem;
+  padding-top: 0.01rem;
+  margin-right: 0.2rem;
+  font-size: 0.1rem;
   font-weight: bold;
 }
 .shop_right_ul {
@@ -324,29 +332,26 @@ p {
 }
 </style>
 <style>
-.el-rate__item{
-    width: 0.094rem;
-  }
-.el-rate__icon{
-    font-size: .1rem;
+.el-rate__item {
+  width: 0.094rem;
 }
-.el-rate__text{ 
-    font-size: 0.1rem;
+.el-rate__icon {
+  font-size: 0.1rem;
 }
-.search3{
+.el-rate__text {
+  font-size: 0.1rem;
+}
+.search3 {
   width: 0.2rem;
   position: absolute;
   top: 0.15rem;
-  left:0.18rem;
-
+  left: 0.18rem;
 }
-.upp{
+.upp {
   font-size: 0.15rem;
   position: absolute;
   top: 0.16rem;
   left: 2.97rem;
-  color:  white;
+  color: white;
 }
-
-
 </style>

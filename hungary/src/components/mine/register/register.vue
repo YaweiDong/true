@@ -83,6 +83,7 @@ export default {
         } else {
           alert("登陆成功");
           this.$store.commit("logining", res.data);
+       localStorage.setItem('ui',JSON.stringify(res.data))
           this.$router.push({ name: "mine" });
           // localStorage.setItem('key',name)
           // localStorage.getItem('key')

@@ -107,8 +107,8 @@ export default {
         url: api,
         withCredentials: true
       }).then(res => {
-        this.status = res.data.status;
-        this.$store.state.login1 = "";
+        this.status = res.data.status;       
+        localStorage.clear('ui');
         this.$router.push({name:'mine'});
       })
     },

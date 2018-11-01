@@ -4,6 +4,9 @@
           <img @click="($router.back(-1))" src="../../../static/imgs/back.png" alt="">
       <span>订单</span>
       </div>
+      <div class="box">
+
+      
         <ol>
             <li>
                 <div class="order">
@@ -19,6 +22,7 @@
                 <button>再来一单</button>
             </li>
         </ol>
+        </div>
        <div class="Dwarp">
 
        <router-link :key="index" v-for="(k,index) in Dimg" :to="k.ad">
@@ -66,6 +70,11 @@
   font-size: 0.2rem;
   color: white;
   line-height: 0.457rem;
+  position: fixed;
+  top: 0;
+}
+.box{
+    margin-top: 0.457rem;
 }
 .order{
     padding: 0.15rem 0 0 0.1rem; 
