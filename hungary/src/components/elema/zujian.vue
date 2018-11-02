@@ -107,7 +107,7 @@ export default {
           console.log(data);
           _this.data = data.data;
           console.log(_this.data);
-          _this.datab = data.data;
+          // _this.datab = data.data;
         });
     }
     // 测试
