@@ -127,13 +127,14 @@ export default {
     };
   },
   created() {
+    this.$store.state.statu = 2;
     var aa = this.$store.state.login1;
     //获取本地存储
     var localData = JSON.parse(localStorage.getItem('ui'))
    // console.log('本地',localData)
     if (localData == null) {
       this.choise = "/register";
-      this.$store.state.statu = 2;
+      
       this.name = "登陆/注册";
     } else {
       this.name = localData.username;
