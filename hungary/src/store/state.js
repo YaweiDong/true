@@ -6,5 +6,6 @@ export default{
     input1: '',
     input2: '',
     input3: '',
-    input4: ''
+    input4: '',
+    statu:''
 }

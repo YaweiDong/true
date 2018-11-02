@@ -9,7 +9,7 @@
         <div class="input">
             <input type="text" v-model="username" placeholder="输入用户名">
             <p>用户名只能修改一次(5-24字符之间)</p>
-            <div>确认修改</div>
+            <p>确认修改</p>
         </div>
         
     </div>
@@ -75,12 +75,13 @@ export default {
 .input p{
     font-size: 0.14rem;
 }
-.input div{
+.input p:last-child{
     margin: 0.3rem auto;
     height:0.4rem;
     width: 3.56rem;
     line-height: 0.4rem;
     text-align: center;
+    font-size: 0.16rem;
     background-color: dodgerblue;
     color:rgb(236, 226, 226);
 }

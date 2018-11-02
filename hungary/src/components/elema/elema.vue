@@ -8,7 +8,7 @@
                 <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
             <router-link :style="{color: '#3190e8'}" :to="paths">
-            <span style="color:white" class="upp">{{usernames}}</span>
+            <span @click="bian()" style="color:white" class="upp">{{usernames}}</span>
             </router-link>
 
         </div> 
@@ -100,6 +100,11 @@ export default {
       ]
     };
   },
+  methods:{
+       bian(){
+         this.$store.commit('states',1)
+       }
+  },
   components: {
     Ele
   },
@@ -112,7 +117,7 @@ export default {
       this.usernames = aa.username;
       this.paths = '/information'
     }
-    console.log(localStorage.getItem('locationname'));
+    //console.log(localStorage.getItem('locationname'));
     
     if (localStorage.getItem('locationname') == undefined) {
       this.address = "点击切换城市";
@@ -149,7 +154,8 @@ export default {
 .header_h3 {
   color: #f1f1f1;
   text-align: center;
-  padding-top: 0.14rem;
+  font-size:0.155rem; 
+  line-height: 0.457rem;
 }
 .scroll {
   border-bottom: 0.1px solid rgba(111, 111, 111, 0.9);

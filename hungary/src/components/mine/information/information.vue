@@ -1,9 +1,9 @@
 <template>
     <div>
         <header class="m-top">
-           <a src="#" @click="$router.back(-1)">
+           <router-link src="#" :to='paths'>
            <img :src="timg" alt="">
-           </a>    
+           </router-link>    
            <span>账户信息</span>
          </header>
          <ul class="list">
@@ -84,11 +84,19 @@ export default {
       user: require("../imgs/userH.jpg"),
       username: "",
       status: "",
+      paths:'/mine',
       ch: true
     };
   },
   computed:{
       ...mapGetters({mapname:'user'})
+  },
+  created(){
+     if(this.$store.state.statu == 1){
+          this.paths = '/elema'
+     }else if(this.$store.state.statu == 2){
+       this.paths = '/mine'
+     }
   },
   methods: {
     app() {

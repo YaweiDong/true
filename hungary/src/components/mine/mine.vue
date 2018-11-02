@@ -133,6 +133,7 @@ export default {
    // console.log('本地',localData)
     if (localData == null) {
       this.choise = "/register";
+      this.$store.state.statu = 2;
       this.name = "登陆/注册";
     } else {
       this.name = localData.username;

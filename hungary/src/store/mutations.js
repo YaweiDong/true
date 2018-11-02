@@ -22,6 +22,9 @@ let mutations ={
       },
       inp4(state, n) {
         state.input4 = n
+      },
+      states(state,n){
+        state.statu = n;
       }
 }
 export {mutations}
