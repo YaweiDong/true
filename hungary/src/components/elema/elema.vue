@@ -7,7 +7,7 @@
             <router-link to="/elema/city">          
                 <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
-            <router-link :style="{color: '#3190e8'}" to="/register">
+            <router-link :style="{color: '#3190e8'}" :to="paths">
             <span style="color:white" class="upp">{{usernames}}</span>
             </router-link>
 
@@ -90,6 +90,7 @@ export default {
     return {
       usernames: "",
       address: "点击切换城市",
+      paths:'/register',
       data: [],
       Dimg: [
         { na: "外卖", ad: "/elema", im: require("../../himg/ele1.png") },
@@ -109,6 +110,7 @@ export default {
       this.usernames = "登陆|注册";
     } else {
       this.usernames = aa.username;
+      this.paths = '/information'
     }
     console.log(this.$route.params.address);
     if (this.$route.params.address == undefined) {
