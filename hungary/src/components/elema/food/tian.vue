@@ -23,7 +23,7 @@
         <!-- 下部左边分类 -->
       <div class="fenlei">
         <ol>
-          <li  v-for="(k,index) in data" :key="index" @click="hidden2(index)">
+          <li  v-for="(k,index) in data" :key="index"  :class="{'active':index ==checkindex }" @click="hidden2(index)">
             
             <span class="sp1">
               <img :src="'https://fuss10.elemecdn.com/'+k.image_url+'.png'" alt="">
@@ -103,6 +103,7 @@ import img06 from "./img/6.png";
 export default {
   name: "tian",
   data: () => ({
+     checkindex: 8,
     // 修改地方
     cont: "",
     cont: "",
@@ -166,6 +167,7 @@ export default {
       // 修改地方
       this.name1 = this.data[index].name;
       console.log(this.name1);
+       this.checkindex = index
     },
     updaMsg(index) {
       this.name2 = this.arr[index].name;
@@ -281,6 +283,10 @@ export default {
 };
 </script>
 <style scoped ="scoped">
+.active {
+   background: white;
+
+ }
 .biana2{
    width: 0.2rem;
   position:absolute;
