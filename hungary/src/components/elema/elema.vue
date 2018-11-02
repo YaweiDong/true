@@ -112,11 +112,15 @@ export default {
       this.usernames = aa.username;
       this.paths = '/information'
     }
-    //console.log(this.$route.params.address);
-    if (this.$route.params.address == undefined) {
+    console.log(localStorage.getItem('locationname'));
+    
+    if (localStorage.getItem('locationname') == undefined) {
       this.address = "点击切换城市";
+      if(aa !== null){
+          this.address = aa.city;
+      }
     } else {
-      this.address = this.$route.params.address;
+      this.address = localStorage.getItem('locationname');
     }
 
     // this.address = aa.city;
