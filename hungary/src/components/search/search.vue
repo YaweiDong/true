@@ -8,20 +8,20 @@
       <span>搜索</span>
       </div>
         <div>
-        <input type="text" placeholder="请输入商家或者美食名称" v-model=txt>
+        <input class="text1" type="text" placeholder="请输入商家或者美食名称" v-model=txt>
         <img class="off2" @click="off2()" src="../search/img/off.png" alt=""> 
-        <button @click="sub()">提交</button>
+        <button style="font-size:0.14rem" @click="sub()">提交</button>
         <div v-if="show">
             <h4 v-if="show1">搜索历史</h4>
             <ol >
-                <li v-for="(k,index) in arrs" :key="index">
+                <li  style="font-size:0.14rem" v-for="(k,index) in arrs" :key="index">
                    <span>{{k}}</span>
                    <img class="off" @click="off(index)" src="../search/img/off.png" alt=""> 
                     </li>
             </ol>
-            <p v-if="show1" @click="del()" class="p1">清空搜索历史</p>
+            <p v-if="show1" @click="del()"  style="font-size:0.15rem" class="p1">清空搜索历史</p>
         </div>
-        <div v-if="show2" class="sorry">
+        <div v-if="show2"  style="font-size:0.14rem" class="sorry">
           很抱歉! 无搜索结果
         </div>
         </div>
@@ -174,6 +174,8 @@ export default {
   line-height: 0.4rem;
   background-color: white;
 }
-
+.text1{
+  font-size:0.14rem;
+}
 
 </style>

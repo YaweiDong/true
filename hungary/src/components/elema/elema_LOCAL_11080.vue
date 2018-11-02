@@ -1,11 +1,26 @@
 <template>
     <div>
+        <div class="header">
+           <router-link to="search">
+            <img class="search3" src="../../../static/imgs/search3.png" alt="">
+          </router-link>
+            <router-link to="/elema/city">          
+                <h3 class="header_h3">{{address}}</h3>    
+            </router-link> 
+            <router-link :style="{color: '#3190e8'}" :to="paths">
+            <span @click="bian()" style="color:white" class="upp">{{usernames}}</span>
+            </router-link>
+
+        </div> 
+        <div>
+          <Ele></Ele>
+        </div>
         <div class="wrap">
           <div class="wrap-header">
-            <span style="font-size:0.13rem" class="shop_header_title">附近商家</span>    
+            <span class="shop_header_title">附近商家</span>    
           </div> 
           <ul class="center">
-            <li class="shop" v-for="(data,index) in data" :key="data.id">
+            <li class="shop" v-for="(data,index) in data" :key="index">
               <router-link :to="{name:'shop',params:{id:data.id}}">
               <div class="shop_li">      
                  <section>
@@ -55,96 +70,74 @@
         </div>
     <!--路由出口-->
     <router-view></router-view>
+
+    <div class="Dwarp">
+
+       <router-link :key="index" v-for="(k,index) in Dimg" :to="k.ad">
+           <div class='Dsearch'>
+               <img class='Dimg2' :src="k.im" />
+               {{k.na}}
+            </div>
+       </router-link>
+    </div>
     </div>
 </template>
 <script>
+import Ele from "./Ele";
 import { Loading } from "element-ui";
 export default {
-  data: () => ({
-    data: [],
-    datab: [],
-    //测试
-    datac: [],
-    return: {},
-    id: ""
-  }),
-  // 修改地方
-  props: ["cli"],
-  // 测试
-  // props: ["cli1"],
-  watch: {
-    cli(news, olds) {
-      this.data = this.datab;
-      console.log(olds);
-      console.log(news);
-      this.id = news.id;
-      console.log("新的id是" + this.id);
-      this.data = this.data.filter(function(val) {
-        return val.category == news;
-      });
-      console.log(this.data);
-    },
-    id() {
-      var _this = this;
-      console.log(_this.id);
-      var api6 = "https://elm.cangdu.org/shopping/restaurants";
-
-      this.$http
-        .get(api6, {
-          params: {
-            latitude: 31.22967,
-            longitude: 121.4762,
-            limit: 20,
-            order_by: _this.id
-          }
-        })
-        .then(function(data) {
-          //关闭加载提示
-          // loadingInstance1.close();
-          // 成功后的回调
-          console.log("成功了....");
-          //展示所有商店名
-          console.log(data);
-          _this.data = data.data;
-          console.log(_this.data);
-          _this.datab = data.data;
-        });
-    }
-    // 测试
-    // cli1(new1, old1) {`
-    //   this.data = this.datac;
-    //   console.log(old1);
-    //   console.log(new1);
-    //   this.data = this.data.filter(function(val) {
-    //     return val.id == new1;
-    //   });
-    //   console.log(this.data);
-    // }
+  data() {
+    return {
+      usernames: "",
+      address: "点击切换城市",
+      paths:'/register',
+      data: [],
+      Dimg: [
+        { na: "外卖", ad: "/elema", im: require("../../himg/ele1.png") },
+        { na: "搜索", ad: "/search", im: require("../../himg/search.png") },
+        { na: "订单", ad: "/order", im: require("../../himg/order.png") },
+        { na: "我的", ad: "/mine", im: require("../../himg/mine.png") }
+      ]
+    };
+  },
+  methods:{
+       bian(){
+         this.$store.commit('states',1)
+       }
+  },
+  components: {
+    Ele
   },
   //发请求
   created() {
-      let loadingInstance1 = Loading.service({
-      fullscreen: true
-    });
-    var _this = this;
-    let api ="https://elm.cangdu.org/shopping/restaurants";
+    var aa = JSON.parse(localStorage.getItem("ui"));
+    if (aa == null) {
+      this.usernames = "登陆|注册";
+    } else {
+      this.usernames = aa.username;
+      this.paths = '/information'
+    }
+    //console.log(localStorage.getItem('locationname'));
+    
+    if (localStorage.getItem('locationname') == undefined) {
+      this.address = "点击切换城市";
+      if(aa !== null){
+          this.address = aa.city;
+      }
+    } else {
+      this.address = localStorage.getItem('locationname');
+    }
 
+    // this.address = aa.city;
+    let loadingInstance1 = Loading.service({ fullscreen: true });
+    let api =
+      "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
     //promise写法
-    this.$http.get(api,{
-        params: {
-         latitude:31.22967,
-         longitude:121.4762,
-         limit:20,
-        //  order_by:5
-        }
-      }).then(data => {
+    this.$http.get(api).then(data => {
       loadingInstance1.close();
       //成功后的回调
-      console.log(data.data);
+      // console.log(data.data);
       this.data = data.data;
-      this.datab = data.data;
-      // 测试
-      this.datac = data.data;
     });
   }
 };
@@ -156,12 +149,13 @@ export default {
   height: 0.457rem;
   background-color: #3190e8;
   z-index: 5;
-  color:#f1f1f1;
+  color: #f1f1f1;
 }
 .header_h3 {
   color: #f1f1f1;
   text-align: center;
-  padding-top: 0.14rem;
+  font-size:0.155rem; 
+  line-height: 0.457rem;
 }
 .scroll {
   border-bottom: 0.1px solid rgba(111, 111, 111, 0.9);
@@ -221,9 +215,9 @@ p {
   padding: 0.18rem 0.08rem;
   border-bottom: 0.025rem solid #f1f1f1;
 }
-.shop_li{
+.shop_li {
   width: 100%;
-  display:flex;
+  display: flex;
 }
 .shop-img {
   width: 0.7rem;
@@ -253,9 +247,9 @@ p {
 }
 .shop_right_h4 {
   color: #333;
-  padding-top: .01rem;
-  margin-right: .2rem;
-  font-size: .1rem;
+  padding-top: 0.01rem;
+  margin-right: 0.2rem;
+  font-size: 0.1rem;
   font-weight: bold;
 }
 .shop_right_ul {
@@ -328,29 +322,52 @@ p {
 .order_time {
   color: #3190e8;
 }
+
+.Dwarp {
+  width: 100%;
+  height: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  font-size: 0.13rem;
+  z-index: 100;
+  box-shadow: 0.01rem 0.01rem 0.02rem 0.02rem rgb(207, 201, 201);
+}
+.Dsearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(26, 25, 25);
+}
+.Dimg2 {
+  width: 0.25rem;
+  margin-bottom: 0.02rem;
+}
 </style>
 <style>
-.el-rate__item{
-    width: 0.094rem;
-  }
-.el-rate__icon{
-    font-size: .1rem;
+.el-rate__item {
+  width: 0.094rem;
 }
-.el-rate__text{ 
-    font-size: 0.1rem;
+.el-rate__icon {
+  font-size: 0.1rem;
 }
-.search3{
+.el-rate__text {
+  font-size: 0.1rem;
+}
+.search3 {
   width: 0.2rem;
   position: absolute;
   top: 0.15rem;
-  left:0.18rem;
-
+  left: 0.18rem;
 }
-.upp{
+.upp {
   font-size: 0.15rem;
   position: absolute;
   top: 0.16rem;
-  left: 2.97rem;
-  color:  white;
+  right:0.02rem;
+  color: white;
 }
 </style>

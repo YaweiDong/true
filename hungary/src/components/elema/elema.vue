@@ -17,7 +17,7 @@
         </div>
         <div class="wrap">
           <div class="wrap-header">
-            <span class="shop_header_title">附近商家</span>    
+            <span  style="font-size:0.13rem" class="shop_header_title">附近商家</span>    
           </div> 
           <ul class="center">
             <li class="shop" v-for="(data,index) in data" :key="index">
@@ -154,7 +154,7 @@ export default {
 .header_h3 {
   color: #f1f1f1;
   text-align: center;
-  font-size:0.155rem; 
+  font-size:0.16rem; 
   line-height: 0.457rem;
 }
 .scroll {

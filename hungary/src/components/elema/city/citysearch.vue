@@ -10,9 +10,9 @@
          </router-link>
       </div>
       <div class="address">
-          <input type="text" placeholder=" 输入学校、商务楼、地址" v-model.trim="txt">
-          <br>
-          <button @click="sub(txt)">提交</button>
+        <input type="text" placeholder=" 输入学校、商务楼、地址" v-model.trim="txt">
+        <br>
+        <button style="font-size:0.15rem" @click="sub(txt)">提交</button>
       </div>
       <div class="dz">
          <ul>
