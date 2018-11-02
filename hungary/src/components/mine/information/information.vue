@@ -108,7 +108,7 @@ export default {
         withCredentials: true
       }).then(res => {
         this.status = res.data.status;       
-        localStorage.clear('ui');
+        localStorage.clear('ui','locationname');
         this.$store.state.login1='';
         this.$router.push({name:'mine'});
       })

@@ -10,7 +10,7 @@
         </div>
          <div class="citys_float">
                    <div class="citys_float_left">
-                          <span>当前定位城市:</span>
+                          <span>当前定位城市:{{nowCity}}</span>
                    </div>
                  <div class="citys_float_right">
                           <span>定位不准时,请在城市列表中选择</span>
@@ -69,10 +69,15 @@ export default {
       citys: [],
       az: [],
       hotCitys: [],
-      dw:[]
+      dw:[],
+      nowCity:''
     };
   },
   created() {
+    if(JSON.parse(localStorage.getItem('ui')) !== null){
+         this.nowCity = JSON.parse(localStorage.getItem('ui')).citys;
+    }
+    
     let loadingInstance1 = Loading.service({
       fullscreen: true
     });
