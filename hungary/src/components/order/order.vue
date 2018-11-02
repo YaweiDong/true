@@ -11,15 +11,15 @@
             <li>
                 <div class="order">
                     <img src="../elema/img/1.png" alt="">
-                    <span class="span1">吃啥啦></span>
-                    <span class="span2">支付超时</span>
-                    <span class="span3">2018-10-24 10:24</span>
+                    <span style="font-size:0.12rem" class="span1">吃啥啦></span>
+                    <span style="font-size:0.12rem" class="span2">支付超时</span>
+                    <span style="font-size:0.12rem" class="span3">2018-10-24 10:24</span>
                 </div>
                 <div class="money">
-                    <span class="span4">鱼子酱等2件商品</span>
-                    <span class="span5">¥1314.00</span>
+                    <span style="font-size:0.12rem" class="span4">鱼子酱等2件商品</span>
+                    <span style="font-size:0.12rem" class="span5">¥1314.00</span>
                 </div>
-                <button>再来一单</button>
+                <button style="font-size:0.12rem">再来一单</button>
             </li>
         </ol>
         </div>

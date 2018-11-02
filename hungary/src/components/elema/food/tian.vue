@@ -2,19 +2,19 @@
 <div>
     <div class="top">
       <router-link to="/elema">
-      <img src="../../../../static/imgs/back.png" alt="">
+      <img class="imgback" src="../../../../static/imgs/back.png" alt="">
       </router-link>
       <span>{{ytitle}}</span>
       </div>
     <div class="box">
       <!-- 顶部饮品 -->
       <div class="title">
-      <span @click="hidden()">{{ytitle}}  <img v-if="show6" class="bian" src="../../../../static/imgs/down.png" alt=""><img v-if="show66" class="biana" src="../../../../static/imgs/up.png" alt=""> </span>
-      <span  @click="hidden3()">
+      <span style="font-size:0.135rem" @click="hidden()">{{ytitle}}  <img v-if="show6" class="bian" src="../../../../static/imgs/down.png" alt=""><img v-if="show66" class="biana" src="../../../../static/imgs/up.png" alt=""> </span>
+      <span style="font-size:0.135rem"  @click="hidden3()">
         排序
         <img v-if="show7" class="bian1" src="../../../../static/imgs/down.png" alt=""><img v-if="show77"  class="biana1" src="../../../../static/imgs/up.png" alt="">
         </span>
-      <span @click="hidden4()">筛选
+      <span style="font-size:0.135rem" @click="hidden4()">筛选
          <img v-if="show8" class="bian2" src="../../../../static/imgs/down.png" alt=""><img v-if="show9"  class="biana2" src="../../../../static/imgs/up.png" alt="">
       </span>
       </div>
@@ -25,16 +25,16 @@
         <ol>
           <li  v-for="(k,index) in data" :key="index"  :class="{'active':index ==checkindex }" @click="hidden2(index)">
             
-            <span class="sp1">
+            <span style="font-size:0.12rem" class="sp1">
               <img :src="'https://fuss10.elemecdn.com/'+k.image_url+'.png'" alt="">
             {{k.name}}
             </span>
-            <span class="sp2">
+            <span style="font-size:0.1rem" class="sp2">
             {{k.count}}
             </span>
-            <span class="sp3">
-              >
-            </span>
+            <!-- <span style="font-size:0.1rem" class="sp3">
+              
+            </span> -->
           </li>
         </ol>
       </div>
@@ -82,8 +82,8 @@
           <span>{{k2.name}}</span>
         </li>
       </ul>
-      <button class="btn1" @click="btn1()" >清空</button>
-      <button class="btn2" @click="btn2()">确定</button>
+      <button style="font-size:0.15rem" class="btn1" @click="btn1()" >清空</button>
+      <button style="font-size:0.15rem" class="btn2" @click="btn2()">确定</button>
     </div>
     <div class="warp">
     <!-- <Zujian :cli="cont" :cli1="cont1"></Zujian> -->
@@ -407,12 +407,13 @@ export default {
   background-color: rgba(200, 200, 200, 1);
   color: white;
   border-radius: 35%;
+  /* float: right; */
   margin-left: 0.5rem;
 }
-.sp3 {
+/* .sp3 {
   float: right;
   margin-right: 0.1rem;
-}
+} */
 .shaixuan li {
   width: 30%;
   border: 0.01rem solid rgb(230, 230, 230);
@@ -495,6 +496,9 @@ export default {
 .span2 {
   float: right;
   margin-right: 0.1rem;
+}
+.imgback{
+  width: 0.4rem;
 }
 </style>
 

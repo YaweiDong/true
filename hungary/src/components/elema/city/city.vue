@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="header">
             <router-link to="/elema">
-            <h4 class="city_h4">ele.me</h4>
+            <h4 style="font-size:0.15rem" class="city_h4">ele.me</h4>
             </router-link>
             <router-link to="/mine">
               <img class="city_mine" src="../../../../static/imgs/mine.png">      
@@ -29,7 +29,7 @@
               </div>
               
               <div class="citys_group">
-                  <span>热门城市</span>
+                  <span style="font-size:0.14rem">热门城市</span>
               </div>
               <div>
                  <ul class="citys_ul" >
@@ -44,7 +44,7 @@
               </div>
                <div v-for="(keyData,index) in az" :key="index">
                   <div class="citys_group" >
-                  <span>{{keyData}}(按字母排序)</span>
+                  <span style="font-size:0.14rem">{{keyData}}(按字母排序)</span>
                   </div>
                   <div>
                   <ul class="citys_ul">
@@ -207,6 +207,9 @@ li {
 }
 .citys_ul > .hot {
   color: #3190e8;
+}
+.hot , .all{
+  font-size: 0.16rem;
 }
 </style>
 
