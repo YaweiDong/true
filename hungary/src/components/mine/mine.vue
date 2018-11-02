@@ -130,11 +130,9 @@ export default {
     this.$store.state.statu = 2;
     var aa = this.$store.state.login1;
     //获取本地存储
-    var localData = JSON.parse(localStorage.getItem('ui'))
-   // console.log('本地',localData)
+    var localData = JSON.parse(localStorage.getItem("ui"));
+    // console.log('本地',localData)
     if (localData == null) {
-      this.choise = "/register";
-      
       this.name = "登陆/注册";
     } else {
       this.name = localData.username;
@@ -161,7 +159,7 @@ export default {
   color: aliceblue;
   border-bottom: 0.0002rem solid white;
   position: fixed;
-  top:0;
+  top: 0;
 }
 .m-top img {
   position: absolute;
