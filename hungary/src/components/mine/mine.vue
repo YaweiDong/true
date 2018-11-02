@@ -130,17 +130,16 @@ export default {
     this.$store.state.statu = 2;
     var aa = this.$store.state.login1;
     //获取本地存储
-    var localData = JSON.parse(localStorage.getItem("ui"));
     // console.log('本地',localData)
-    if (localData == null) {
+    if (aa == '') {
       this.name = "登陆/注册";
     } else {
-      this.name = localData.username;
-      this.point = localData.point;
-      this.gift = localData.gift_amount;
+      this.name = aa.username;
+      this.point = aa.point;
+      this.gift = aa.gift_amount;
       this.choise = "/information";
-      this.yu = localData.balance;
-      this.$router.push({ name: "mine" });
+      this.yu = aa.balance;
+      this.$router.push({ name: "mine"});
     }
   }
 };

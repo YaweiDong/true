@@ -110,8 +110,8 @@ export default {
   },
   //发请求
   created() {
-    var aa = JSON.parse(localStorage.getItem("ui"));
-    if (aa == null) {
+    var aa = this.$store.state.login1;
+    if (aa == '') {
       this.usernames = "登陆|注册";
     } else {
       this.usernames = aa.username;
@@ -119,13 +119,13 @@ export default {
     }
     //console.log(localStorage.getItem('locationname'));
     
-    if (localStorage.getItem('locationname') == undefined) {
+    if (this.$store.state.locationname == '') {
       this.address = "点击切换城市";
-      if(aa !== null){
+      if(aa !== ''){
           this.address = aa.city;
       }
     } else {
-      this.address = localStorage.getItem('locationname');
+      this.address = this.$store.state.locationname;
     }
 
     // this.address = aa.city;

@@ -25,6 +25,9 @@ let mutations ={
       },
       states(state,n){
         state.statu = n;
+      },
+      locationnames(state,n){
+        state.statu = n;
       }
 }
 export {mutations}

@@ -83,7 +83,7 @@ export default {
       // this.$store.commit("receivegeohash",geohash);
       //存储到localstorage中
       localStorage.setItem("geohash", item.geohash);
-      localStorage.setItem("locationname", item.name);
+      this.$store.commit('locationnames',item.name)
       // console.log(item.name);
       // 历史记录
       var comment = {

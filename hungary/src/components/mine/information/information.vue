@@ -131,7 +131,7 @@ export default {
   }
 };
 </script>
-<style scoped='secoped'>
+<style scoped='scoped'>
 .m-top {
   background-color: dodgerblue;
   width: 100%;
