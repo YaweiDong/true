@@ -18,22 +18,22 @@ a<template>
 export default {
         data(){
           return{ 
-              Dimg:[
-                {na:'外卖',ad:'/elema',im:require('../himg/ele.png'),im1:require('../himg/ele1.png'),ifs:false},
-                {na:'搜索',ad:'/search',im:require('../himg/search.png'),im1:require('../himg/search1.png'),ifs:true},
-                {na:'订单',ad:'/order',im:require('../himg/order.png'),im1:require('../himg/order1.png'),ifs:true},
-                {na:'我的',ad:'/mine',im:require('../himg/mine.png'),im1:require('../himg/mine1.png'),ifs:true}
-                ]
+              // Dimg:[
+              //   {na:'外卖',ad:'/elema',im:require('../himg/ele.png'),im1:require('../himg/ele1.png'),ifs:false},
+              //   {na:'搜索',ad:'/search',im:require('../himg/search.png'),im1:require('../himg/search1.png'),ifs:true},
+              //   {na:'订单',ad:'/order',im:require('../himg/order.png'),im1:require('../himg/order1.png'),ifs:true},
+              //   {na:'我的',ad:'/mine',im:require('../himg/mine.png'),im1:require('../himg/mine1.png'),ifs:true}
+              //   ]
           }
         },
         methods:{
-          btn(index){
-            this.img.map(function(va,na){
-                  return va.ifs = true;
-            })
-            this.img[index].ifs = false;
+          // btn(index){
+          //   this.img.map(function(va,na){
+          //         return va.ifs = true;
+          //   })
+          //   this.img[index].ifs = false;
         
-          }
+          // }
         }
 };
 

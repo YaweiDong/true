@@ -120,21 +120,23 @@ export default {
     show: false,
     show2: false,
     show3: false,
-    show4:true,
-    show5:false,
-    show6:true,
-    show66:false,
-    show7:true,
-    show77:false,
-    show8:true,
-    show9:false,
-    show10:true,
-        valuehe:[{valueb:true,count:0},
-   { valueb:true,count:0},
-    {valueb:true,count:0},
-    {valueb:true,count:0},
-    {valueb:true,count:0},
-    {valueb:true,count:0},],
+    show4: true,
+    show5: false,
+    show6: true,
+    show66: false,
+    show7: true,
+    show77: false,
+    show8: true,
+    show9: false,
+    show10: true,
+    valuehe: [
+      { valueb: true, count: 0 },
+      { valueb: true, count: 0 },
+      { valueb: true, count: 0 },
+      { valueb: true, count: 0 },
+      { valueb: true, count: 0 },
+      { valueb: true, count: 0 }
+    ],
     // show7:false,
     data: [],
     arr: [],
@@ -179,7 +181,7 @@ export default {
       this.show2 = !this.show2;
       this.show3 = false;
       this.show7 = !this.show7;
-      this.show77=!this.show77;
+      this.show77 = !this.show77;
       this.show66 = false;
       this.show6 = true;
       this.show9 = false;
@@ -202,39 +204,38 @@ export default {
       // console.log(this.id)
       this.show2 = false;
     },
-    btn1(){
-       this.valuehe[0].valueb=true;
-     this.valuehe[1].valueb=true;
-     this.valuehe[2].valueb=true;
-     this.valuehe[3].valueb=true;
-     this.valuehe[4].valueb=true;
-     this.valuehe[5].valueb=true;
+    btn1() {
+      this.valuehe[0].valueb = true;
+      this.valuehe[1].valueb = true;
+      this.valuehe[2].valueb = true;
+      this.valuehe[3].valueb = true;
+      this.valuehe[4].valueb = true;
+      this.valuehe[5].valueb = true;
+    },
+    btn2() {
+      this.show3 = false;
+      this.show8 = !this.show8;
+      this.show9 = !this.show9;
+      this.cont = 1;
+    },
+    huantu2(aaa) {
+      this.valuehe[aaa].valueb = !this.valuehe[aaa].valueb;
 
-    },
-    btn2(){
-      this.show3=false;
-      this.show8=!this.show8;
-      this.show9=!this.show9;
-      this.cont = 1
-    },
-    huantu2(aaa){
-    this.valuehe[aaa].valueb=!this.valuehe[aaa].valueb;
-    
-    // this.valuehe[aaa].count+=1
-    // if(this.valuehe[aaa].count%2 == 1){
-    //   this.blname.push(this.data2[aaa].name);
-    // }else{
-    //   var a;
-    //   var _this =this
-    //   this.blname.forEach(function(val,ind){
-    //     if(val == _this.data12[aaa].name){
-    //       a = ind 
-    //       console.log("..............."+val)
-    //     }    
-    //   })
-    //   this.blname.splice(a,1)  
-    // }
-    },
+      // this.valuehe[aaa].count+=1
+      // if(this.valuehe[aaa].count%2 == 1){
+      //   this.blname.push(this.data2[aaa].name);
+      // }else{
+      //   var a;
+      //   var _this =this
+      //   this.blname.forEach(function(val,ind){
+      //     if(val == _this.data12[aaa].name){
+      //       a = ind
+      //       console.log("..............."+val)
+      //     }
+      //   })
+      //   this.blname.splice(a,1)
+      // }
+    }
     // hh(){
     //   this.show3 =
     // }
@@ -292,40 +293,38 @@ export default {
   position:absolute;
   top: 0.55rem;
   left: 3.34rem;
-
 }
-.bian2{
+.bian2 {
   width: 0.15rem;
-  position:absolute;
+  position: absolute;
   top: 0.57rem;
   left: 3.36rem;
-
 }
-.biana1{
- width: 0.2rem;
-  position:absolute;
+.biana1 {
+  width: 0.2rem;
+  position: absolute;
   top: 0.55rem;
   left: 2.2rem;
 }
-.bian1{
-width: 0.15rem;
-  position:absolute;
+.bian1 {
+  width: 0.15rem;
+  position: absolute;
   top: 0.57rem;
   left: 2.22rem;
 }
-.biana{
+.biana {
   width: 0.2rem;
-  position:absolute;
+  position: absolute;
   top: 0.55rem;
   left: 1.04rem;
 }
-.bian{
+.bian {
   width: 0.15rem;
-    position:absolute;
+  position: absolute;
   top: 0.57rem;
   left: 1.06rem;
 }
-.yes{
+.yes {
   width: 0.15rem;
 }
 .top img {
@@ -343,6 +342,12 @@ width: 0.15rem;
   color: white;
   line-height: 0.457rem;
   /* font-family: Microsoft YaHei */
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+.box {
+  margin-top: 0.457rem;
 }
 .title {
   display: flex;
@@ -392,7 +397,7 @@ width: 0.15rem;
   font-size: 0.13rem;
   color: rgb(100, 100, 100);
 }
-.sp1{
+.sp1 {
   /* border: 1px solid red; */
   /* padding: 0.1rem; */
   float: left;
@@ -402,13 +407,11 @@ width: 0.15rem;
   background-color: rgba(200, 200, 200, 1);
   color: white;
   border-radius: 35%;
-  margin-left:0.5rem; 
-  
+  margin-left: 0.5rem;
 }
-.sp3{
+.sp3 {
   float: right;
-  margin-right:0.1rem; 
-  
+  margin-right: 0.1rem;
 }
 .shaixuan li {
   width: 30%;
@@ -449,7 +452,7 @@ width: 0.15rem;
   padding: 0.08rem;
   /* line-height: 0.17rem; */
 }
-.bird img{
+.bird img {
   width: 0.15rem;
 }
 .p1 {

@@ -1,36 +1,36 @@
 <template>
     <div>
         <header class="m-top">
-           <router-link to='/information'>
+           <a src="#" @click='$router.back(-1)'>
            <img :src="timg" alt="">
-           </router-link>    
+           </a>    
            <span>重置密码</span>
          </header>
          <ul class='input'>
-            <li>
-<input type="text" placeholder="账号" > 
+            <li>  
+                 <input type="text" placeholder="账号" v-model="username"> 
             </li>
             <li>
-<input type="text" placeholder="旧密码">
+                <input type="text" placeholder="旧密码" v-model="oldpassWord">
             </li>     
             <li>
-<input type="text" placeholder="请输入新密码" >
+                 <input type="text" placeholder="请输入新密码" v-model="newpassword">
             </li>
             <li>
-<input type="text" placeholder="请确认密码">
+                 <input type="text" placeholder="请确认密码" v-model=" confirmpassword">
             </li>
             <li>
-<input type="text" placeholder="验证码" > 
-                <div class="judge">
-                    <img :src="imgs" alt="">
-                    <div>
-                        <p>看不清</p>
-                        <p @click="change()">换一张</p>
-                    </div>
-                </div> 
+                <input type="text" placeholder="验证码" v-model="captcha_code"> 
+                   <div class="judge">
+                      <img :src="imgs" alt="">
+                      <div>
+                          <p>看不清</p>
+                          <p @click="change()">换一张</p>
+                      </div>
+                  </div> 
             </li>
          </ul>
-         <div class="add">
+         <div class="add" @click="btn()">
              <span>确认修改</span>
          </div>
 
@@ -43,13 +43,40 @@ export default {
     return {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
-      imgs:''
+      imgs: "",
+      username: "", //用户名
+      oldpassWord: "", //旧密码
+      newpassword: "", //新密码
+      confirmpassword: "", //确认密码
+      captcha_code: "" //验证码
     };
   },
-  methods:{
-       change(){
-           this.$emit('bian')
-       }
+  methods: {
+    change() {
+      this.$emit("bian");
+    },
+    btn() {
+      let api = "https://elm.cangdu.org/v2/changepassword";
+      this.$http({
+        method: "post",
+        url: api,
+        data: {
+          username: this.username, //用户名
+          oldpassWord: this.oldpassWord, //旧密码
+          newpassword: this.newpassword, //新密码
+          confirmpassword: this.confirmpassword, //确认密码
+          captcha_code: this.captcha_code //验证码
+        },
+        withCredentials: true
+      }).then(res => {
+        if(res.data.status == 1){
+           alert(res.data.success)
+        }else{
+           alert(res.data.message);
+           this.$emit("bian");
+        }
+      });
+    }
   },
   created() {
     let api = "https://elm.cangdu.org/v1/captchas";
@@ -103,19 +130,19 @@ export default {
   margin-top: 0.1rem;
   background-color: white;
 }
-.input li{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 0.5rem;
-    border-bottom: 0.01rem solid rgb(180, 172, 172);
+.input li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 0.5rem;
+  border-bottom: 0.01rem solid rgb(180, 172, 172);
 }
-.input li input{
-    height: 0.3rem;
-    margin-left: 0.2rem;
-    font-size: 0.17rem;
-    border: none;
-    outline: none;
+.input li input {
+  height: 0.3rem;
+  margin-left: 0.2rem;
+  font-size: 0.17rem;
+  border: none;
+  outline: none;
 }
 
 .add {
@@ -129,19 +156,19 @@ export default {
   color: rgb(240, 248, 240);
   font-size: 0.18rem;
 }
-.judge{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.13rem;
+.judge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.13rem;
 }
-.judge img{
-    width: 0.8rem;
-    height: 0.4rem;
-    margin-right: 0.1rem;
+.judge img {
+  width: 0.8rem;
+  height: 0.4rem;
+  margin-right: 0.1rem;
 }
-.judge div p:last-child{
-    color: blue;
-    margin-top:0.1rem; 
+.judge div p:last-child {
+  color: blue;
+  margin-top: 0.1rem;
 }
 </style>

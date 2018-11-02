@@ -257,12 +257,12 @@ export default {
     data2: [],
     data3: [],
     data4: [],
-    data5:[],
-    show:false,
-    arr:"",
-    num:"",
-    rate:"",
-    number:"",
+    data5: [],
+    show: false,
+    arr: "",
+    num: "",
+    rate: "",
+    number: "",
     count: 0,
     total: 0,
     return: {},
@@ -272,9 +272,9 @@ export default {
     //增加
     add() {
       // this.count += 1;
-      for(var i=0 ; i<data.length;i++ ){
-        for(var j = 0; j<data.foods[j].length;j++){
-            console.log(data.j);
+      for (var i = 0; i < data.length; i++) {
+        for (var j = 0; j < data.foods[j].length; j++) {
+          console.log(data.j);
         }
       }
     },
@@ -286,16 +286,10 @@ export default {
         this.count -= 1;
       }
     },
-    cart(){
-
-    },
-    clear(){
-       
-    }
+    cart() {},
+    clear() {}
   },
-  computed: {
-
-  },
+  computed: {},
   //发请求
   created() {
     this.aaa = this.$route.params.id;
@@ -315,7 +309,7 @@ export default {
     //promise写法
     this.$http.get(api).then(data => {
       //成功后的回调
-      console.log(data.data);
+      console.log('食品列表',data.data);
       this.data = data.data;
     });
     //19、获取评价分类
@@ -333,15 +327,16 @@ export default {
       this.data3 = data3.data;
     });
     //18、获取评价分数
-    let api4 =
-      "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores";
+    let api4 = "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores";
     this.$http.get(api4).then(data5 => {
       //成功后的回调
       this.data5 = data5.data;
-      this.arr = Math.round(Math.round(this.data5.service_score*100)/10)/10;
-      this.num = Math.round(Math.round(this.data5.food_score*100)/10)/10;
-      this.rate = Math.round(Math.round(this.data5.compare_rating*10000)/10)/10;
-      this.number = Math.ceil(this.arr+this.num)/2;
+      this.arr =
+        Math.round(Math.round(this.data5.service_score * 100) / 10) / 10;
+      this.num = Math.round(Math.round(this.data5.food_score * 100) / 10) / 10;
+      this.rate =
+        Math.round(Math.round(this.data5.compare_rating * 10000) / 10) / 10;
+      this.number = Math.ceil(this.arr + this.num) / 2;
     });
   },
   mounted() {

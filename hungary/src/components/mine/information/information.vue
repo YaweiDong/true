@@ -1,9 +1,9 @@
 <template>
     <div>
         <header class="m-top">
-           <router-link to='/mine'>
+           <a src="#" @click="$router.back(-1)">
            <img :src="timg" alt="">
-           </router-link>    
+           </a>    
            <span>账户信息</span>
          </header>
          <ul class="list">
@@ -107,8 +107,9 @@ export default {
         url: api,
         withCredentials: true
       }).then(res => {
-        this.status = res.data.status;
-        this.$store.state.login1 = "";
+        this.status = res.data.status;       
+        localStorage.clear('ui');
+        this.$store.state.login1='';
         this.$router.push({name:'mine'});
       })
     },

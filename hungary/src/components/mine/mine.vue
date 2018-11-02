@@ -128,14 +128,18 @@ export default {
   },
   created() {
     var aa = this.$store.state.login1;
-    if (aa == "") {
+    //获取本地存储
+    var localData = JSON.parse(localStorage.getItem('ui'))
+   // console.log('本地',localData)
+    if (localData == null) {
       this.choise = "/register";
+      this.name = "登陆/注册";
     } else {
-      this.name = aa.username;
-      this.point = aa.point;
-      this.gift = aa.gift_amount;
+      this.name = localData.username;
+      this.point = localData.point;
+      this.gift = localData.gift_amount;
       this.choise = "/information";
-      this.yu = aa.balance;
+      this.yu = localData.balance;
       this.$router.push({ name: "mine" });
     }
   }
@@ -154,6 +158,8 @@ export default {
   font-size: 0.18rem;
   color: aliceblue;
   border-bottom: 0.0002rem solid white;
+  position: fixed;
+  top:0;
 }
 .m-top img {
   position: absolute;
@@ -166,6 +172,7 @@ export default {
   font-size: 0.19rem;
 }
 .register {
+  margin-top: 0.457rem;
   height: 0.8984rem;
   background-color: dodgerblue;
   display: flex;
@@ -298,6 +305,7 @@ aside img {
   background-color: white;
   font-size: 0.13rem;
   z-index: 100;
+  box-shadow: 0.01rem 0.01rem 0.02rem 0.02rem rgb(207, 201, 201);
 }
 .Dsearch {
   display: flex;
