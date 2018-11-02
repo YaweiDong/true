@@ -112,7 +112,7 @@ export default {
       this.usernames = aa.username;
       this.paths = '/information'
     }
-    console.log(this.$route.params.address);
+    //console.log(this.$route.params.address);
     if (this.$route.params.address == undefined) {
       this.address = "点击切换城市";
     } else {

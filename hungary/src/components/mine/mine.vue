@@ -130,7 +130,7 @@ export default {
     var aa = this.$store.state.login1;
     //获取本地存储
     var localData = JSON.parse(localStorage.getItem('ui'))
-    console.log('本地',localData)
+   // console.log('本地',localData)
     if (localData == null) {
       this.choise = "/register";
       this.name = "登陆/注册";
