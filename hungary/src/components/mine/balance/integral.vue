@@ -62,8 +62,8 @@ export default {
     }
   },
   created() {
-    var ui = JSON.parse(localStorage.getItem('ui'));
-    if (ui == null) {
+    var ui = this.$store.state.login1;
+    if (ui == '') {
       this.sp = false;
     } else {
       this.sp = true;

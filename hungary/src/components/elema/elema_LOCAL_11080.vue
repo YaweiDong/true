@@ -17,7 +17,7 @@
         </div>
         <div class="wrap">
           <div class="wrap-header">
-            <span  style="font-size:0.13rem" class="shop_header_title">附近商家</span>    
+            <span class="shop_header_title">附近商家</span>    
           </div> 
           <ul class="center">
             <li class="shop" v-for="(data,index) in data" :key="index">
@@ -110,8 +110,8 @@ export default {
   },
   //发请求
   created() {
-    var aa = this.$store.state.login1;
-    if (aa == '') {
+    var aa = JSON.parse(localStorage.getItem("ui"));
+    if (aa == null) {
       this.usernames = "登陆|注册";
     } else {
       this.usernames = aa.username;
@@ -119,13 +119,13 @@ export default {
     }
     //console.log(localStorage.getItem('locationname'));
     
-    if (this.$store.state.locationname == '') {
+    if (localStorage.getItem('locationname') == undefined) {
       this.address = "点击切换城市";
-      if(aa !== ''){
+      if(aa !== null){
           this.address = aa.city;
       }
     } else {
-      this.address = this.$store.state.locationname;
+      this.address = localStorage.getItem('locationname');
     }
 
     // this.address = aa.city;
@@ -154,7 +154,7 @@ export default {
 .header_h3 {
   color: #f1f1f1;
   text-align: center;
-  font-size:0.16rem; 
+  font-size:0.155rem; 
   line-height: 0.457rem;
 }
 .scroll {

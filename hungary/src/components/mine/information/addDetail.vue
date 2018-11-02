@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import {Loading} from 'element-ui'
 export default {
   data() {
     return {
@@ -51,6 +52,8 @@ export default {
   },
   methods: {
     btn() {
+      //加载提示
+    let loadingInstance1 = Loading.service({fullscreen:true})
       //搜索
       let api =
         "https://elm.cangdu.org/v1/pois?city_id=" +
@@ -59,6 +62,7 @@ export default {
         this.keyword +
         "&type=search";
       this.$http.get(api).then(res => {
+      loadingInstance1.close()
         console.log(res)
         this.datas = res.data;
         if (res.data.length == 0) {
