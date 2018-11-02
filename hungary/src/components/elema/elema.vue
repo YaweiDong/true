@@ -8,7 +8,7 @@
                 <h3 class="header_h3">{{address}}</h3>    
             </router-link> 
             <router-link :style="{color: '#3190e8'}" to="/register">
-            <span style="color:white" class="upp">{{username}}</span>
+            <span style="color:white" class="upp">{{usernames}}</span>
             </router-link>
 
         </div> 
@@ -88,8 +88,8 @@ import { Loading } from "element-ui";
 export default {
   data() {
     return {
-      username: "登陆|注册",
-      address:'',
+      usernames: "",
+      address: "点击切换城市",
       data: [],
       Dimg: [
         { na: "外卖", ad: "/elema", im: require("../../himg/ele1.png") },
@@ -104,15 +104,21 @@ export default {
   },
   //发请求
   created() {
-    
     var aa = JSON.parse(localStorage.getItem("ui"));
-    console.log(aa.username);
-    if (aa !== null) {
-       this.username = aa.username;
-    };
+    if (aa == null) {
+      this.usernames = "登陆|注册";
+    } else {
+      this.usernames = aa.username;
+    }
+    console.log(this.$route.params.address);
+    if (this.$route.params.address == undefined) {
+      this.address = "点击切换城市";
+    } else {
+      this.address = this.$route.params.address;
+    }
 
-    let loadingInstance1 = Loading.service({fullscreen: true});
-    this.address = this.$route.params.address;
+    // this.address = aa.city;
+    let loadingInstance1 = Loading.service({ fullscreen: true });
     let api =
       "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
     //promise写法
@@ -122,8 +128,6 @@ export default {
       // console.log(data.data);
       this.data = data.data;
     });
-
-    
   }
 };
 </script>
@@ -351,7 +355,7 @@ p {
   font-size: 0.15rem;
   position: absolute;
   top: 0.16rem;
-  left: 2.97rem;
+  right:0.02rem;
   color: white;
 }
 </style>
