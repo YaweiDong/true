@@ -87,8 +87,8 @@ export default {
     };
   },
   created(){
-    let aa = JSON.parse(localStorage.getItem('ui'));
-    if(aa == null){
+    let aa = this.$store.state.login1;
+    if(aa == ''){
         this.sp = false;
     }else{
       this.sp = true;
