@@ -46,7 +46,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-
+import {Loading} from 'element-ui';
 export default {
   data() {
     return {
@@ -66,6 +66,7 @@ export default {
       this.$emit("bian");
     },
     give() {
+let load = Loading.service({ fullscreen: true });
       var api = "https://elm.cangdu.org/v2/login/";
       this.$http({
         method: "post",
@@ -77,6 +78,7 @@ export default {
           username: this.usernmae
         }
       }).then(res => {
+        load.close();
         if (res.data.status == "") {
           alert(res.data.message);
           this.codeNumer = '';

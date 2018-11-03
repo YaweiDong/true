@@ -39,11 +39,12 @@
           <router-link to='/discount/exchange'>兑换红包</router-link>
           <router-link to='/discount/commend'>推荐有奖</router-link>
         </div>
-        <h3 v-show="sp">暂无优惠，请登录查询。</h3>
+       
     </div>
 </template>
 
 <script>
+import {Loading} from 'element-ui';
 import { mapState, mapGetters } from "vuex";
 export default {
   data() {
@@ -54,11 +55,13 @@ export default {
     };
   },
   created() {
+let loadingInstance1 = Loading.service({ fullscreen: true });
     var ui = this.$store.state.login1;
     if (ui !== '') {
       let api = `https://elm.cangdu.org/promotion/v2/users/${ui.id}/hongbaos?limit=20&offset=0`;
       this.$http.get(api).then(res => {
-        console.log(res);
+        loadingInstance1.close()
+        //console.log(res);
         this.datas = res.data;
       });
     }
