@@ -35,7 +35,7 @@
                  <ul class="citys_ul" >
                      
                      <li class="hot" v-for="(hc,index1) in  hotCitys" :key="index1">
-                         <router-link :style="{color: '#3190e8',paddingLeft: '0.3rem'}"  :to="{name:'citysearch',params:{citysName:hc.name,idd:hc.id}}">
+                         <router-link :style="{color: '#3190e8',paddingLeft: '0.3rem',width:'0.8rem'}"  :to="{name:'citysearch',params:{citysName:hc.name,idd:hc.id}}">
                          {{hc.name}}
                          </router-link>
                          </li>
@@ -49,7 +49,7 @@
                   <div>
                   <ul class="citys_ul">
                      <li class="all" v-for="(k,ind) in citys[keyData]" :key="ind">
-                         <router-link :style="{color: '#666',paddingLeft: '0.3rem'}"  :to="{name:'citysearch',params:{citysName:k.name,idd:k.id}}">
+                         <router-link :style="{color: '#666',paddingLeft: '0.3rem',width:'0.8rem'}"  :to="{name:'citysearch',params:{citysName:k.name,idd:k.id}}">
                          {{k.name}}
                           </router-link>
                          </li>
