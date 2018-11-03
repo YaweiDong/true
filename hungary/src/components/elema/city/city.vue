@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="header">
             <router-link to="/elema">
-            <h4 class="city_h4">ele.me</h4>
+            <h4 style="font-size:0.15rem" class="city_h4">ele.me</h4>
             </router-link>
             <router-link to="/mine">
               <img class="city_mine" src="../../../../static/imgs/mine.png">      
@@ -10,7 +10,7 @@
         </div>
          <div class="citys_float">
                    <div class="citys_float_left">
-                          <span>当前定位城市:</span>
+                          <span>当前定位城市:{{nowCity}}</span>
                    </div>
                  <div class="citys_float_right">
                           <span>定位不准时,请在城市列表中选择</span>
@@ -29,13 +29,13 @@
               </div>
               
               <div class="citys_group">
-                  <span>热门城市</span>
+                  <span style="font-size:0.14rem">热门城市</span>
               </div>
               <div>
                  <ul class="citys_ul" >
                      
                      <li class="hot" v-for="(hc,index1) in  hotCitys" :key="index1">
-                         <router-link :style="{color: '#3190e8'}"  :to="{name:'citysearch',params:{citysName:hc.name,idd:hc.id}}">
+                         <router-link :style="{color: '#3190e8',paddingLeft: '0.3rem'}"  :to="{name:'citysearch',params:{citysName:hc.name,idd:hc.id}}">
                          {{hc.name}}
                          </router-link>
                          </li>
@@ -44,12 +44,12 @@
               </div>
                <div v-for="(keyData,index) in az" :key="index">
                   <div class="citys_group" >
-                  <span>{{keyData}}(按字母排序)</span>
+                  <span style="font-size:0.14rem">{{keyData}}(按字母排序)</span>
                   </div>
                   <div>
                   <ul class="citys_ul">
                      <li class="all" v-for="(k,ind) in citys[keyData]" :key="ind">
-                         <router-link :style="{color: '#666'}"  :to="{name:'citysearch',params:{citysName:k.name,idd:k.id}}">
+                         <router-link :style="{color: '#666',paddingLeft: '0.3rem'}"  :to="{name:'citysearch',params:{citysName:k.name,idd:k.id}}">
                          {{k.name}}
                           </router-link>
                          </li>
@@ -69,10 +69,15 @@ export default {
       citys: [],
       az: [],
       hotCitys: [],
-      dw:[]
+      dw:[],
+      nowCity:''
     };
   },
   created() {
+    if(JSON.parse(localStorage.getItem('ui')) !== null){
+         this.nowCity = JSON.parse(localStorage.getItem('ui')).citys;
+    }
+    
     let loadingInstance1 = Loading.service({
       fullscreen: true
     });
@@ -197,7 +202,7 @@ export default {
   border-top: 0.01rem solid rgb(240, 240, 240);
   color: #666;
 }
-li {
+.hot , .all {
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -207,6 +212,10 @@ li {
 }
 .citys_ul > .hot {
   color: #3190e8;
+}
+.hot , .all{
+  font-size: 0.16rem;
+  /* text-align: center; */
 }
 </style>
 

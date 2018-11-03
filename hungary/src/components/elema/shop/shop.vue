@@ -186,14 +186,14 @@
                   </header>
                   <div>
                      <ul class="tag_list_ul">
-                        <li class="tagActivity" v-if="data2" v-for="(data2,index) in data2" :key="data2.id">
+                        <li class="tagActivity" v-if="data2" v-for="(data2,index) in data2" :key="index">
                             {{data2.name}}({{data2.count}})
                         </li>
                      </ul>
                   </div>
                   <div>
                       <ul class="rating_list_ul">
-                          <li class="rating_list_li" v-for="(data3,index) in data3" :key="data3.id">
+                          <li class="rating_list_li" v-for="(data3,index) in data3" :key="index">
                               <img class="user_avatar" src="../../../../static/imgs/download.jpg" alt="">
                               <section class="rating_list_detail">
                                   <header>
@@ -343,8 +343,7 @@ export default {
       this.data3 = data3.data;
     });
     //18、获取评价分数
-    let api4 =
-      "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores";
+    let api4 = "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores";
     this.$http.get(api4).then(data5 => {
       //成功后的回调
       this.data5 = data5.data;

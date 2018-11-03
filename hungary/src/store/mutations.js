@@ -22,13 +22,12 @@ let mutations = {
     state.number -= a.price
   },
    //声明点击图片传入值
-  // photoname(state,res){
-  //   this.state.photoname = res;
-  // },
+  photoname(state,res){
+    this.state.photoname = res;
+  },
   //清空
   clearCart(state){
     for(var i=0;i<state.arrnum.length;i++){
-         state.arrnum[i].count == 0;
          state.arrnum.splice(i,1); 
          i--
     }
@@ -42,6 +41,27 @@ let mutations = {
   },
   logining(state, lo) {
     state.login1 = lo;
+  },
+  dizhi(state, ad) {
+    state.address += ad;
+  },
+  inp1(state, n) {
+    state.input1 = n
+  },
+  inp2(state, n) {
+    state.input2 = n
+  },
+  inp3(state, n) {
+    state.input3 = n
+  },
+  inp4(state, n) {
+    state.input4 = n
+  },
+  states(state,n){
+    state.statu = n;
+  },
+  locationnames(state,n){
+    state.locationname = n;
   }
 }
 export {

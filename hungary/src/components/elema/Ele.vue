@@ -16,7 +16,7 @@
                 <br>
                 <div class="linkdiv">
                 
-                <img width="40px" :src="item.src" alt="">
+                <img class="img1" :src="item.src" alt="">
                 <br>
                 {{item.title}}
                 </div>
@@ -33,7 +33,7 @@
                 <br>
                 <div class="linkdiv">
                 
-                <img width="40px" :src="item.src" alt="">
+                <img class="img1" :src="item.src" alt="">
                 <br>
                 {{item.title}}
                 </div>
@@ -55,7 +55,7 @@
                 <br>
                 <div class="linkdiv">
                 
-                <img width="40px" :src="item.src" alt="">
+                <img class="img1"  :src="item.src" alt="">
                 <br>
                 {{item.title}}
                 </div>
@@ -72,7 +72,7 @@
                 <br>
                 <div class="linkdiv">
                 
-                <img width="40px" :src="item.src" alt="">
+                <img class="img1"  :src="item.src" alt="">
                 <br>
                 {{item.title}}
                 </div>
@@ -208,5 +208,8 @@ import img16 from "./img/16.png";
 }
 .linkli{
     width: 0.56rem;
+}
+.img1{
+    width: 0.4rem;
 }
 </style>

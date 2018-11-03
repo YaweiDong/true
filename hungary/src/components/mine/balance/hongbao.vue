@@ -55,7 +55,7 @@ export default {
   },
   created() {
     var ui = this.$store.state.login1;
-    if (ui !== "") {
+    if (ui !== '') {
       let api = `https://elm.cangdu.org/promotion/v2/users/${ui.id}/hongbaos?limit=20&offset=0`;
       this.$http.get(api).then(res => {
         console.log(res);

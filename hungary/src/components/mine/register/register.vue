@@ -2,9 +2,9 @@
 <template>
     <div class="body">
        <header class="m-top">
-           <router-link to='/mine'>
+     <a src='#' @click="$router.back(-1)">
              <img :src="timg" alt="">
-           </router-link>          
+           </a>          
            <span>密码登录</span>
        </header>
        <div class="login">
@@ -22,7 +22,7 @@
                    </div>              
                </section>
                <section>
-                   <input  v-model="codeNumer" type="text" placeholder="验证码">
+                   <input maxlength="4"  v-model="codeNumer" type="text" placeholder="验证码">
                    <div class="login-code">
                        <img :src="code" />
                        <div>
@@ -39,12 +39,12 @@
            </div>          
            <div class='login-container' @click="give()">
              登录
-             </div>
-           <a class="forget" href="#">重置密码?</a>         
+             </div>    
+           <router-link class="forget" to="/information/forget">重置密码?</router-link>     
        </div>
     </div>   
 </template>
-<script secoped='secoped'>
+<script>
 import { mapState } from "vuex";
 
 export default {
@@ -76,13 +76,15 @@ export default {
           password: this.password,
           username: this.usernmae
         }
-      }).then(res => {   
-        if(res.data.status == ""){
-            alert(res.data.message)
-        }else{
-            alert('登陆成功')
-            this.$store.commit("logining",res.data);
-            this.$router.push({name:'information'});
+      }).then(res => {
+        if (res.data.status == "") {
+          alert(res.data.message);
+          this.codeNumer = '';
+          this.$emit("bian");
+        } else {
+          alert("登陆成功");
+          this.$store.commit("logining", res.data);
+          this.$router.push({ name: "mine" });
         }
       });
     }
@@ -95,7 +97,6 @@ export default {
         url: api,
         withCredentials: true
       }).then(res => {
-        console.log(res.data);
         this.code = res.data.code;
       });
     };
@@ -114,7 +115,6 @@ export default {
 }
 .m-top {
   background-color: dodgerblue;
-  width: 100%;
   height: 0.457rem;
   line-height: 0.457rem;
   display: flex;
@@ -142,8 +142,9 @@ export default {
   bottom: 50%;
 }
 
-.login-form {
-  width: 100%;
+.login-form section {
+  background-color: white;
+  padding-left: 0.2rem;
 }
 .login-form section input {
   width: 100%;
@@ -153,7 +154,6 @@ export default {
   outline: none;
   border-bottom: 0.02rem solid #f5f5f5;
   font-size: 0.17rem;
-  padding-left: 0.2rem;
 }
 .login-form section:nth-child(2) {
   color: white;

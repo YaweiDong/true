@@ -110,22 +110,22 @@ export default {
   },
   //发请求
   created() {
-    var aa = this.$store.state.login1;
-    if (aa == '') {
+    var aa = JSON.parse(localStorage.getItem("ui"));
+    if (aa == null) {
       this.usernames = "登陆|注册";
     } else {
       this.usernames = aa.username;
       this.paths = '/information'
     }
     //console.log(localStorage.getItem('locationname'));
-    console.log(this.$store.state.locationname)
-    if (this.$store.state.locationname == '') {
+    
+    if (localStorage.getItem('locationname') == undefined) {
       this.address = "点击切换城市";
-      if(aa !== ''){
+      if(aa !== null){
           this.address = aa.city;
       }
     } else {
-      this.address = this.$store.state.locationname;
+      this.address = localStorage.getItem('locationname');
     }
 
     // this.address = aa.city;
@@ -154,8 +154,13 @@ export default {
 .header_h3 {
   color: #f1f1f1;
   text-align: center;
-  font-size:0.16rem; 
+<<<<<<< HEAD
+  font-size:0.155rem; 
   line-height: 0.457rem;
+=======
+  padding-top: 0.14rem;
+  font-size: 0.18rem;
+>>>>>>> aa67bfd5b781e7ed968662a6f5b45ecc07126d77
 }
 .scroll {
   border-bottom: 0.1px solid rgba(111, 111, 111, 0.9);

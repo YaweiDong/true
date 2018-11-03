@@ -61,6 +61,8 @@ import VipPay from "../components/mine/vipcard/pay";
 import Citysearch from "../components/elema/city/citysearch";
 //下载
 import Download from '../components/mine/download/download'
+//积分商城
+import IntegralStore from '../components/mine//integralStore/intergralStore'
 
 Vue.use(Router)
 
@@ -229,6 +231,7 @@ export default new Router({
     },
     {
       path: '/information/address',
+      name:'ad',
       component: Address
     },
     {
@@ -276,6 +279,7 @@ export default new Router({
     },
     {
       path: '/information/address/add',
+      name:'adre',
       component: Add
     },
     //历史红包,代金券说明
@@ -309,7 +313,8 @@ export default new Router({
       component: UseCard
     },
     //下载
-    {path:'/download',component:Download}
+    {path:'/download',component:Download},
+    {path:'/integralStore',component:IntegralStore}
 
     ]
 })

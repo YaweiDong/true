@@ -1,9 +1,15 @@
 let getters = {
-    //筛选用户
-    user(state){
+    user(state) {
         return state.login1;
-    }
-  }
-  export {
-      getters
-  };
+      },
+     //筛选用户
+     user(state){
+        return state.login1;
+    },
+      dizhi(state) {
+        return state.address;
+      }
+}
+export {
+    getters
+};

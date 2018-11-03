@@ -1,40 +1,36 @@
 <template>
 <div>
-        <div class="top">
-      <router-link to="/elema/city">
-      <img src="../../../../static/imgs/back.png" alt="">
-      </router-link>
-      <span>{{citytitle}}</span>
-      <router-link to="/mine" >
-      <span class="qie">切换城市</span>
-      </router-link>
+      <div class="top">
+         <router-link to="/elema/city">
+            <img src="../../../../static/imgs/back.png" alt="">
+         </router-link>
+         <span>{{citytitle}}</span>
+         <router-link to="/mine" >
+                 <span class="qie">切换城市</span>
+         </router-link>
       </div>
       <div class="address">
         <input type="text" placeholder=" 输入学校、商务楼、地址" v-model.trim="txt">
         <br>
-        <button @click="sub(txt)">提交</button>
+        <button style="font-size:0.15rem" @click="sub(txt)">提交</button>
       </div>
       <div class="dz">
-       <ul>
-            <li class="search_li" v-for="(item,index) in data" :key="index" @click="choose(item.geohash,item.name,item.address)">
-              <router-link :style="{color: 'black'}" :to="{name:'elema',params:{address:item.name}}" >
+         <ul>
+              <li class="search_li" v-for="(item,index) in data" :key="index" @click="choose(item)">
                 <h4>{{item.name}}</h4>
-                <p>{{item.address}}</p>
-                </router-link>
-            </li>
+                <p>{{item.address}}</p>    
+              </li>
         </ul>
-        </div>
-        <div v-show="show">
+      </div>
+      <div v-show="show">
             <header>搜索历史</header> 
             <ul>
-                <li class="search_li" v-for="item in history" :key=item.id  @click="choose(item.geohash,item.name,item.address)">
-                    <router-link :style="{color: 'black'}" :to="{name:'elema',params:{address:item.name}}" >
-                        <h4>{{item.name}}</h4>
-                        <p>{{item.address}}</p>
-                    </router-link>
+                <li class="search_li" v-for="item in history" :key=item.id  @click="choose(item)">
+                   <h4>{{item.name}}</h4>
+                   <p>{{item.address}}</p>                  
                 </li>
             </ul>
-        <footer  @click="clear">清空所有</footer>
+        <footer @click="clear">清空所有</footer>
         </div>
       </div>
 </template>
@@ -58,7 +54,7 @@ export default {
   methods: {
     sub(txt) {
       var id = this.$route.params.idd;
-      console.log(this.$route);
+     // console.log(this.$route);
       var api =
         "https://elm.cangdu.org/v1/pois?city_id=" +
         id +
@@ -78,39 +74,45 @@ export default {
     },
     add(a, b) {
       this.name1.push(a), this.address.push(b);
-      console.log(this.name1);
-      console.log(this.address);
+      // console.log(this.name1);
+      // console.log(this.address);
     },
-    choose(geohash, name, address) {
+    choose(item) {
       // console.log(geohash);
       // vuex传值
       // this.$store.commit("receivegeohash",geohash);
       //存储到localstorage中
-      localStorage.setItem("geohash", geohash);
-      localStorage.setItem("locationname", name);
+      localStorage.setItem("geohash", item.geohash);
+      this.$store.commit('locationnames',item.name)
+      //console.log(item.name);
       // 历史记录
-      var comment = { name: name, address: address, geohash: geohash };
+      var comment = {
+        name: item.name,
+        address: item.address,
+        geohash: item.geohash
+      };
       var list = JSON.parse(localStorage.getItem("cmts") || "[]");
       //unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
       list.unshift(comment);
       localStorage.setItem("cmts", JSON.stringify(list));
       this.name = this.address = this.geohash = "";
+      this.$router.push({name:'elema'})
     },
     clear() {
       this.history = [];
-      this.show=false;
+      this.show = false;
       localStorage.removeItem("cmts");
     },
-                // 去重的方法
-            dedup(arr) {
-                let hashTable = {};
-                return arr.filter(el => {
-                    let key = JSON.stringify(el);
-                    let match = Boolean(hashTable[key]);
-                    return match ? false : (hashTable[key] = true);
-                });
-
-            }
+    // 去重的方法
+    dedup(arr) {
+      //console.log(arr)
+      let hashTable = {};
+      return arr.filter(el => {
+        let key = JSON.stringify(el);
+        let match = Boolean(hashTable[key]);
+        return match ? false : (hashTable[key] = true);
+      });
+    }
   }
 };
 </script>

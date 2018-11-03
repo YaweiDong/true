@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="m-top">
-           <router-link to='/mine'>
+           <router-link src="#" :to='paths'>
            <img :src="timg" alt="">
            </router-link>    
            <span>账户信息</span>
@@ -10,7 +10,7 @@
             <div class="li">
                  <span>头像</span>
                  <div>
-                     <div class="photo">
+                     <div @click="pho" class="photo">
                           <img class="two" :src="user" alt="">
                      </div>                 
                      <img class="one"  :src="next" alt="">
@@ -24,10 +24,8 @@
                      <span>{{mapname.username}}</span>
                      <img class="one" :src="next" alt="">
                  </div>
-            </router-link>
-           
-             
-            <router-link class="li" to='/information/address'>
+            </router-link>     
+            <router-link class="li" :to="{name:'ad'}">
                    <span>收货地址</span>
                  <div>
                      <img class="one" :src="next" alt="">
@@ -71,7 +69,6 @@
               </div>          
            </div>          
          </div>
-        
     </div>
 </template>
 
@@ -87,11 +84,19 @@ export default {
       user: require("../imgs/userH.jpg"),
       username: "",
       status: "",
+      paths:'/mine',
       ch: true
     };
   },
   computed:{
       ...mapGetters({mapname:'user'})
+  },
+  created(){
+     if(this.$store.state.statu == 1){
+          this.paths = '/elema'
+     }else if(this.$store.state.statu == 2){
+       this.paths = '/mine'
+     }
   },
   methods: {
     app() {
@@ -110,15 +115,23 @@ export default {
         url: api,
         withCredentials: true
       }).then(res => {
-        this.status = res.data.status;
-        this.$store.state.login1 = "";
+        this.status = res.data.status;       
+        localStorage.clear('ui','locationname');
+        this.$store.state.login1='';
         this.$router.push({name:'mine'});
       })
+    },
+    pho(){ 
+      let api = 'https://elm.cangdu.org/v1/addimg/avatar';
+      this.$http.post(api).then((res)=>{
+           console.log(res)
+      })
+      alert('暂无法上传')
     }
   }
 };
 </script>
-<style scoped='secoped'>
+<style scoped='scoped'>
 .m-top {
   background-color: dodgerblue;
   width: 100%;

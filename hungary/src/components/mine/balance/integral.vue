@@ -50,7 +50,7 @@ export default {
       wen: require("../imgs/wenhao.png"),
       detail: require("../imgs/detail.png"),
       point: "0",
-      sp:''
+      sp: ""
     };
   },
   methods: {
@@ -63,7 +63,7 @@ export default {
   },
   created() {
     var ui = this.$store.state.login1;
-    if (ui == "") {
+    if (ui == '') {
       this.sp = false;
     } else {
       this.sp = true;
@@ -161,7 +161,7 @@ export default {
   font-size: 0.14rem;
   margin-top: 0.15rem;
 }
-.h3{
+.h3 {
   color: gray;
   text-align: center;
   padding-top: 1.5rem;

@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import store from "./store"
+import {store} from './store' //引入store
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -17,7 +19,7 @@ import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
 
-Vue.use(Vuex)
+
 Vue.use(VueAwesomeSwiper);
 Vue.use(ElementUI);
 Vue.use(VueAxios, axios)

@@ -6,7 +6,7 @@
              
            <span>新增地址</span>
          </header>
-         <div v-show="!sp">
+<div v-show="!sp">
 <div class="content">
     <div class="ul">
         <li class="li1">
@@ -25,8 +25,6 @@
         </li>
     </div>
 </div>
-
-
      <p class="p">交易明细</p>
      <div class="last">
      <img :src="detail" alt="">
@@ -49,13 +47,13 @@ export default {
       wen: require("../imgs/wenhao.png"),
       detail: require("../imgs/detail.png"),
       yu: "0.00",
-      sp:''
+      sp: ""
     };
   },
   created() {
-    var ui = this.$store.state.login1;
-    if (ui == "") {
-       this.sp = true;
+    var localData = this.$store.state.login1;
+    if (localData == '') {
+      this.sp = true;
     } else {
       this.sp = false;
       this.yu = ui.balance;
@@ -156,7 +154,7 @@ export default {
   height: 1.1719rem;
   margin-bottom: 0.2rem;
 }
-.h3{
+.h3 {
   color: gray;
   text-align: center;
   padding-top: 1.5rem;
