@@ -169,7 +169,7 @@ export default new Router({
         component: Mine
       }]
     },{
-      path:'/shop/:id',
+      path:'/shop',
       name:"shop",
       component:Shop
     },{

@@ -25,4 +25,4 @@ const store = new Vuex.Store({
   })
 
   //导出存储对象
-  export default store;
+  export {store};

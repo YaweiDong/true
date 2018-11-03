@@ -1,7 +1,7 @@
 <template>
    <div>
       <div class="waper_pay">
-          <img @click="$router.go(-1)" class="pay_img" src="../../../../static/imgs/back.png" alt="">
+          <img @click="jump()" class="pay_img" src="../../../../static/imgs/back.png" alt="">
           <div class="goback">
               <span class="address">添加地址</span>
           </div> 
@@ -84,7 +84,13 @@
            }
         },
         created() {
-
+             this.$store.commit('states',4)
+        },
+        methods:{
+          jump(){
+             this.$router.push({name:'shop'});
+          }
+          
         }
     }
 </script>

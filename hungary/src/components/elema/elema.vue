@@ -21,8 +21,8 @@
           </div> 
           <ul class="center">
             <li class="shop" v-for="(data,index) in data" :key="index">
-              <router-link :to="{name:'shop',params:{id:data.id}}">
-              <div class="shop_li">      
+              <router-link :to="{name:'shop'}">
+              <div @click="addId(data.id)" class="shop_li">      
                  <section>
                    <img class="shop-img" :src="'//elm.cangdu.org/img/'+data.image_path">    
                </section>
@@ -103,6 +103,9 @@ export default {
   methods:{
        bian(){
          this.$store.commit('states',1)
+       },
+       addId(n){
+         this.$store.commit('addids',n)
        }
   },
   components: {

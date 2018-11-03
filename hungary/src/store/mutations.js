@@ -62,6 +62,9 @@ let mutations = {
   },
   locationnames(state,n){
     state.locationname = n;
+  },
+  addids(state,n){
+    state.addid = n;
   }
 }
 export {

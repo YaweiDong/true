@@ -121,7 +121,7 @@
                  </section>
                  <section class="gotopay">
                     <span class="gotopay_button">还差￥20起送</span>
-                    <router-link to="/pay_money" @click="money()">
+                    <router-link :to="{name:'pay_money'}" @click="money()">
                         <span class="goto_pay">去结算</span>
                     </router-link>
                  </section>
@@ -305,7 +305,7 @@ export default {
   },
   //发请求
   created() {
-    this.aaa = this.$route.params.id;
+    this.aaa = this.$store.state.addid;
     //6、获取商铺列表
     let api3 =
       "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762";
@@ -317,7 +317,7 @@ export default {
     });
     // 16、获取食品列表
     let api =
-      "https://elm.cangdu.org/shopping/v2/menu?restaurant_id="+this.$route.params.id;
+      "https://elm.cangdu.org/shopping/v2/menu?restaurant_id="+this.aaa;
     //promise写法
     this.$http.get(api).then(data => {
       //成功后的回调

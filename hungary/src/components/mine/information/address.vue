@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="m-top">
-           <router-link to='/information'>
+           <router-link :to='paths'>
            <img :src="timg" alt="">
            </router-link>    
            <span>编辑地址</span>
@@ -30,13 +30,14 @@ export default {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
       datas:'',
-      sp:true
+      sp:true,
+      paths:''
     };
   },
   methods:{
       bian(){
         if(this.datas == ''){
-          this.sp = true;
+          this.sp = {name:''}
         }
         this.sp = !this.sp;
       },
@@ -51,6 +52,11 @@ export default {
       }
   },
   created() {
+    if(this.$store.state.statu == 4){
+          this.paths = '/pay_money';
+    }else{
+      this.paths = '/information';
+    }
     //获取收货地址
     var ui = this.$store.state.login1;
     var api = "https://elm.cangdu.org/v1/users/" + ui.id + "/addresses";
