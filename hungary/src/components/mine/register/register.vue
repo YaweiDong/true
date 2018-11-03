@@ -22,7 +22,7 @@
                    </div>              
                </section>
                <section>
-                   <input  v-model="codeNumer" type="text" placeholder="验证码">
+                   <input maxlength="4"  v-model="codeNumer" type="text" placeholder="验证码">
                    <div class="login-code">
                        <img :src="code" />
                        <div>
@@ -79,6 +79,7 @@ export default {
       }).then(res => {
         if (res.data.status == "") {
           alert(res.data.message);
+          this.codeNumer = '';
           this.$emit("bian");
         } else {
           alert("登陆成功");
