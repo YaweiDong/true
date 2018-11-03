@@ -1,22 +1,20 @@
 <template>
    <div>
+       <div class="business_wrap">
        <div class="business_header">
-           <router-link :to="{name:'shop',params:{id:data.id}}">
            <span class="header_span">
-             <
+                <img @click="$router.go(-1)" class="pay_img" src="../../../../static/imgs/back.png" alt="">
            </span>
-           </router-link>
-           <h3 class="header_h3">{{$route.params.usename}}</h3>
+           <h3 class="header_h3">{{data[0].foods[0].name}}</h3>
        </div>
        <div class="shop_business">            
-           <img :src="'//elm.cangdu.org/img/'+$route.params.Image" alt="">
-           <!-- <img class="user_avatar" src="../../../../static/imgs/download.jpg" alt=""> -->
-           <p class="name">{{$route.params.dataname}}</p>
-           <p class="title">{{$route.params.usename}}</p>
+           <img :src="'//elm.cangdu.org/img/'+data[0].foods[0].image_path" alt="">
+           <p class="name">{{data[0].foods[0].name}}</p>
+           <p class="title">{{data[0].description}}</p>
            <div class="business_rating">
                <span>评分</span>
                   <el-rate
-                   v-model=$route.params.rate
+                   v-model=data[0].foods[0].rating
                    disabled
                    show-score
                    text-color="#ff9900"
@@ -24,13 +22,14 @@
                 </el-rate>
            </div>
            <div class="number">
-               <span>月售{{$route.params.month}}单</span>
-               <span class="shop_price">售价￥{{$route.params.price}}起</span>
+               <span>月售单{{data[0].foods[0].month_sales}}</span>
+               <span class="shop_price">售价￥{{data[0].foods[0].specfoods[0].price}}起</span>
            </div>
            <div class="des">
-               <span>评论数{{$route.params.count}}</span>
-               <span>好评率{{$route.params.rating}}%</span>
+               <span>评论数{{data[0].foods[0].satisfy_count}}</span>
+               <span>好评率{{data[0].foods[0].satisfy_rate}}%</span>
            </div>
+       </div>
        </div>
    </div>
 </template>
@@ -38,18 +37,16 @@
 export default {
   name: "shop_business",
   data: () => ({
-    data: [],
-    // aa:'',
     return: {}
   }),
-  created() {
-     let api =
-      "https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1";
-    //promise写法
-    this.$http.get(api).then(data => {
-      //成功后的回调
-    this.data=data.data;
-    });
+  computed:{
+     data(){
+      return this.$store.state.api1
+    },
+    
+  },
+  created:{
+
   }
 };
 </script>
@@ -68,18 +65,19 @@ export default {
   overflow:hidden;
   text-align:center;
 }
-.header_span {
-  margin-left: .2rem;
-  color: #f1f1f1;
-  float:left;
+.pay_img {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 17;
+  height: 0.2rem;
+  padding: 0.14rem 0 0 0.1rem;
 }
 .header_h3 {
   padding-top: 0.02rem;
 }
 .shop_business {
-  width: 100%;
-  height: 100%;
-  margin-top: 0.46rem;
+  margin-top: .3rem;
 }
 .shop_business img {
   width: 100%;

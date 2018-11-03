@@ -3,7 +3,7 @@
     <div class="box">
        <router-link to="/elema">
        <div class="goback">
-          <
+         <img src="../../../../static/imgs/back.png" alt="">
        </div>  
        </router-link>
        <router-link to="/elema">
@@ -51,66 +51,55 @@
                   <!-- 商品左边 -->
                   <section class="menu_left">
                       <ul>
-                          <li :key="index" class="activity_menu" v-for="(data,index) in data" >
-                              <a href="#header_top"><span>{{data.name}}</span></a>
-                              <p class="cart_list_mount">{{count}}</p>
+                          <li class="activity_menu" v-for="(data,index) in data" :key="index">
+                              <a :href="'#header_top'+index"><span>{{data.name}}</span></a>
+                              <p class="cart_list_mount" v-show="ka.specfoods[0].count>0" v-for="(ka,inds) in data.foods" :key="inds">{{ka.specfoods[0].count.length}}</p>
                           </li>
                       </ul>
                   </section>
                   <!-- 商品右边 -->
                   <section class="menu_right">
                       <ul>
-                          <li v-for="(data,index) in data" :key="index">
+                          <li v-for="(data1,index1) in data" :key="index1">
                               <!-- 商品头部 热销榜 -->
-                              <header class="menu_detail_header">
+                              <header :id="'header_top'+index1" class="menu_detail_header">
                                    <section class="menu_detail_header_left">
-                                       <strong id="header_top" class="menu_item_title">{{data.name}}</strong> 
-                                       <span class="menu_item_description">{{data.description}}</span>
+                                       <strong class="menu_item_title">{{data1.name}}</strong> 
+                                       <span class="menu_item_description">{{data1.description}}</span>
                                    </section> 
                                     <el-tooltip class="meny_detail_header_right" effect="dark" content="热销榜 大家喜欢吃,才叫真好吃" placement="bottom-end">
                                        <el-button>...</el-button>
                                     </el-tooltip>
                               </header>
                               <!-- 商品信息 -->
-                              <section class="menu_detail_list" v-if="data.foods" v-for="(k,ind) in data.foods" :key="ind">
-                                   <router-link v-if="data.id" :to="{name:'shop_business',
-                                   params:{id:data.id,
-                                           usename:data.description,
-                                           Image:k.image_path,
-                                           rate:k.rating,
-                                           dataname:k.name,
-                                           count:k.satisfy_count,
-                                           rating:k.satisfy_rate,
-                                           month:k.month_sales,
-                                           price:k.specfoods[0].price}}">
+                              <section class="menu_detail_list" v-for="(value,ind) in data1.foods" :key="ind">
+                                  <router-link to="/shop_business" @click="shopes()">
                                    <div class="menu_detail_link">
                                       <section class="menu_food_img">
-                                           <img :src="'//elm.cangdu.org/img/'+k.image_path" alt=""> 
+                                           <img :src="'//elm.cangdu.org/img/'+value.image_path" alt=""> 
                                       </section>
                                       <section class="menu_food_description">
                                             <h3 class="food_description_head">
-                                                <strong class="description_foodname">{{k.name}}</strong>
+                                                <strong class="description_foodname">{{value.name}}</strong>
                                                 <p class="description_food_title">招牌</p>
                                             </h3>
-                                            <p class="food_description_content">{{k.description}}</p>
+                                            <p class="food_description_content">{{value.description}}</p>
                                             <p class="food_sale_rating">
-                                                <span>{{k.tips}}</span>
+                                                <span>{{value.tips}}</span>
                                             </p>
-                                            <p class="food_activity">
-                                                <span>但是方式分</span>
-                                            </p>
+                                            <span class="food_activity">{{value.description}}</span>
                                       </section>
                                    </div>
                                    </router-link>
                                    <!-- 按钮 -->
                                    <footer class="menu_deatil_footer">
                                        <section class="food_price">
-                                            <span>￥{{k.specfoods[0].price}}</span>
+                                            <span v-if="value.specfoods">￥{{value.specfoods[0].price}}</span>
                                        </section>
                                        <section class="cart_module" >
-                                               <button class="reduce" @click="reduce()">-</button>
-                                               <span class="sum">{{count}}</span>
-                                               <button class="plus" @click="add()">+</button>
+                                               <button class="reduce" v-show="value.specfoods[0].count>0" @click="reduce(value.specfoods[0])">-</button>
+                                               <span class="sum" v-show="value.specfoods[0].count>0">{{value.specfoods[0].count}}</span>
+                                               <button class="plus" @click="add(value.specfoods[0])">+</button>
                                        </section>
                                    </footer>
                               </section>
@@ -122,37 +111,40 @@
               <section class="buy_car_container">
                  <section>
                       <div class="cart_icon_container">
-                            <img class="cart_icon_img" @click="cart()" src="../../../../static/imgs/购物车.png" alt="">
-                            <span class="cart_list_length">{{count}}</span>
+                            <img class="cart_icon_img" @click="cart(show=!show)" src="../../../../static/imgs/购物车.png" alt="">
+                            <!-- <span class="cart_list_length"></span> -->
                       </div>
                       <section class="cart_money" v-if="data4">
-                          <p >￥{{total}}.00</p>
+                          <p >￥{{numberes}}.00</p>
                           <span v-if="data4.piecewise_agent_fee">{{data4.piecewise_agent_fee.tips}}</span>
                       </section>
                  </section>
                  <section class="gotopay">
                     <span class="gotopay_button">还差￥20起送</span>
+                    <router-link to="/pay_money" @click="money()">
+                        <span class="goto_pay">去结算</span>
+                    </router-link>
                  </section>
               </section> 
               <!-- 购物车清空 -->
-              <section v-if="show" class="cart_food_list">
+              <section class="cart_food_list" v-if="show">
                   <header>
                      <h4>购物车</h4>
-                     <div @click="clear()" class="clear_cart">清空</div>
+                     <div class="clear_cart" @click="clear()">清空</div>
                   </header>
                   <section class="cart_food_detail">
                       <ul>
-                        <li class="cart_food_li">
-                          <div class="cart_food_name">是方式分</div>
+                        <li class="cart_food_li" v-for="(arres,indexes) in array" :key="indexes">
+                          <div class="cart_food_name">{{arres.name}}</div>
                           <div class="cart_food_price">
-                            <span>￥20</span>
+                            <span>￥{{arres.price}}</span>
                           </div>
                           <section class="cart_food_btn">
-                                 <button class="reduce" @click="reduce()">-</button>
-                                <span class="sum">{{count}}</span>
-                                <button class="plus" @click="add()">+</button>
+                                <button class="reduce" @click="reduce(arres)">-</button>
+                                <span class="sum">{{arres.count}}</span>
+                                <button class="plus" @click="add(arres)">+</button>
                           </section>
-                        </li>
+                        </li> 
                       </ul>
                   </section>
               </section>
@@ -222,10 +214,8 @@
                                   </header>
                                   <div class="food_img_div">
                                      <ul class="food_img_ul">
-                                         <li class="food_img_li" v-for="(kkk,index) in data3.item_ratings" :key="index">
-                                           <!-- https://fuss10.elemecdn.com/0/74/e0e203f613deff4e456c31e4177d1jpeg.jpeg -->
+                                         <li class="food_img_li" v-for="(kkk,index) in data3.item_ratings[0]" :key="index">
                                              <img v-if="kkk.image_hash" :src="'//fuss10.elemecdn.com/img/'+kkk.image_hash+'.jpeg'" alt="">
-                                             <!-- <img src="../../../../static/imgs/download.jpg" alt=""> -->
                                          </li>
                                      </ul>
                                   </div>
@@ -249,47 +239,70 @@
 </template>
 <script src="../../../../static/js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
+import Vue from "vue";
 import $ from "jquery";
 export default {
   name: "shop",
   data: () => ({
-    data: [],
     data2: [],
     data3: [],
     data4: [],
-    data5: [],
-    show: false,
-    arr: "",
-    num: "",
-    rate: "",
-    number: "",
-    count: 0,
-    total: 0,
+    data5:[],
+    show:false,
+    arr:0,
+    num:0,
+    rate:0,
+    number:0,
     return: {},
     aaa: ""
   }),
+  computed:{
+    data(){
+      return this.$store.state.api1
+    },
+    numberes(){
+      return this.$store.state.number;
+    },
+    array(){
+      return this.$store.state.arrnum
+    }
+  },
   methods: {
     //增加
-    add() {
-      // this.count += 1;
-      for (var i = 0; i < data.length; i++) {
-        for (var j = 0; j < data.foods[j].length; j++) {
-          console.log(data.j);
-        }
-      }
+    add(a) { 
+      this.$store.commit("plus",a);
     },
     //减少
-    reduce() {
-      if (this.count <= 0) {
-        return false;
-      } else {
-        this.count -= 1;
-      }
+    reduce(a) {
+      this.$store.commit("minus",a);
     },
-    cart() {},
-    clear() {}
+    //购物车增加
+    jia(aa){
+      this.$store.commit("addCart",aa);
+    },
+    //购物车减少
+    jian(bb){
+      this.$store.commit("redCart",bb);
+    },
+    cart(){
+
+    },
+    clear(){
+      //  this.show = !show;
+       this.$store.commit("clearCart");
+    },
+    //点击btn2传值给photo
+    // btn2(photo) {
+    //   console.log("---------------------");
+    //   this.$store.commit("photoname", photo);
+    //  },
+    shopes(){
+      this.$route.push("/shop/shop_business"); 
+    },
+    money(){
+      this.$route.push("/shop/pay_money");
+    }
   },
-  computed: {},
   //发请求
   created() {
     this.aaa = this.$route.params.id;
@@ -304,13 +317,16 @@ export default {
     });
     // 16、获取食品列表
     let api =
-      "https://elm.cangdu.org/shopping/v2/menu?restaurant_id=" +
-      this.$route.params.id;
+      "https://elm.cangdu.org/shopping/v2/menu?restaurant_id="+this.$route.params.id;
     //promise写法
     this.$http.get(api).then(data => {
       //成功后的回调
-      console.log('食品列表',data.data);
-      this.data = data.data;
+      for(var i=0;i<data.data.length;i++){
+        for(var ii=0;ii<data.data[i].foods.length;ii++){
+           Vue.set(data.data[i].foods[ii].specfoods[0],"count",0);
+        }
+      }
+      this.$store.commit("api1",data.data);
     });
     //19、获取评价分类
     let api1 = "https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/tags";
@@ -331,12 +347,11 @@ export default {
     this.$http.get(api4).then(data5 => {
       //成功后的回调
       this.data5 = data5.data;
-      this.arr =
-        Math.round(Math.round(this.data5.service_score * 100) / 10) / 10;
-      this.num = Math.round(Math.round(this.data5.food_score * 100) / 10) / 10;
-      this.rate =
-        Math.round(Math.round(this.data5.compare_rating * 10000) / 10) / 10;
-      this.number = Math.ceil(this.arr + this.num) / 2;
+      // console.log(this.data5.service_score)
+      this.arr = Math.round(Math.round(this.data5.service_score*100)/10)/10;
+      this.num = Math.round(Math.round(this.data5.food_score*100)/10)/10;
+      this.rate = Math.round(Math.round(this.data5.compare_rating*10000)/10)/10;
+      this.number = Math.ceil(this.arr + this.num)/2;
     });
   },
   mounted() {
@@ -485,14 +500,13 @@ li {
 }
 .shops_show a:hover {
   border-bottom: 0.02rem solid #3190e3;
-}
-.tab_con > div {
-  display: none;
+} 
+.tab_con {
   position: relative;
   left: 0;
   top: 1.6rem;
 }
-.tab_con > div.food_container {
+.tab_con,.food_container {
   display: block;
   width: 100%;
   text-align: center;
@@ -501,9 +515,12 @@ li {
 }
 .menu_container {
   display: flex;
+  background-color: #ffffff;
+  width: 100%;
   /* 让所有弹性盒模型对象的子元素都有相同的长度 */
   flex: 1;
-  position: relative;
+  position: fixed;
+  z-index: 10;
 }
 .menu_left {
   width: 1rem;
@@ -530,15 +547,6 @@ li {
   font-size: 0.1rem;
   color: #666;
 }
-.menu_detail_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ededed;
-  height: 0.5rem;
-  width: 100%;
-  position: relative;
-}
 .menu_right {
   width: 100%;
   height: 6rem;
@@ -552,6 +560,15 @@ li {
   margin: 0.08rem;
   overflow: hidden;
 }
+.menu_detail_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ededed;
+  height: 0.5rem;
+  width: 100%;
+  position: relative;
+} 
 .menu_item_title {
   font-size: 0.16rem;
   color: #666;
@@ -598,14 +615,12 @@ li {
   font-size: 0.15rem;
   font-weight: bold;
 }
-.description_food_title,
-.food_activity > span {
-  font-size: 0.08rem;
+.description_food_title{
+  font-size: .1rem;
   color: rgb(240, 115, 115);
   border: 1px solid rgb(240, 115, 115);
-  /* padding: .01rem .01rem; */
-  border-radius: 0.05rem;
-  line-height: 0.18rem;
+  border-radius: .05rem;
+  line-height: .18rem;
 }
 .food_description_content {
   color: #999;
@@ -620,29 +635,27 @@ li {
   display: flex;
   padding-top: 0.03rem;
 }
-.food_activity > span {
+.food_activity{
   color: rgb(241, 136, 79);
-  width: 0.6rem;
+  font-size: .1rem;
+  float:left;
+  border: 1px solid rgb(240, 115, 115);
+  border-radius: .05rem;
 }
 .menu_detail_footer {
-  display: flex;
+  overflow: hidden;
   margin-top: 0.1rem;
   width: 100%;
-  overflow: hidden;
 }
 .food_price span {
   font-size: 0.15rem;
   color: #f60;
-  margin-left: 0.5rem;
-  padding-top: 0.05rem;
   float: left;
 }
 .cart_module {
-  float: right;
   display: flex;
   font-size: 0.15rem;
-  padding-top: 0.05rem;
-  margin-right: 0.03rem;
+  padding-left: 1.6rem;
 }
 .reduce,
 .plus {
@@ -652,11 +665,10 @@ li {
   border-radius: 0.15rem;
   padding: 0 0.01rem;
   border: #3190e8 1px solid;
-  margin-right: 0.03rem;
+  margin-right: .03rem;
 }
 .sum {
   margin-right: 0.05rem;
-  /* display: none; */
 }
 .plus {
   background-color: #3190e8;
@@ -664,7 +676,6 @@ li {
 }
 .reduce {
   color: #3190e8;
-  /* display: none; */
 }
 .buy_car_container {
   position: fixed;
@@ -699,7 +710,6 @@ li {
   padding: 0.05rem;
   border-radius: 50%;
   color: #fff;
-  display: none;
 }
 .cart_list_mount {
   padding: 0.01rem;
@@ -739,14 +749,23 @@ li {
   background-color: black;
   color: #ebebeb;
 }
+.goto_pay{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.2rem;
+  width: 100%;
+  background-color: #4cd964;
+  color: #ebebeb;
+}
 .cart_food_list {
   width: 100%;
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 12;
   background-color: #fff;
-  padding-bottom: 0.8rem;
+  padding-bottom: 1rem;
 }
 .cart_food_list header {
   display: flex;
@@ -817,7 +836,6 @@ li {
   justify-content: space-around;
   background-color: #fff;
   margin-top: 0.1rem;
-  /* padding: 0 .15rem; */
 }
 .tagActivity {
   font-size: 0.15rem;
