@@ -118,7 +118,7 @@ export default {
       this.paths = '/information'
     }
     //console.log(localStorage.getItem('locationname'));
-    
+    console.log(this.$store.state.locationname)
     if (this.$store.state.locationname == '') {
       this.address = "点击切换城市";
       if(aa !== ''){

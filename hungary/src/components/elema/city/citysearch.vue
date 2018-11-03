@@ -54,7 +54,7 @@ export default {
   methods: {
     sub(txt) {
       var id = this.$route.params.idd;
-      console.log(this.$route);
+     // console.log(this.$route);
       var api =
         "https://elm.cangdu.org/v1/pois?city_id=" +
         id +
@@ -84,7 +84,7 @@ export default {
       //存储到localstorage中
       localStorage.setItem("geohash", item.geohash);
       this.$store.commit('locationnames',item.name)
-      // console.log(item.name);
+      //console.log(item.name);
       // 历史记录
       var comment = {
         name: item.name,
@@ -105,7 +105,7 @@ export default {
     },
     // 去重的方法
     dedup(arr) {
-      console.log(arr)
+      //console.log(arr)
       let hashTable = {};
       return arr.filter(el => {
         let key = JSON.stringify(el);
