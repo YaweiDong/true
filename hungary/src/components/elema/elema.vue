@@ -5,7 +5,7 @@
             <img class="search3" src="../../../static/imgs/search3.png" alt="">
           </router-link>
             <router-link to="/elema/city">          
-                <h3 class="header_h3">{{address}}</h3>    
+                <span class="header_h3">{{address}}</span>    
             </router-link> 
             <router-link :style="{color: '#3190e8'}" :to="paths">
             <span @click="bian()" style="color:white" class="upp">{{usernames}}</span>
@@ -156,6 +156,10 @@ export default {
   text-align: center;
   font-size:0.16rem; 
   line-height: 0.457rem;
+  position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 .scroll {
   border-bottom: 0.1px solid rgba(111, 111, 111, 0.9);
