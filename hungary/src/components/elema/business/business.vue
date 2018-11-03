@@ -3,7 +3,7 @@
        <div class="business_header">
            <router-link :to="{name:'shop',params:{id:data.id}}">
            <span class="header_span">
-               <
+               <img src="../../../../static/imgs/back.png" alt="">
            </span>
            </router-link>
            <h3 class="header_h3">商家详情</h3>
@@ -11,7 +11,7 @@
        <section class="activies_container">
             <header>活动属性</header>
             <ul class="actibities_ul" v-if="data">
-                <li v-if="data.supports" v-for="(k,index) in data.supports" :key="index">
+                <li v-for="(k,index) in data.supports" :key="index">
                     <span class="reduce" :style="{backgroundColor: '#'+k.icon_color}">{{k.icon_name}}</span>
                     <span class="li_text">{{k.description}}(APP专享)</span>
                 </li>
@@ -103,9 +103,8 @@
   display: flex;
   line-height: 0.46rem;
 }
-.header_span {
-  margin-left: 0.2rem;
-  color: #f1f1f1;
+.header_span img{
+  width: .2rem;
 }
 .header_h3 {
   padding-top: 0.02rem;

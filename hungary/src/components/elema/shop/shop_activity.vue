@@ -1,6 +1,6 @@
 <template>
     <div>
-       <section class="shop_container" v-if="data.activities" v-for="(k,index) in data.activities" :key="index">
+       <section class="shop_container" v-for="(k,index) in data.activities" :key="index">
            <header class="shop_header">
                <span>{{data.name}}</span>
            </header>
@@ -14,9 +14,7 @@
            </div>
            <span class="shop_name">{{data.promotion_info}}</span>
            <div class="shop_bottom">
-              <router-link :to="{name:'shop',params:{id:data.id}}">
-              <span class="shop_return">×</span>
-              </router-link>
+              <span  @click="$router.go(-1)" class="shop_return">×</span>
            </div>
        </section>
     <router-view></router-view>    

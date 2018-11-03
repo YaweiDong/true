@@ -10,7 +10,10 @@ a<template>
             </div>
        </router-link>
     </div> -->
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+           <router-view></router-view>
+    </transition>
+    
   </div>
 </template>
 
@@ -42,8 +45,14 @@ export default {
 </script>
 
 <style scoped ="scoped">
+.fade-enter-active,.fade-leave-active{
+    transition: all .2s;
+}
+.fade-enter,.fade-leave-active{
+    opacity: 0;
+}
 
-.Dwarp {
+/* .Dwarp {
   width: 100%;
   padding: 0.05rem;
   position: fixed;
@@ -63,5 +72,5 @@ export default {
 .Dimg2 {
   width: 0.25rem;
   margin-bottom: 0.02rem;
-}
+} */
 </style>

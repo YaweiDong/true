@@ -1,4 +1,3 @@
-let actions={
-    
-}
-export {actions}
+export default {
+  
+  }
