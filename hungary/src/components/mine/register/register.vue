@@ -45,7 +45,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import {Loading} from 'element-ui';
+import { Loading } from "element-ui";
 export default {
   data() {
     return {
@@ -65,7 +65,11 @@ export default {
       this.$emit("bian");
     },
     give() {
-let load = Loading.service({ fullscreen: true });
+      if (this.usernmae == "" || this.password == "" || this.codeNumer == "") {
+        alert("内容不可为空");
+        return;
+      }
+      let load = Loading.service({ fullscreen: true });
       var api = "https://elm.cangdu.org/v2/login/";
       this.$http({
         method: "post",
@@ -80,7 +84,7 @@ let load = Loading.service({ fullscreen: true });
         load.close();
         if (res.data.status == "") {
           alert(res.data.message);
-          this.codeNumer = '';
+          this.codeNumer = "";
           this.$emit("bian");
         } else {
           alert("登陆成功");
