@@ -65,6 +65,9 @@ let mutations = {
   },
   addids(state,n){
     state.addid = n;
+  },
+  pay(state,n){
+     state.pays = n;
   }
 }
 export {

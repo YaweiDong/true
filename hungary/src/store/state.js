@@ -15,5 +15,6 @@ export default {
     input4: '',
     statu:'',
     locationname:'',
-    addid:''
+    addid:'',
+    pays:''
 }
