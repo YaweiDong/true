@@ -31,7 +31,6 @@
                        </div>
                    </div>
                </section>
-               <input value="提交00" type="submit">
            </form>
            <div class="advice">
               <p>温馨提示:未注册过的账号,登录时将自动注册</p>

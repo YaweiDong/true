@@ -14,5 +14,6 @@ export default {
     input3: '',
     input4: '',
     statu:'',
-    locationname:''
+    locationname:'',
+    addid:''
 }
