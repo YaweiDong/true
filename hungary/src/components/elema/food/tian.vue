@@ -169,12 +169,15 @@ export default {
       // 修改地方
       this.name1 = this.data[index].name;
       console.log(this.name1);
-       this.checkindex = index
+       this.checkindex = index;
+       
     },
     updaMsg(index) {
       this.name2 = this.arr[index].name;
       console.log(this.name2);
       this.show = false;
+       this.show66 = false;
+      this.show6 = true;
     },
     hidden3: function() {
       this.show = false;
@@ -203,6 +206,8 @@ export default {
       this.cont = this.imgs1[index1];
       // console.log(this.id)
       this.show2 = false;
+      this.show77 = false;
+      this.show7 = true;
     },
     btn1() {
       this.valuehe[0].valueb = true;
