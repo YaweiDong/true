@@ -15,9 +15,9 @@
                 <input @click="btn()" type="text" placeholder="小区/写字楼/学校等" v-model="home">
                 <input :class="{border:p3}" @blur="inp2()" type="text" placeholder="请填写详细的送餐地址" v-model="address">
                 <p class="pp" v-show="p3">请按要求填写地址</p>
-                <input :class="{border:p4}" @blur="inp3()" type="text" placeholder="请填写能够联系到您的手机号" v-model="phone">
+                <input maxlength="11" :class="{border:p4}" @blur="inp3()" type="text" placeholder="请填写能够联系到您的手机号" v-model="phone">
                 <p class="pp" v-show="p4">请填写规范的手机号</p>
-                <input :class="{border:p4}" @blur="inp4()" type="text" placeholder="备用联系电话（选填）" v-model="phone1">
+                <input maxlength="11" :class="{border:p4}" @blur="inp4()" type="text" placeholder="备用联系电话（选填）" v-model="phone1">
                 <p class="pp" v-show="p4">请填写规范的手机号</p>
              </div>           
          </div>
@@ -85,13 +85,11 @@ export default {
       } else {
         //姓名,地址正则判断
         var strname = /^([\u4e00-\u9fa5|\w]){2,7}$/; //名字
-        var strname1 = /^([\u4e00-\u9fa5|\w]){5,}$/; //地址
         var strphone = /^1[3|5|7|8|9][0-9]{9}$/; //手机号判断
         var s1 = strname.test(this.names); //名字
-        var s2 = strname1.test(this.address); //地址
         var s3 = strphone.test(this.phone); //手机号
         var s4 = strphone.test(this.phone1); //备用手机号
-        if (s1 == false || s2 == false || s3 == false || s4 == false) {
+        if (s1 == false || s3 == false || s4 == false) {
           this.p1 = !s1;
           this.p3 = !s2;
           this.p4 = !s3;

@@ -8,8 +8,9 @@
           <div class="par_person">
               <section class="section_pay">
                    <p>
-                       <span>收货人:fyy</span>
-                       <span>联系电话:123456</span>
+                       <span>收货人:{{user}}</span>
+                       <br>
+                       <span>联系电话:{{address}}</span>
                    </p>
                    <p>
                      <router-link to="/information/address">
@@ -77,14 +78,26 @@
 </template>
 <<script>
     export default{
+      data(){
+        return{
+                user:'fyy',
+             address:'123456'
+        }
+      },
         name:'pay_money',
         computed:{
           arr(){
              return this.$store.state.arrnum;
+            
            }
         },
         created() {
-             this.$store.commit('states',4)
+             this.$store.commit('states',4);
+             var ss = this.$store.state.pays;
+             if(ss !== ''){
+                 this.user = ss.number;
+                 this.address = ss.address;
+             }
         },
         methods:{
           jump(){
@@ -95,8 +108,8 @@
     }
 </script>
 <style scoped="scoped">
-.font_red{
-  color:red;
+.font_red {
+  color: red;
 }
 .goback {
   position: fixed;
@@ -122,7 +135,7 @@
   color: #f1f1f1;
 }
 .par_person {
-  margin-top: .8rem;
+  margin-top: 0.8rem;
   width: 100%;
   background-color: #f1f1f1;
   font-size: 0.18rem;

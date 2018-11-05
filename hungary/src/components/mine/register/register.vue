@@ -31,7 +31,6 @@
                        </div>
                    </div>
                </section>
-               <input value="提交00" type="submit">
            </form>
            <div class="advice">
               <p>温馨提示:未注册过的账号,登录时将自动注册</p>
@@ -46,7 +45,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-
+import { Loading } from "element-ui";
 export default {
   data() {
     return {
@@ -66,6 +65,11 @@ export default {
       this.$emit("bian");
     },
     give() {
+      if (this.usernmae == "" || this.password == "" || this.codeNumer == "") {
+        alert("内容不可为空");
+        return;
+      }
+      let load = Loading.service({ fullscreen: true });
       var api = "https://elm.cangdu.org/v2/login/";
       this.$http({
         method: "post",
@@ -77,9 +81,10 @@ export default {
           username: this.usernmae
         }
       }).then(res => {
+        load.close();
         if (res.data.status == "") {
           alert(res.data.message);
-          this.codeNumer = '';
+          this.codeNumer = "";
           this.$emit("bian");
         } else {
           alert("登陆成功");

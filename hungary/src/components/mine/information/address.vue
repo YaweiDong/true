@@ -14,7 +14,7 @@
              <img :src="next" alt="">
          </router-link>
          <ul class="address">
-           <li :key='index' v-for="(k,index) in datas">
+           <li @click="btnAdd(k.phone,k.name)" :key='index' v-for="(k,index) in datas">
                 <p>{{k.address}}</p>
                 <p>{{k.phone}}</p>
                 <span @click="del(k.user_id,k.id,index)" v-show="!sp">X</span>
@@ -29,42 +29,49 @@ export default {
     return {
       timg: require("../imgs/back.png"),
       next: require("../imgs/next.png"),
-      datas:'',
-      sp:true,
-      paths:''
+      datas: "",
+      sp: true,
+      paths: ""
     };
   },
-  methods:{
-      bian(){
-        if(this.datas == ''){
-          this.sp = {name:''}
-        }
-        this.sp = !this.sp;
-      },
-      del(n1,n2,index){
-         let api = 'https://elm.cangdu.org/v1/users/'+n1+'/addresses/'+n2+'';
-         this.$http.delete(api).then((res)=>{
-             if(res.data.status == 1){
-                alert('删除成功');
-                this.datas.splice(index,1);
-             }
-         })
+  methods: {
+    bian() {
+      if (this.datas == "") {
+        this.sp = { name: "" };
       }
+      this.sp = !this.sp;
+    },
+    del(n1, n2, index) {
+      let api =
+        "https://elm.cangdu.org/v1/users/" + n1 + "/addresses/" + n2 + "";
+      this.$http.delete(api).then(res => {
+        if (res.data.status == 1) {
+          alert("删除成功");
+          this.datas.splice(index, 1);
+        }
+      });
+    },
+    btnAdd(n1, n2) {
+      var ss = { number: n2, address: n1 };
+      this.$store.commit("pay", ss);
+      if (this.$store.state.statu == 4) {
+        this.$router.push({name:'pay_money'})
+      }
+    }
   },
   created() {
-    if(this.$store.state.statu == 4){
-          this.paths = '/pay_money';
-    }else{
-      this.paths = '/information';
+    if (this.$store.state.statu == 4) {
+      this.paths = "/pay_money";
+    } else {
+      this.paths = "/information";
     }
     //获取收货地址
     var ui = this.$store.state.login1;
     var api = "https://elm.cangdu.org/v1/users/" + ui.id + "/addresses";
-    this.$http({ method: "get", url: api, withCredentials: true }).then(
-      res => {
-        this.datas = res.data;
-      }
-    );
+    this.$http({ method: "get", url: api, withCredentials: true }).then(res => {
+      //console.log(res.data)
+      this.datas = res.data;
+    });
   }
 };
 </script>
@@ -99,18 +106,18 @@ export default {
   top: 50%;
   bottom: 50%;
 }
-.sps{
+.sps {
   position: absolute;
-  right:0.1rem;top:0;
+  right: 0.1rem;
+  top: 0;
   height: 100%;
   display: flex;
   align-items: center;
-   
 }
 .line {
   border: 0.005rem solid rgb(192, 184, 184);
   margin: 0.1rem 0;
-  margin-top:0.557rem;
+  margin-top: 0.557rem;
 }
 .next {
   height: 0.43rem;
@@ -125,34 +132,34 @@ export default {
   width: 0.25rem;
   height: 0.25rem;
 }
-.address{
+.address {
   margin-top: 0.1rem;
   background-color: white;
 }
-.address li{
+.address li {
   border: 0.001rem solid gray;
   padding: 0.1rem;
   font-size: 0.14rem;
   position: relative;
   color: black;
 }
-.address li p:nth-child(2){
+.address li p:nth-child(2) {
   margin-top: 0.1rem;
 }
-.address li:nth-child(1){
+.address li:nth-child(1) {
   background-color: #fff8c3;
 }
-.address li p{
+.address li p {
   margin-right: 0.1rem;
 }
-.address li span{
+.address li span {
   font-weight: bold;
   position: absolute;
-  right:0.1rem;top:0;
+  right: 0.1rem;
+  top: 0;
   height: 100%;
   display: flex;
   align-items: center;
   color: gray;
 }
-
 </style>

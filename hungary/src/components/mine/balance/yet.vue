@@ -51,8 +51,8 @@ export default {
     };
   },
   created() {
-    var localData = this.$store.state.login1;
-    if (localData == '') {
+    var ui = this.$store.state.login1;
+    if (ui == '') {
       this.sp = true;
     } else {
       this.sp = false;
